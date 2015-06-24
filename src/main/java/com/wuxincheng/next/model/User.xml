@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="User">
+	<typeAlias alias="User" type="com.wuxincheng.web.model.User" />
+
+	<resultMap class="User" id="UserMapping">
+		<result property="logiName" column="LOGIN_NAME" />
+		<result property="loginPwd" column="LOGIN_PWD" />
+		<result property="realName" column="REAL_NAME" />
+		<result property="sex" column="SEX" />
+		<result property="mobile" column="MOBILE" />
+		<result property="email" column="EMAIL" />
+		<result property="address" column="ADDRESS" />
+		<result property="code" column="CODE" />
+		<result property="qq" column="QQ" />
+		<result property="privateWeb" column="PRIVATE_WEB" />
+		<result property="privateMsg" column="PRIVEATE_MSG" />
+		<result property="state" column="STATE" />
+	</resultMap>
+	
+	<select id="query" parameterClass="User" resultMap="UserMapping">
+		SELECT 
+			LOGIN_NAME, LOGIN_PWD, REAL_NAME, SEX, MOBILE, EMAIL, 
+			ADDRESS, CODE, QQ, PRIVATE_WEB, PRIVEATE_MSG, STATE 
+		FROM T_BLOG_USER
+		WHERE LOGIN_NAME = #logiName#
+		<dynamic>
+			<isNotNull prepend=" AND " property="loginPwd">
+				LOGIN_PWD = #loginPwd#
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+	<insert id="insert" parameterClass="User">
+		INSERT INTO T_BLOG_USER (
+			LOGIN_NAME, LOGIN_PWD, REAL_NAME, SEX, MOBILE, EMAIL, ADDRESS, 
+			CODE, QQ, PRIVATE_WEB, PRIVEATE_MSG, CREATE_TIME, UPDATE_TIME, STATE) 
+		VALUES (
+			#logiName#, #loginPwd#, #realName#, #sex#, #mobile#, #email#, #address#, #code#, 
+			#qq#, #privateWeb#, #privateMsg#, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #state#)
+	</insert>
+	
+	<update id="update" parameterClass="User">
+		UPDATE T_BLOG_USER SET 
+			REAL_NAME = #realName#, SEX = #sex#, MOBILE = #mobile#, 
+			EMAIL = #email#, ADDRESS = #address#, CODE = #code#, QQ = #qq#, PRIVATE_WEB = #privateWeb#, 
+			PRIVEATE_MSG = #privateMsg#, UPDATE_TIME = CURRENT_TIMESTAMP, STATE = #state#
+		WHERE LOGIN_NAME = #logiName#
+	</update>
+	
+	<update id="modifyPwd" parameterClass="User">
+		UPDATE T_BLOG_USER SET LOGIN_PWD = #loginPwd# WHERE LOGIN_NAME = #logiName#
+	</update>
+	
+</sqlMap>

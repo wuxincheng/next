@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Message">
+	<typeAlias alias="Message" type="com.wuxincheng.web.model.Message" />
+
+	<resultMap class="Message" id="MessageMapping">
+		<result property="msgId" column="MSG_ID" />
+		<result property="username" column="USERNAME" />
+		<result property="msgTitle" column="MSG_TITLE" />
+		<result property="msgContent" column="MSG_CONTENT" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="state" column="STATE" />
+	</resultMap>
+	
+	<insert id="insert" parameterClass="Message">
+		INSERT INTO T_USER_MESSAGE (MSG_ID, USERNAME, MSG_TITLE, MSG_CONTENT, CREATE_TIME, STATE) 
+			VALUES (#msgId#, #username#, #msgTitle#, #msgContent#, CURRENT_TIMESTAMP, #state#)
+	</insert>
+	
+	<select id="queryMaxId" resultClass="java.lang.Integer">
+		SELECT IFNULL(MAX(MSG_ID+1), 0) AS MSG_ID FROM T_USER_MESSAGE
+	</select>
+	
+</sqlMap>
