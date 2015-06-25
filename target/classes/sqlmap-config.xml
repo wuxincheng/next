@@ -6,7 +6,5 @@
   <settings useStatementNamespaces="true" />
 
   <sqlMap resource="com/wuxincheng/next/model/BlogInfo.xml" />
-  <sqlMap resource="com/wuxincheng/next/model/Type.xml" />
-  <sqlMap resource="com/wuxincheng/next/model/Request.xml" />
 
 </sqlMapConfig>

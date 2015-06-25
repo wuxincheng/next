@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>M</title>
-<meta http-equiv="refresh" content="0;url=<%=request.getContextPath()%>/post/list" >
+<meta http-equiv="refresh" content="0;url=<%=request.getContextPath()%>/product/list" >
 <link href="<%=request.getContextPath()%>/assets/img/favicon.ico" type="image/x-icon" rel="icon" />
 <link href="<%=request.getContextPath()%>/assets/img/favicon.ico" type="image/x-icon"
   rel="shortcut icon" />

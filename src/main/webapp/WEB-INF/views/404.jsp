@@ -15,35 +15,32 @@
 </head>
 
 <body>
-	<div class="wrapper">
-		
-		<div class="container">
-			<div class="ya2dan-top-container">
-				<div>
-					<div class="row">
-						<div class="col-sm-2"></div>
-        				<div class="col-sm-3" style="text-align: center;">
-        					<p>&nbsp;</p><p>&nbsp;</p>
-        					<img src="<%=request.getContextPath()%>/assets/img/sorry.png">
-        				</div>
-        				<div class="col-sm-7">
-	        				<p>&nbsp;</p>
-							<p>
-				        	<h4>啊噢，很抱歉，您访问的页面不存在耶！</h4>
-				        	<hr>
-				        	<p>
-				        	1、请检查您访问的网址是否正确；<br>
-				        	2、您所查看的内容不存在或已删除；<br>
-				        	3、你还以尝试访问其它页面。
-				        	</p>
-        				</div>
-        			</div>
-		        </div>
-		        <hr>
-		        <p>&nbsp;</p>
-	        </div>
-		</div>
-		
-	</div>
+  <div class="wrapper">
+
+    <div class="container">
+      <div class="ya2dan-top-container">
+        <div>
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-3" style="text-align: center;">
+              <p>&nbsp;</p>
+            </div>
+            <div class="col-sm-7">
+              <p>&nbsp;</p>
+              <p>
+              <h4>啊噢，很抱歉，您访问的页面不存在耶！</h4>
+              <hr>
+              <p>
+                1、请检查您访问的网址是否正确；<br> 2、您所查看的内容不存在或已删除；<br> 3、你还以尝试访问其它页面。
+              </p>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>
