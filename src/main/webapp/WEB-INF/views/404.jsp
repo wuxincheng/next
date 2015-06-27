@@ -18,7 +18,7 @@
   <div class="wrapper">
 
     <div class="container">
-      <div class="ya2dan-top-container">
+      <div class="top-container">
         <div>
           <div class="row">
             <div class="col-sm-2"></div>

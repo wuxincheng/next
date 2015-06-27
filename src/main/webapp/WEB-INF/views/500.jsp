@@ -18,7 +18,7 @@
 	<div class="wrapper">
 		
 		<div class="container">
-			<div class="ya2dan-top-container">
+			<div class="top-container">
 				<div class="badger-left badger-notice" data-badger="新成提示">
 					<br>
 					<div class="row">
