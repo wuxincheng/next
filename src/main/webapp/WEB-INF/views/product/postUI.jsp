@@ -24,7 +24,7 @@
 
     <div class="content row row cf">
       <div class="forms">
-        <form accept-charset="UTF-8" action="/posts" class="simple_form new_note" id="new_note"
+        <form accept-charset="UTF-8" action="${root}/product/doPost" class="simple_form new_note" id="new_note"
           method="post">
           <div style="display: none">
             <input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token"
@@ -37,18 +37,18 @@
           </div>
           <div class="form-group string required note_title">
             <label class="string required" for="note_title">产品名称</label><input aria-required="true"
-              autofocus="autofocus" class="string required form-control input-small" id="note_title"
-              name="note[title]" placeholder="如：Startup Base" required="required" type="text" />
+              autofocus="autofocus" class="string required form-control input-small" id="prodName"
+              name="prodName" placeholder="如：Startup Base" required="required" type="text" />
           </div>
           <div class="form-group url required note_url">
             <label class="url required" for="note_url">产品官网</label><input aria-required="true"
-              class="string url required form-control input-small" id="note_url" name="note[url]"
+              class="string url required form-control input-small" id="prodUrl" name="prodUrl"
               placeholder="以 http:// 开头的有效网址" required="required" type="url" />
           </div>
           <div class="form-group text required note_summary">
             <label class="text required" for="note_summary">一句话描述这个产品</label>
             <textarea aria-required="true" class="text required form-control input-big"
-              id="note_summary" name="note[summary]" required="required">
+              id="memo" name="memo" required="required">
 </textarea>
             <p class="help-block">请精简描述, 36字以内</p>
           </div>

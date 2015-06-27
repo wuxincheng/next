@@ -35,10 +35,13 @@ public class Product implements Serializable {
 	private String prodState;
 
 	/** 产品发布时间 */
-	private String postTime;
+	private String postDate;
 
 	/** 产品更新时间 */
-	private String updateTime;
+	private String postDateTime;
+
+	/** 周几 */
+	private String weekday;
 
 	public Integer getProdid() {
 		return prodid;
@@ -96,20 +99,28 @@ public class Product implements Serializable {
 		this.prodState = prodState;
 	}
 
-	public String getPostTime() {
-		return postTime;
+	public String getPostDate() {
+		return postDate;
 	}
 
-	public void setPostTime(String postTime) {
-		this.postTime = postTime;
+	public void setPostDate(String postDate) {
+		this.postDate = postDate;
 	}
 
-	public String getUpdateTime() {
-		return updateTime;
+	public String getPostDateTime() {
+		return postDateTime;
 	}
 
-	public void setUpdateTime(String updateTime) {
-		this.updateTime = updateTime;
+	public void setPostDateTime(String postDateTime) {
+		this.postDateTime = postDateTime;
+	}
+
+	public String getWeekday() {
+		return weekday;
+	}
+
+	public void setWeekday(String weekday) {
+		this.weekday = weekday;
 	}
 
 }

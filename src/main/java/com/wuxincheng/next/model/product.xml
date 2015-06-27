@@ -1,97 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="Product">
-	<typeAlias alias="Product" type="com.wuxincheng.next.model.Product" />
+  <typeAlias alias="Product" type="com.wuxincheng.next.model.Product" />
 
-	<resultMap class="Product" id="ProductMapping">
-		<result property="blogId" column="prodid" />
-		<result property="blogTitle" column="prodname" />
-		<result property="blogContent" column="produrl" />
-		<result property="blogTime" column="memo" />
-		<result property="updateTime" column="likesum" />
-		<result property="picLink" column="commentsum" />
-		<result property="subContent" column="prodstate" />
-		<result property="blogTypeName" column="posttime" />
-		<result property="readCount" column="updatetime" />
-	</resultMap>
-	
-	<select id="queryPager" parameterClass="java.util.Map" resultMap="BlogInfoMapping">
-		SELECT 
-			i.BLOG_ID, i.BLOG_TITLE, i.SUB_CONTENT, 
-            REPLACE(i.BLOG_CONTENT, '115.28.156.183', 'wuxincheng.com.cn') AS BLOG_CONTENT, 
-			DATE_FORMAT(i.UPDATE_TIME,'%Y-%m-%d %H:%i:%S') AS UPDATE_TIME, 
-			DATE_FORMAT(i.CREATE_TIME,'%Y-%m-%d %H:%i:%S') AS CREATE_TIME, 
-			REPLACE(i.PIC_LINK, '115.28.156.183', 'wuxincheng.com.cn') AS PIC_LINK, 
-            t.TYPE_NAME, i.SHARE_COUNT, i.READE_COUNT, i.BLOG_STATE
-		FROM T_BLOG_DETAIL_INFO i 
-			LEFT JOIN T_BLOG_TYPE t ON i.BLOG_TYPE = t.TYPE_ID
-		WHERE i.BLOG_STATE = '0'
-		ORDER BY i.CREATE_TIME DESC
-		LIMIT #start#, #end#
-	</select>
-	
-	<select id="queryAll" parameterClass="java.lang.String" resultMap="BlogInfoMapping">
-		SELECT 
-			i.BLOG_ID, i.BLOG_TITLE, i.SUB_CONTENT, 
-            REPLACE(i.BLOG_CONTENT, '115.28.156.183', 'wuxincheng.com.cn') AS BLOG_CONTENT, 
-			DATE_FORMAT(i.UPDATE_TIME,'%Y-%m-%d %H:%i:%S') AS UPDATE_TIME, 
-			DATE_FORMAT(i.CREATE_TIME,'%Y-%m-%d %H:%i:%S') AS CREATE_TIME, 
-			REPLACE(i.PIC_LINK, '115.28.156.183', 'wuxincheng.com.cn') AS PIC_LINK, 
-            t.TYPE_NAME, i.SHARE_COUNT, i.READE_COUNT, i.BLOG_STATE
-		FROM T_BLOG_DETAIL_INFO i 
-			LEFT JOIN T_BLOG_TYPE t ON i.BLOG_TYPE = t.TYPE_ID
-		WHERE i.BLOG_STATE = '0'
-		ORDER BY i.CREATE_TIME DESC
-	</select>
-	
-	<select id="queryCount" resultClass="java.lang.Integer">
-		SELECT COUNT(*) AS queryCount FROM T_BLOG_DETAIL_INFO WHERE BLOG_STATE NOT IN ('2')
-	</select>
-	
-	<select id="queryTopRead" parameterClass="java.lang.Integer" resultMap="BlogInfoMapping">
-		SELECT 
-			i.BLOG_ID, i.BLOG_TITLE, i.SUB_CONTENT, 
-            REPLACE(i.BLOG_CONTENT, '115.28.156.183', 'wuxincheng.com.cn') AS BLOG_CONTENT, 
-			DATE_FORMAT(i.UPDATE_TIME,'%Y-%m-%d %H:%i:%S') AS UPDATE_TIME, 
-			DATE_FORMAT(i.CREATE_TIME,'%Y-%m-%d %H:%i:%S') AS CREATE_TIME, 
-			REPLACE(i.PIC_LINK, '115.28.156.183', 'wuxincheng.com.cn') AS PIC_LINK, 
-            t.TYPE_NAME, i.SHARE_COUNT, i.READE_COUNT, i.BLOG_STATE
-		FROM T_BLOG_DETAIL_INFO i 
-			LEFT JOIN T_BLOG_TYPE t ON i.BLOG_TYPE = t.TYPE_ID
-		WHERE i.BLOG_STATE = '0'
-		ORDER BY i.READE_COUNT DESC
-		LIMIT 0, 10
-	</select>
-	
-	<select id="queryFooterRead" parameterClass="java.lang.Integer" resultMap="BlogInfoMapping">
-		SELECT 
-			i.BLOG_ID, i.BLOG_TITLE, i.BLOG_CONTENT, i.SUB_CONTENT, 
-			DATE_FORMAT(i.UPDATE_TIME,'%Y-%m-%d %H:%i:%S') AS UPDATE_TIME, 
-			DATE_FORMAT(i.CREATE_TIME,'%Y-%m-%d %H:%i:%S') AS CREATE_TIME, 
-			REPLACE(i.PIC_LINK, '115.28.156.183', 'wuxincheng.com.cn') AS PIC_LINK, 
-            t.TYPE_NAME, i.SHARE_COUNT, i.READE_COUNT, i.BLOG_STATE
-		FROM T_BLOG_DETAIL_INFO i 
-			LEFT JOIN T_BLOG_TYPE t ON i.BLOG_TYPE = t.TYPE_ID
-		WHERE i.BLOG_STATE = '0'
-		ORDER BY i.READE_COUNT ASC
-		LIMIT 0, 10
-	</select>
-	
-	<select id="queryByBlogId" parameterClass="java.lang.String" resultMap="BlogInfoMapping">
-		SELECT 
-			i.BLOG_ID, i.BLOG_TITLE, i.SUB_CONTENT, 
-            REPLACE(i.BLOG_CONTENT, '115.28.156.183', 'wuxincheng.com.cn') AS BLOG_CONTENT, 
-			DATE_FORMAT(i.UPDATE_TIME,'%Y-%m-%d %H:%i:%S') AS UPDATE_TIME, 
-			DATE_FORMAT(i.CREATE_TIME,'%Y-%m-%d %H:%i:%S') AS CREATE_TIME, 
-			REPLACE(i.PIC_LINK, '115.28.156.183', 'wuxincheng.com.cn') AS PIC_LINK,
-            t.TYPE_NAME, i.SHARE_COUNT, i.READE_COUNT, i.BLOG_STATE
-		FROM T_BLOG_DETAIL_INFO i 
-			LEFT JOIN T_BLOG_TYPE t ON i.BLOG_TYPE = t.TYPE_ID
-		WHERE i.BLOG_ID = #blogId# AND i.BLOG_STATE = '0'
-	</select>
-	
-	<update id="updateReadCount" parameterClass="java.lang.String">
-		UPDATE T_BLOG_DETAIL_INFO SET READE_COUNT = (READE_COUNT+1) WHERE BLOG_ID = #blogId#
-	</update>
-	
+  <resultMap class="Product" id="ProductMapping">
+    <result property="prodid" column="prodid" />
+    <result property="prodName" column="prodname" />
+    <result property="prodUrl" column="produrl" />
+    <result property="memo" column="memo" />
+    <result property="likeSum" column="likesum" />
+    <result property="commentSum" column="commentsum" />
+    <result property="prodState" column="prodstate" />
+    <result property="postDate" column="postdate" />
+    <result property="postDateTime" column="postdatetime" />
+    <result property="weekday" column="weekday" />
+  </resultMap>
+  
+  <select id="queryDetailByProdid" parameterClass="java.lang.String" resultMap="ProductMapping">
+    SELECT t.* FROM t_next_product t WHERE t.prodid = #prodid#
+  </select>
+  
+  <select id="queryByPostDate" resultMap="ProductMapping" parameterClass="java.lang.String">
+    SELECT t.* FROM t_next_product t WHERE t.postdate = #queryPostDate# ORDER BY t.postdate DESC
+  </select>
+  
+  <select id="queryGroupByDate" resultClass="java.lang.String">
+    SELECT t.postdate FROM t_next_product t GROUP BY t.postdate ORDER BY t.postdate DESC
+  </select>
+
+  <insert id="post" parameterClass="Product">
+    INSERT INTO t_next_product(prodname, produrl, memo, likesum, commentsum, prodstate, postdate, postdatetime, weekday)
+    VALUES (#prodName#, #prodUrl#, #memo#, #likeSum#, #commentSum#, #prodState#, #postDate#, #postDateTime#, #weekday#)
+  </insert>
+
 </sqlMap>
