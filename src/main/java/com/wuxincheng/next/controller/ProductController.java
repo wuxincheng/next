@@ -3,7 +3,6 @@ package com.wuxincheng.next.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -28,14 +27,14 @@ import com.wuxincheng.next.util.Validation;
  */
 @Controller
 @RequestMapping("/product")
-public class ProductController {
+public class ProductController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
 	@Resource
 	private ProductService productService;
 
 	@RequestMapping(value = "/list")
-	public String list(Model model, HttpServletRequest request, String currentPage) {
+	public String list(Model model, String currentPage) {
 		logger.info("显示产品列表");
 
 		// 根据产品发布的日期分组
@@ -91,7 +90,7 @@ public class ProductController {
 			return "product/postUI";
 		}
 
-		return "product/list";
+		return list(model, null);
 	}
 	
 	@RequestMapping(value = "/detail")

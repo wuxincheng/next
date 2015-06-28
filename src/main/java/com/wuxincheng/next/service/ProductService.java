@@ -39,7 +39,6 @@ public class ProductService {
 		product.setPostDate(DateUtil.getCurrentDate(date, Constants.DEFAULT_DATE));
 		product.setProdState(Constants.DEFAULT_STATE);
 		product.setPostDateTime(DateUtil.getCurrentDate(date, Constants.DEFAULT_DATE_FORMAT));
-		product.setWeekday(DateUtil.getWeekOfDate(date));
 		
 		productDao.post(product);
 	}

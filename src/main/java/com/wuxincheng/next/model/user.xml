@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="User">
+  <typeAlias alias="User" type="com.wuxincheng.next.model.User" />
+
+  <resultMap class="User" id="UserMapping">
+    <result property="userid" column="userid" />
+    <result property="nickName" column="nickname" />
+    <result property="password" column="password" />
+    <result property="loginEmail" column="loginemail" />
+    <result property="picPath" column="picpath" />
+    <result property="socialPicPath" column="socialpicpath" />
+    <result property="memo" column="memo" />
+    <result property="userGroup" column="usergroup" />
+    <result property="postion" column="postion" />
+    <result property="userState" column="userstate" />
+  </resultMap>
+  
+  <select id="queryByLoginEmail" parameterClass="java.lang.String" resultMap="UserMapping">
+    SELECT t.* FROM t_next_user t WHERE t.loginemail = #loginEmail#
+  </select>
+
+  <insert id="register" parameterClass="User">
+    INSERT INTO t_next_user(nickname, password, loginemail, picpath, socialpicpath, memo, usergroup, postion, userstate)
+    VALUES (#nickName#, #password#, #loginEmail#, #picPath#, #socialPicPath#, #memo#, #userGroup#, #postion#, #userState#)
+  </insert>
+
+</sqlMap>

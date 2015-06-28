@@ -237,7 +237,7 @@
           <h3>分享到</h3>
           
       <div class="share-weibo">
-        <a href="http://service.weibo.com/share/share.php?searchPic=false&amp;title=%E5%BF%AB%E8%B1%B9+-+%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%BC%B9%E5%B9%95%E5%BD%A2%E5%BC%8F%E5%90%90%E6%A7%BD%E7%9A%84%E9%98%85%E8%AF%BB%E5%BA%94%E7%94%A8%EF%BC%8C%E9%B9%85%E5%8E%82%E5%87%BA%E5%93%81+-+NEXT&amp;url=http%3A%2F%2Fnext.36kr.com%2Fposts%2F14941%3Ft%3D2015-06-27T22%253A41%253A13%252B08%253A00%26utm_campaign%3Dpost_show%26utm_content%3Dshare_button%26utm_medium%3Dnext%26utm_source%3Dweibo" target="_blank" title="点击分享到微博">
+        <a href="http://service.weibo.com/share/share.php?searchPic=false&amp;title=${product.prodName} - ${product.memo}&amp;url=http://www.kaffeedaily.com/next/product/detail?prodid=${product.prodid}" target="_blank" title="点击分享到微博">
           <i class="svg-weibo"></i> <span>微博</span>
       </a></div>
       <div class="share-wechat">
@@ -245,7 +245,7 @@
           <i class="svg-wechat"></i> <span>微信</span>
         </a>
           <div class="dropdown share-dropdown">
-            <img alt="Qrcode.php?url=http%3a%2f%2fnext.36kr" height="156" src="http://s.jiathis.com/qrcode.php?url=http%3A%2F%2Fnext.36kr.com%2Fposts%2F14941%3Fshow_wechat_share_tip%3Dtrue" width="156" />
+            <img height="156" src="http://s.jiathis.com/qrcode.php?url=http://www.kaffeedaily.com/next/product/detail?prodid=${product.prodid}" width="156" />
             <span>微信扫一扫：分享</span>
           </div>
       </div>
@@ -257,10 +257,24 @@
       <section class="comments row" id="comments">
         <!-- Search: <input type="text" id="mention_user_selector" class="input-small"> -->
         <h4>评论 (1)</h4>
+        <c:if test="${empty user}">
       <form accept-charset="UTF-8" action="/posts/14941/comments" class="simple_form comment" method="post"><div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="xsHaDVVosS9naDsdQ0beMb+2UYdkuucj2hAXsPO1vn8=" /></div>
           <a href="/users/sign_in?ok_url=%2Fposts%2F14941">
             登录后发表评论
       </a></form>
+        </c:if>
+        <c:if test="${not empty user}">
+        <form accept-charset="UTF-8" action="/posts/14905/comments" class="simple_form comment" method="post"><div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="ANEyEpJJ68CL9sOaM+TBgWkLVrJ+y6mWIHYHa5OiijI=" /></div>
+          <input id="ok_url" name="ok_url" type="hidden" value="/posts/14905#comments" />
+          <div class="form-group hidden comment_content"><input class="hidden form-control input-big" id="comment_content" name="comment[content]" type="hidden" /></div>
+          <div contenteditable="true" class="input-big mention editable-comment form-control" disabled="disabled"
+            data-for="comment[content]" required="required" mentionable="true">
+          </div>
+          <input class="btn submit" name="commit" type="submit" value="发表评论" />
+          <span class='help-inline'>支持Markdown语法</span>
+        </form>
+        </c:if>
+        
           <div class="media comment" id="comment_25147">
         <div class="comment-avatar">
           <div class="user-image">

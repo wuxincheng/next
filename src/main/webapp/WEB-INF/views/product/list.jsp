@@ -24,7 +24,6 @@
     <jsp:include page="../HEADER.jsp" />
 
     <div class="content row ">
-
       <section class="main-header cf">
         <a class="btn submit-btn right" href="${root}/product/postUI">分享新产品</a>
       </section>
@@ -130,7 +129,9 @@
           href="http://next.36kr.com/posts.html?start_on=2015-06-21">OK, NEXT</a>
       </div>
        -->
-
+      <div class="pagination cf more-notes">
+        <a href="#">已经加载全部</a>
+      </div>
     </div>
   </div>
 

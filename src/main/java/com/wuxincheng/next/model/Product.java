@@ -34,14 +34,11 @@ public class Product implements Serializable {
 	/** 产品状态：默认：0-正常 */
 	private String prodState;
 
-	/** 产品发布时间 */
+	/** 产品发布日期 */
 	private String postDate;
 
-	/** 产品更新时间 */
+	/** 产品操作时间 */
 	private String postDateTime;
-
-	/** 周几 */
-	private String weekday;
 
 	public Integer getProdid() {
 		return prodid;
@@ -113,14 +110,6 @@ public class Product implements Serializable {
 
 	public void setPostDateTime(String postDateTime) {
 		this.postDateTime = postDateTime;
-	}
-
-	public String getWeekday() {
-		return weekday;
-	}
-
-	public void setWeekday(String weekday) {
-		this.weekday = weekday;
 	}
 
 }

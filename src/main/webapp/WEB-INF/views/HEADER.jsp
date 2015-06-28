@@ -68,19 +68,64 @@
 
   <header class="topbar cf">
     <h1 class="brand">
-      <a href="http://next.36kr.com/" class="logo" id="logo">NEXT</a> <span class="slogan">不错过任何一个新产品</span>
+      <a href="${root}/product/list" class="logo" id="logo">NEXT</a> <span class="slogan">不错过任何一个新产品</span>
     </h1>
     <nav class="navigation text-center">
       <ul>
         <li><a class="main-nav " href="http://next.36kr.com/posts/collections">产品集</a></li>
-        <li class="account login-wechat"><a class="login-btn main-nav"
-          href="http://next.36kr.com/users/sign_in?ok_url=%2Fposts">登录</a>
+        
+        <c:choose>
+        <c:when test="${not empty user}">
+        <li class="account login-menu">
+          <a class="account-menu main-nav" href="javascript:">
+            <img alt="2e319c99 9ca7 4576 bb10 28bde38c9084" class="avatar" height="30" src="https://rs-images.b0.upaiyun.com/uploads/user/avatar/39627/2e319c99-9ca7-4576-bb10-28bde38c9084.jpg!50x50" width="30" />
+          </a>
+          <ul class="dropdown login-dropdown">
+            <li><a href="${root}/user/main">我的主页</a></li>
+            <li><a href="${root}/user/collect">我的收藏</a></li>
+            <li><a href="${root}/user/info">个人设置</a></li>
+            <li><a data-method="delete" href="${root}/logout/" rel="nofollow">退出登录</a></li>
+          </ul>
+        </li>        
+        </c:when>
+        <c:otherwise>
+        <li class="account login-wechat">
+          <a class="login-btn main-nav" href="${root}/login/">登录</a>
+          <!-- 
           <div class="dropdown login-dropdown">
             <img data-ok-url="/posts" data-src="/users/sign_in_qrcode" height="120"
               id="sign_in_qrcode_image" src="" width="120"> <span>微信扫一扫：登录</span>
-          </div></li>
+          </div>
+           -->
+        </li>        
+        </c:otherwise>
+        </c:choose>
       </ul>
     </nav>
   </header>
+
+    <c:if test="${not empty success}">
+    <div class="alert alert-success fade in row" style="margin-top: 30px;">
+      <h4>${success}</h4>
+    </div>
+    </c:if>
+    
+    <c:if test="${not empty info}">
+    <div class="alert alert-info fade in row" style="margin-top: 30px;">
+      <h4>${info}</h4>
+    </div>
+    </c:if>
+
+    <c:if test="${not empty warning}">
+    <div class="alert alert-warning fade in row" style="margin-top: 30px;">
+      <h4>${warning}</h4>
+    </div>
+    </c:if>
+
+    <c:if test="${not empty danger}">
+    <div class="alert alert-danger fade in row" style="margin-top: 30px;">
+      <h4>${danger}</h4>
+    </div>
+    </c:if>
 </body>
 </html>

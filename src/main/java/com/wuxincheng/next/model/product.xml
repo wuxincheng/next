@@ -13,7 +13,6 @@
     <result property="prodState" column="prodstate" />
     <result property="postDate" column="postdate" />
     <result property="postDateTime" column="postdatetime" />
-    <result property="weekday" column="weekday" />
   </resultMap>
   
   <select id="queryDetailByProdid" parameterClass="java.lang.String" resultMap="ProductMapping">
@@ -21,7 +20,7 @@
   </select>
   
   <select id="queryByPostDate" resultMap="ProductMapping" parameterClass="java.lang.String">
-    SELECT t.* FROM t_next_product t WHERE t.postdate = #queryPostDate# ORDER BY t.postdate DESC
+    SELECT t.* FROM t_next_product t WHERE t.postdate = #queryPostDate# ORDER BY t.postDateTime DESC
   </select>
   
   <select id="queryGroupByDate" resultClass="java.lang.String">
@@ -29,8 +28,8 @@
   </select>
 
   <insert id="post" parameterClass="Product">
-    INSERT INTO t_next_product(prodname, produrl, memo, likesum, commentsum, prodstate, postdate, postdatetime, weekday)
-    VALUES (#prodName#, #prodUrl#, #memo#, #likeSum#, #commentSum#, #prodState#, #postDate#, #postDateTime#, #weekday#)
+    INSERT INTO t_next_product(prodname, produrl, memo, likesum, commentsum, prodstate, postdate, postdatetime)
+    VALUES (#prodName#, #prodUrl#, #memo#, #likeSum#, #commentSum#, #prodState#, #postDate#, #postDateTime#)
   </insert>
 
 </sqlMap>
