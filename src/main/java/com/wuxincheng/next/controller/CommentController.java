@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wuxincheng.next.model.Comment;
+import com.wuxincheng.next.model.Product;
 import com.wuxincheng.next.service.CommentService;
+import com.wuxincheng.next.service.ProductService;
+import com.wuxincheng.next.util.Constants;
 import com.wuxincheng.next.util.StringUtil;
 import com.wuxincheng.next.util.Validation;
 
@@ -33,10 +36,32 @@ public class CommentController extends BaseController {
 	@Resource 
 	private CommentService commentService;
 	
+	@Resource
+	private ProductService productService;
+	
 	@RequestMapping(value = "/post")
-	public Integer post(Model model, HttpServletRequest request, Comment commment) {
+	public String post(Model model, HttpServletRequest request, Comment commment) {
 		logger.info("保存评论数据 commment={}", StringUtil.toStringMultiLine(commment));
-		return commentService.post(commment, getCurrentUserid(request));
+		
+		if (StringUtils.isEmpty(commment.getContent())) {
+			model.addAttribute(Constants.MSG_WARN, "评论失败：评论内容不能为空");
+			return "product/detail";
+		}
+		
+		Product product = productService.queryDetailByProdid(commment.getProductid()+"");
+		
+		if (null == product) {
+			model.addAttribute(Constants.MSG_WARN, "评论失败：产品信息不存在！");
+			return "product/detail";
+		}
+
+		commentService.post(commment, getCurrentUserid(request));
+		
+		model.addAttribute("product", product);
+		
+		model.addAttribute(Constants.MSG_INFO, "评论成功");
+		
+		return "product/detail";
 	}
 	
 	@RequestMapping(value = "/list")

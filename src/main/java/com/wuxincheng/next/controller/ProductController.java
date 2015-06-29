@@ -112,5 +112,18 @@ public class ProductController extends BaseController {
 		
 		return "product/detail";
 	}
+	
+	@RequestMapping(value = "/like")
+	public String like(Model model, String prodid) {
+		logger.info("显示产品详细页面 prodid={}", prodid);
+		
+		if (StringUtils.isEmpty(prodid) || !Validation.isIntPositive(prodid)) {
+			return "404";
+		}
+
+		productService.queryDetailByProdid(prodid);
+		
+		return "product/detail";
+	}
 
 }

@@ -28,8 +28,7 @@
 
   <insert id="post" parameterClass="Comment">
     INSERT INTO 
-      t_next_product(
-        commentrefid, 
+      t_next_comment(
         productid, 
         userid, 
         content, 
@@ -38,7 +37,6 @@
         likesum, 
         replysum)
     VALUES (
-        #commentRefid#, 
         #productid#, 
         #userid#, 
         #content#, 

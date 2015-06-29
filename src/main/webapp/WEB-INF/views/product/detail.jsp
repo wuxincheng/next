@@ -106,11 +106,18 @@
           <a href="${root}/login/">登录后发表评论</a></form>
         </c:if>
         <c:if test="${not empty user}">
-        <form accept-charset="UTF-8" action="/posts/14905/comments" class="simple_form comment" method="post"><div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="ANEyEpJJ68CL9sOaM+TBgWkLVrJ+y6mWIHYHa5OiijI=" /></div>
+        <form accept-charset="UTF-8" action="${root}/comment/post" class="simple_form comment" method="post">
+          <input id="productid" name="productid" type="hidden" value="${product.prodid}" />
+          <div style="display:none">
+            <input name="utf8" type="hidden" value="&#x2713;" />
+            <input name="authenticity_token" type="hidden" value="ANEyEpJJ68CL9sOaM+TBgWkLVrJ+y6mWIHYHa5OiijI=" />
+          </div>
           <input id="ok_url" name="ok_url" type="hidden" value="/posts/14905#comments" />
-          <div class="form-group hidden comment_content"><input class="hidden form-control input-big" id="comment_content" name="comment[content]" type="hidden" /></div>
+          <div class="form-group hidden comment_content">
+          <input class="hidden form-control input-big" id="comment_content" name="content" type="hidden" />
+          </div>
           <div contenteditable="true" class="input-big mention editable-comment form-control" disabled="disabled"
-            data-for="comment[content]" required="required" mentionable="true">
+            data-for="content" required="required" mentionable="true">
           </div>
           <input class="btn submit" name="commit" type="submit" value="发表评论" />
           <span class='help-inline'>支持Markdown语法</span>
