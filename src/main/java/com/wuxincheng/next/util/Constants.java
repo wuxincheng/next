@@ -34,4 +34,6 @@ public class Constants {
 	/** 排序方式 */
 	public static final String ORDER_BY_ASC = "ASC";
 
+	public static final String CURRENT_USER = "user";
+
 }

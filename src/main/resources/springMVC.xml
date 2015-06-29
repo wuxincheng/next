@@ -21,6 +21,16 @@
   <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 
   <mvc:default-servlet-handler />
+  
+  <mvc:interceptors>
+    <mvc:interceptor>
+      <mvc:mapping path="/user/**" />
+      <mvc:mapping path="/product/postUI" />
+      <mvc:mapping path="/product/doPost" />
+      <mvc:mapping path="/comment/post" />
+      <bean class="com.wuxincheng.next.interceptor.LoginSessionInterceptor" />
+    </mvc:interceptor>
+  </mvc:interceptors>
 
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />

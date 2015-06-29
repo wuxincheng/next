@@ -3,6 +3,7 @@ package com.wuxincheng.next.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -60,7 +61,7 @@ public class ProductController extends BaseController {
 	}
 
 	@RequestMapping(value = "/doPost")
-	public String doPost(Model model, Product product) {
+	public String doPost(Model model, HttpServletRequest request, Product product) {
 		logger.info("处理发布分享新产品数据 product={}", StringUtil.toStringMultiLine(product));
 
 		// 验证主要参数
@@ -78,10 +79,10 @@ public class ProductController extends BaseController {
 			model.addAttribute(Constants.MSG_WARN, "产品说明不能为空");
 			return "product/postUI";
 		}
-
+		
 		try {
 			// 发布产品
-			productService.post(product);
+			productService.post(product, getCurrentUserid(request));
 			logger.info("产品信息发布成功");
 			model.addAttribute(Constants.MSG_INFO, "产品信息发布成功");
 		} catch (Exception e) {

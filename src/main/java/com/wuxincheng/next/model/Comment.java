@@ -28,6 +28,10 @@ public class Comment implements Serializable {
 
 	private String commentState;
 
+	private Integer likeSum;
+
+	private Integer replySum;
+
 	public Integer getCommentid() {
 		return commentid;
 	}
@@ -82,6 +86,22 @@ public class Comment implements Serializable {
 
 	public void setCommentState(String commentState) {
 		this.commentState = commentState;
+	}
+
+	public Integer getLikeSum() {
+		return likeSum;
+	}
+
+	public void setLikeSum(Integer likeSum) {
+		this.likeSum = likeSum;
+	}
+
+	public Integer getReplySum() {
+		return replySum;
+	}
+
+	public void setReplySum(Integer replySum) {
+		this.replySum = replySum;
 	}
 
 }

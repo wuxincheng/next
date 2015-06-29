@@ -61,7 +61,8 @@ public class Register {
 		
 		model.addAttribute(Constants.MSG_SUCCESS, "注册成功");
 		
-		request.getSession().setAttribute("user", user);
+		user = userService.checkLogin(user.getLoginEmail());
+		request.getSession().setAttribute(Constants.CURRENT_USER, user);
 		
 		return "user/main";
 	}

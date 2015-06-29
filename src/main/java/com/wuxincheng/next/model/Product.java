@@ -40,6 +40,8 @@ public class Product implements Serializable {
 	/** 产品操作时间 */
 	private String postDateTime;
 
+	private Integer userid;
+
 	public Integer getProdid() {
 		return prodid;
 	}
@@ -110,6 +112,14 @@ public class Product implements Serializable {
 
 	public void setPostDateTime(String postDateTime) {
 		this.postDateTime = postDateTime;
+	}
+
+	public Integer getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 
 }

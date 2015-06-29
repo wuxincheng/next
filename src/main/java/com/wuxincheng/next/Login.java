@@ -61,7 +61,7 @@ public class Login {
 		String adminsPwdMD5Str = MD5.encryptMD5Pwd(user.getPassword());
 		
 		if (!Validation.isBlank(passwordFlag) && passwordFlag.equals(adminsPwdMD5Str)) {
-			request.getSession().setAttribute("user", userFlag);
+			request.getSession().setAttribute(Constants.CURRENT_USER, userFlag);
 		} else {
 			model.addAttribute(Constants.MSG_WARN, "用户密码不正确");
 			return "login";

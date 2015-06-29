@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Comment">
+  <typeAlias alias="Comment" type="com.wuxincheng.next.model.Comment" />
+
+  <resultMap class="Comment" id="CommentMapping">
+    <result property="commentid" column="commentid" />
+    <result property="commentRefid" column="commentrefid" />
+    <result property="productid" column="productid" />
+    <result property="userid" column="userid" />
+    <result property="content" column="content" />
+    <result property="createTime" column="createtime" />
+    <result property="commentState" column="commentstate" />
+    <result property="likeSum" column="likesum" />
+    <result property="replySum" column="replysum" />
+  </resultMap>
+  
+  <select id="queryByProductid" resultMap="CommentMapping" parameterClass="java.lang.String">
+    SELECT 
+      t.* 
+    FROM 
+      t_next_comment t 
+    WHERE 
+      t.productid = #productid# 
+    ORDER BY 
+      t.createTime DESC
+  </select>
+
+  <insert id="post" parameterClass="Comment">
+    INSERT INTO 
+      t_next_product(
+        commentrefid, 
+        productid, 
+        userid, 
+        content, 
+        createtime, 
+        commentstate, 
+        likesum, 
+        replysum)
+    VALUES (
+        #commentRefid#, 
+        #productid#, 
+        #userid#, 
+        #content#, 
+        CURRENT_TIMESTAMP, 
+        #commentState#, 
+        #likeSum#, 
+        #replySum#)
+  </insert>
+
+</sqlMap>

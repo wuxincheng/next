@@ -13,6 +13,7 @@
     <result property="prodState" column="prodstate" />
     <result property="postDate" column="postdate" />
     <result property="postDateTime" column="postdatetime" />
+    <result property="userid" column="userid" />
   </resultMap>
   
   <select id="queryDetailByProdid" parameterClass="java.lang.String" resultMap="ProductMapping">
@@ -28,8 +29,8 @@
   </select>
 
   <insert id="post" parameterClass="Product">
-    INSERT INTO t_next_product(prodname, produrl, memo, likesum, commentsum, prodstate, postdate, postdatetime)
-    VALUES (#prodName#, #prodUrl#, #memo#, #likeSum#, #commentSum#, #prodState#, #postDate#, #postDateTime#)
+    INSERT INTO t_next_product(prodname, produrl, memo, likesum, commentsum, prodstate, postdate, postdatetime, userid)
+    VALUES (#prodName#, #prodUrl#, #memo#, #likeSum#, #commentSum#, #prodState#, #postDate#, #postDateTime#, #userid#)
   </insert>
 
 </sqlMap>

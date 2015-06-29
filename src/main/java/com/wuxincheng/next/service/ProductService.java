@@ -31,7 +31,7 @@ public class ProductService {
 	/**
 	 * 发布产品
 	 */
-	public void post(Product product) throws Exception {
+	public void post(Product product, Integer userid) throws Exception {
 		Date date = new Date();
 		
 		product.setCommentSum(0);
@@ -39,6 +39,7 @@ public class ProductService {
 		product.setPostDate(DateUtil.getCurrentDate(date, Constants.DEFAULT_DATE));
 		product.setProdState(Constants.DEFAULT_STATE);
 		product.setPostDateTime(DateUtil.getCurrentDate(date, Constants.DEFAULT_DATE_FORMAT));
+		product.setUserid(userid);
 		
 		productDao.post(product);
 	}
