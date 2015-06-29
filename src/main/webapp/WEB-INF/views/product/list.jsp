@@ -7,15 +7,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>NEXT | 不错过任何一个新产品</title>
-
 <meta charset="utf-8">
 <link rel="shortcut icon" href="http://next.36kr.com/favicon.ico">
 
 <meta name="author" content="36Kr">
 <meta name="description" content="NEXT - 不错过任何一个新产品">
 <meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
-<link rel="author" href="http://next.36kr.com/humans.txt">
 
 </head>
 <body id="home" class="notes-index">

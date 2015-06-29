@@ -7,7 +7,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>NEXT | 不错过任何一个新产品</title>
 
 <meta charset="utf-8">
 <link rel="shortcut icon" href="http://next.36kr.com/favicon.ico">

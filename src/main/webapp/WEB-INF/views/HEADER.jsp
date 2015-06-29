@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>NEXT | 不错过任何一个新产品</title>
+<title>TOP | 不错过任何一个新产品</title>
 <link data-turbolinks-track="true" href="${root}/assets/css/application.css" media="all"
   rel="stylesheet">
 <script async="" src="http://www.google-analytics.com/analytics.js"></script>
@@ -68,7 +68,7 @@
 
   <header class="topbar cf">
     <h1 class="brand">
-      <a href="${root}/product/list" class="logo" id="logo">NEXT</a> <span class="slogan">不错过任何一个新产品</span>
+      <a href="${root}/product/list" class="logo" id="logo">TOP</a> <span class="slogan">不错过任何一个新产品</span>
     </h1>
     <nav class="navigation text-center">
       <ul>
@@ -78,7 +78,7 @@
         <c:when test="${not empty user}">
         <li class="account login-menu">
           <a class="account-menu main-nav" href="javascript:">
-            <img alt="2e319c99 9ca7 4576 bb10 28bde38c9084" class="avatar" height="30" src="https://rs-images.b0.upaiyun.com/uploads/user/avatar/39627/2e319c99-9ca7-4576-bb10-28bde38c9084.jpg!50x50" width="30" />
+            <img alt="2e319c99 9ca7 4576 bb10 28bde38c9084" class="avatar" height="30" src="${root}/assets/images/user_thumb-default.png" width="30" />
           </a>
           <ul class="dropdown login-dropdown">
             <li><a href="${root}/user/main">我的主页</a></li>

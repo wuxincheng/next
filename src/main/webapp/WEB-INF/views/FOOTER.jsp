@@ -11,12 +11,11 @@
     <div class="row text-center">
       <div class="copyright">
         <p>
-          © 2014-2015 <strong>NEXT</strong>. All Rights Reserved. A <a href="http://www.36kr.com/">36Kr</a>
+          © 2014-2015 <strong>TOP</strong>. All Rights Reserved. A <a href="http://www.zhuanlemei.com/">zhuanlemei</a>
           product.
         </p>
         <p class="">
-          <span>上 NEXT，每天刷新更酷的生活方式。查看</span> <a href="http://next.36kr.com/about">FAQ</a> / <a
-            href="http://next.36kr.com/feedback">反馈建议</a>
+          <span>上 TOP，每天刷新更酷的生活方式。</span>
         </p>
       </div>
     </div>

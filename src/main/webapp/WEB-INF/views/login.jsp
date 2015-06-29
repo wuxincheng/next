@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录 - NEXT</title>
+<title>登录 - TOP</title>
 
 <!-- meta -->
 <meta charset="utf-8">

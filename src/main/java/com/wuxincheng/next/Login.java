@@ -63,7 +63,7 @@ public class Login {
 		if (!Validation.isBlank(passwordFlag) && passwordFlag.equals(adminsPwdMD5Str)) {
 			request.getSession().setAttribute("user", userFlag);
 		} else {
-			model.addAttribute(Constants.MSG_ERROR, "用户密码不正确");
+			model.addAttribute(Constants.MSG_WARN, "用户密码不正确");
 			return "login";
 		}
 		
