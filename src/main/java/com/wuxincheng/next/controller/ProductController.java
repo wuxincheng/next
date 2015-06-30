@@ -13,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wuxincheng.next.Pager;
+import com.wuxincheng.next.model.Comment;
 import com.wuxincheng.next.model.Product;
+import com.wuxincheng.next.service.CommentService;
 import com.wuxincheng.next.service.ProductService;
 import com.wuxincheng.next.util.Constants;
 import com.wuxincheng.next.util.StringUtil;
@@ -31,6 +33,9 @@ import com.wuxincheng.next.util.Validation;
 public class ProductController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
+	@Resource 
+	private CommentService commentService;
+	
 	@Resource
 	private ProductService productService;
 
@@ -108,7 +113,10 @@ public class ProductController extends BaseController {
 			return "404";
 		}
 		
+		List<Comment> comments = commentService.queryByProductid(prodid);
+		
 		model.addAttribute("product", product);
+		model.addAttribute("comments", comments);
 		
 		return "product/detail";
 	}

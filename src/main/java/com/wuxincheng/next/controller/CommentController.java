@@ -1,7 +1,5 @@
 package com.wuxincheng.next.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wuxincheng.next.model.Comment;
 import com.wuxincheng.next.model.Product;
@@ -61,19 +58,20 @@ public class CommentController extends BaseController {
 		
 		model.addAttribute(Constants.MSG_INFO, "评论成功");
 		
-		return "product/detail";
+		return "redirect:product/detail";
 	}
 	
 	@RequestMapping(value = "/list")
-	@ResponseBody
-	public List<Comment> list(String productid) {
+	public String list(String productid) {
 		logger.info("查询所有评论 productid={}", productid);
 		
 		if (StringUtils.isEmpty(productid) || !Validation.isIntPositive(productid)) {
-			return null;
+			return "redirect:product/detail";
 		}
 		
-		return commentService.queryByProductid(productid);
+		commentService.queryByProductid(productid);
+		
+		return "redirect:product/detail";
 	}
 	
 }
