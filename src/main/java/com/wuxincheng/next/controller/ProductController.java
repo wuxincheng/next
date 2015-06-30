@@ -112,7 +112,8 @@ public class ProductController extends BaseController {
 		if (null == product) {
 			return "404";
 		}
-		
+		 
+		// 评论列表
 		List<Comment> comments = commentService.queryByProductid(prodid);
 		
 		model.addAttribute("product", product);

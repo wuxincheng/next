@@ -40,25 +40,23 @@ public class CommentController extends BaseController {
 	public String post(Model model, HttpServletRequest request, Comment commment) {
 		logger.info("保存评论数据 commment={}", StringUtil.toStringMultiLine(commment));
 		
-		if (StringUtils.isEmpty(commment.getContent())) {
-			model.addAttribute(Constants.MSG_WARN, "评论失败：评论内容不能为空");
-			return "product/detail";
-		}
-		
 		Product product = productService.queryDetailByProdid(commment.getProductid()+"");
 		
 		if (null == product) {
 			model.addAttribute(Constants.MSG_WARN, "评论失败：产品信息不存在！");
-			return "product/detail";
+			return "redirect:/product/list";
+		}
+		
+		model.addAttribute("prodid", product.getProdid());
+		
+		if (StringUtils.isEmpty(commment.getContent().trim())) {
+			model.addAttribute(Constants.MSG_WARN, "评论失败：评论内容不能为空");
+			return "redirect:/product/detail";
 		}
 
 		commentService.post(commment, getCurrentUserid(request));
 		
-		model.addAttribute("product", product);
-		
-		model.addAttribute(Constants.MSG_INFO, "评论成功");
-		
-		return "redirect:product/detail";
+		return "redirect:/product/detail";
 	}
 	
 	@RequestMapping(value = "/list")

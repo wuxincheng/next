@@ -34,7 +34,7 @@
                   </a>        
               </div>
               <div class="product-url">
-                <a class="post-url" href="${product.prodUrl}" ref="nofollow" target="_blank" title="App Store">${product.prodName}</a>
+                <a class="post-url" href="/posts/14941/hit" ref="nofollow" target="_blank" title="App Store">${product.prodName}</a>
                 <br>
                 <span class="post-tagline">${product.memo}</span>
               </div>
@@ -100,9 +100,9 @@
       </section>
       
       <section class="comments row" id="comments">
-        <h4>评论 (${product.commentSum})</h4>
+        <h4>评论 (1)</h4>
         <c:if test="${empty user}">
-        <form accept-charset="UTF-8" action="" class="simple_form comment" method="post">
+        <form accept-charset="UTF-8" action="/posts/14941/comments" class="simple_form comment" method="post">
           <a href="${root}/login/">登录后发表评论</a></form>
         </c:if>
         <c:if test="${not empty user}">
@@ -125,18 +125,16 @@
         </c:if>
         
         <!-- 评论 -->
-        <c:if test="${not empty comments}">
-        <c:forEach items="${comments}" var="comment">
         <div class="media comment" id="comment_25191">
           <div class="comment-avatar">
             <div class="user-image">
               <a class="user-image-link" href="/users/5133">
-                <img alt="Fa10347b 7a54 42dc 9376 1bf0d7c219bb" class="avatar" height="60" src="${root}/assets/images/user_thumb-default.png" width="60" />
+                <img alt="Fa10347b 7a54 42dc 9376 1bf0d7c219bb" class="avatar" height="60" src="https://rs-images.b0.upaiyun.com/uploads/user/avatar/5133/fa10347b-7a54-42dc-9376-1bf0d7c219bb.png!50x50" width="60" />
               </a>
             </div>
             <div class="user-tooltip">
               <a class="user-image-link" href="/users/5133">
-                <img alt="Fa10347b 7a54 42dc 9376 1bf0d7c219bb" class="avatar avatar-big" height="120" src="${root}/assets/images/user_thumb-default.png" width="120" />
+                <img alt="Fa10347b 7a54 42dc 9376 1bf0d7c219bb" class="avatar avatar-big" height="120" src="https://rs-images.b0.upaiyun.com/uploads/user/avatar/5133/fa10347b-7a54-42dc-9376-1bf0d7c219bb.png!160x160" width="120" />
               </a>
               <h3 class="user-nickname">iamjohnny</h3>
               <h4 class='user-title'>邪恶组织 - 卧底<br></h4>
@@ -150,17 +148,66 @@
                 <span class="user-bio">If anyone can have it, I don&#39;t want it!</span>
               </div>
               <div class="comment-content">
-                <p>${comment.content}</p>
+                <p>会被微信封吧</p>
                 <em>5 小时前</em>
               </div>
-              <!-- 
               <p>- <a class="reply" href="">回复</a><span class="reply">(1)</span></p>
-               -->
+            </div>
+            <div class="replies">
+              <form accept-charset="UTF-8" action="/posts/15011/comments/25191/reply" class="simple_form hide reply" method="post">
+                <div style="display:none">
+                  <input name="utf8" type="hidden" value="&#x2713;" />
+                  <input name="authenticity_token" type="hidden" value="4weD74pwLj3ICENu5xmiHrB85fTyvzXm3fPBLizkj0E=" />
+                </div>
+                <div class="form-group hidden comment_content">
+                  <input class="hidden form-control input-big" id="comment_content" name="comment[content]" type="hidden" />
+                </div>
+                <div contenteditable="true" class="input-big mention editable-comment form-control reply"
+                  data-for="comment[content]" required="required" mentionable="true">
+                </div>
+                <input class="btn submit" name="commit" type="submit" value="发表回复" />
+                <span class='help-inline'>支持Markdown语法</span>
+                <br><br>
+              </form>
+              <div class="media comment" id="comment_25221">
+                <div class="comment-avatar">
+                  <div class="user-image">
+                    <a class="user-image-link" href="/users/4505"> <img
+                      alt="Aa183ee0 dd8f 46d5 a84d 36f18f6b0efb" class="avatar" height="60"
+                      src="https://rs-images.b0.upaiyun.com/uploads/user/avatar/4505/aa183ee0-dd8f-46d5-a84d-36f18f6b0efb.jpg!50x50"
+                      width="60" />
+                    </a>
+                  </div>
+                  <div class="user-tooltip">
+                    <a class="user-image-link" href="/users/4505">
+                      <img alt="Aa183ee0 dd8f 46d5 a84d 36f18f6b0efb" class="avatar avatar-big" height="120" width="120"
+                        src="https://rs-images.b0.upaiyun.com/uploads/user/avatar/4505/aa183ee0-dd8f-46d5-a84d-36f18f6b0efb.jpg!160x160" />
+                    </a>
+                    <h3 class="user-nickname">黑柴</h3>
+                    <h4 class='user-title'>BOARDING - Editor<br></h4>
+                    <p class="user-bio">You know nothing</p>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <div class="comment-details">
+                    <div class='comment-meta cf'>
+                      <h3 class="user-nickname">
+                        <a href="/users/4505">黑柴</a>
+                      </h3>
+                      <span class="user-bio"> You know nothing </span>
+                    </div>
+                    <div class="comment-content">
+                      <p>Github 上说抓取的是搜狗的微信搜索那里的结果内容，除非他们屏蔽掉这些内容或者出个什么禁止抓取的协议</p>
+                      <em>4 小时前</em>
+                    </div>
+                    <p></p>
+                  </div>
+                  <div class="replies"></div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>        
-        </c:forEach>
-        </c:if>
+        </div>
       
         <div id="mention_wrapper" data-note-id="14941">
           <input type="text" id="mention_user_selector">

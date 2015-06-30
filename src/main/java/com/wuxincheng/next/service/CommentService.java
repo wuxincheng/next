@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.wuxincheng.next.dao.CommentDao;
+import com.wuxincheng.next.dao.ProductDao;
 import com.wuxincheng.next.model.Comment;
 import com.wuxincheng.next.util.Constants;
 
@@ -23,15 +24,24 @@ public class CommentService {
 	@Resource 
 	private CommentDao commentDao;
 	
+	@Resource 
+	private ProductDao productDao;
+	
 	/**
 	 * 发表回复
 	 */
-	public Integer post(Comment commment, Integer userid) {
-		commment.setUserid(userid);
-		commment.setCommentState(Constants.DEFAULT_STATE);
-		commment.setLikeSum(0);
-		commment.setReplySum(0);
-		return commentDao.post(commment);
+	public Integer post(Comment comment, Integer userid) {
+		// 发表评论
+		comment.setUserid(userid);
+		comment.setCommentState(Constants.DEFAULT_STATE);
+		comment.setLikeSum(0);
+		comment.setReplySum(0);
+		commentDao.post(comment);
+		
+		// 更新产品的评论数
+		productDao.plusCommentSum(comment.getProductid());
+		
+		return 1;
 	}
 
 	/**

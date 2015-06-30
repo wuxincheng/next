@@ -17,20 +17,34 @@
   </resultMap>
   
   <select id="queryDetailByProdid" parameterClass="java.lang.String" resultMap="ProductMapping">
-    SELECT t.* FROM t_next_product t WHERE t.prodid = #prodid#
+    SELECT t.* 
+      FROM t_next_product t 
+     WHERE t.prodid = #prodid#
   </select>
   
   <select id="queryByPostDate" resultMap="ProductMapping" parameterClass="java.lang.String">
-    SELECT t.* FROM t_next_product t WHERE t.postdate = #queryPostDate# ORDER BY t.postDateTime DESC
+    SELECT t.* 
+      FROM t_next_product t 
+     WHERE t.postdate = #queryPostDate# 
+     ORDER BY t.postDateTime DESC
   </select>
   
   <select id="queryGroupByDate" resultClass="java.lang.String">
-    SELECT t.postdate FROM t_next_product t GROUP BY t.postdate ORDER BY t.postdate DESC
+    SELECT t.postdate 
+    FROM t_next_product t 
+    GROUP BY t.postdate 
+    ORDER BY t.postdate DESC
   </select>
 
   <insert id="post" parameterClass="Product">
     INSERT INTO t_next_product(prodname, produrl, memo, likesum, commentsum, prodstate, postdate, postdatetime, userid)
     VALUES (#prodName#, #prodUrl#, #memo#, #likeSum#, #commentSum#, #prodState#, #postDate#, #postDateTime#, #userid#)
   </insert>
+  
+  <update id="plusCommentSum" parameterClass="java.lang.String">
+    UPDATE t_next_product
+       SET commentsum=commentsum+1
+     WHERE prodid = #prodid#
+  </update>
 
 </sqlMap>

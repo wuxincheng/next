@@ -13,7 +13,6 @@ import com.wuxincheng.next.model.User;
 import com.wuxincheng.next.service.UserService;
 import com.wuxincheng.next.util.Constants;
 import com.wuxincheng.next.util.MD5;
-import com.wuxincheng.next.util.StringUtil;
 import com.wuxincheng.next.util.Validation;
 
 /**
@@ -41,7 +40,7 @@ public class Login {
 	
 	@RequestMapping(value = "/doLogin")
 	public String doLogin(Model model, HttpServletRequest request, User user) {
-		logger.info("用户登录 user={}", StringUtil.toStringMultiLine(user));
+		logger.info("用户登录 loginEmail={}", user.getLoginEmail());
 		
 		if (Validation.isBlank(user.getLoginEmail()) || Validation.isBlank(user.getPassword())) {
 			model.addAttribute(Constants.MSG_WARN, "用户邮箱和密码都不能为空");
@@ -67,7 +66,7 @@ public class Login {
 			return "login";
 		}
 		
-		return "redirect:/user/main";
+		return "redirect:/product/list";
 	}
 	
 }

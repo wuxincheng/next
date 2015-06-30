@@ -27,4 +27,8 @@ public class ProductDao extends BaseDao {
 		return (Product) this.getSqlMapClientTemplate().queryForObject("Product.queryDetailByProdid", prodid);
 	}
 
+	public void plusCommentSum(Integer prodid) {
+		this.getSqlMapClientTemplate().update("Product.plusCommentSum", prodid+"");
+	}
+
 }
