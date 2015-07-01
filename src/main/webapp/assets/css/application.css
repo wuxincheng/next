@@ -256,12 +256,12 @@ img::-moz-selection {
 
 a {
 	text-decoration: none;
-	color: #1ed0e1
+	color: #FF5722
 }
 
 a:hover {
 	text-decoration: none;
-	color: #18a6b4
+	color: #FF5722
 }
 
 a:focus {
@@ -508,7 +508,7 @@ opacity
 
 .topbar {
 	height: 50px;
-	background: #30D0DF;
+	background: #FF5722;
 	position: relative;
 	-webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 0
 		rgba(0, 0, 0, 0.1);
@@ -650,7 +650,7 @@ opacity
 }
 
 .new-post {
-	color: #1ED0E1 !important;
+	color: #FF5722 !important;
 	height: 16px;
 	width: 16px;
 	display: inline-block;
@@ -663,7 +663,7 @@ opacity
 }
 
 .new-post:hover {
-	color: #18a6b4 !important
+	color: #FF5722 !important
 }
 
 .notification-menu {
@@ -795,7 +795,7 @@ opacity
 }
 
 .notification-dropdown a {
-	color: #1ed0e1
+	color: #FF5722
 }
 
 .notification-dropdown p {
@@ -906,7 +906,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .submit-btn {
-	border: 1px solid #1ed0e1;
+	border: 1px solid #FF5722;
 	width: 120px;
 	height: 40px;
 	text-align: center;
@@ -914,7 +914,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .submit-btn:hover {
-	background: #1ed0e1;
+	background: #FF5722;
 	color: #fff
 }
 
@@ -1096,7 +1096,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .post-url:hover {
-	color: #18a6b4
+	color: #DD4A1C
 }
 
 .upvote {
@@ -1119,7 +1119,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .upvote-link:hover {
-	border: 1px solid #1ed0e1
+	border: 1px solid #FF5722
 }
 
 .upvote-link:hover .upvote-arrow {
@@ -1127,7 +1127,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .upvote-link.voted {
-	border: 1px solid #1ed0e1
+	border: 1px solid #FF5722
 }
 
 .upvote-arrow {
@@ -1142,7 +1142,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .voted .upvote-link {
-	border: 1px solid #1ed0e1
+	border: 1px solid #FF5722
 }
 
 .voted .upvote-arrow {
@@ -1150,7 +1150,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .voted .vote-count {
-	color: #1ed0e1
+	color: #FF5722
 }
 
 .vote-count {
@@ -1271,13 +1271,13 @@ input:focus,textarea:focus,select:focus {
 	padding-right: 25px;
 	padding-left: 25px;
 	height: 30px;
-	border: 1px solid #1ed0e1;
+	border: 1px solid #FF5722;
 	border-radius: 25px;
 	line-height: 30px
 }
 
 .pagination a:hover {
-	background: #1ed0e1;
+	background: #FF5722;
 	color: #fff
 }
 
@@ -1715,7 +1715,7 @@ input:focus,textarea:focus,select:focus {
 
 #mention_user_selector {
 	margin-bottom: 5px;
-	color: #1ed0e1;
+	color: #FF5722;
 	width: 100%
 }
 
@@ -1743,12 +1743,12 @@ input:focus,textarea:focus,select:focus {
 }
 
 .autocomplete-suggestion:hover {
-	background: #30D0DF;
+	background: #FF5722;
 	color: #fff
 }
 
 .autocomplete-selected {
-	background: #30D0DF;
+	background: #FF5722;
 	color: #fff
 }
 
@@ -1786,13 +1786,13 @@ input:focus,textarea:focus,select:focus {
 	display: inline-block;
 	padding: 7px 14px;
 	color: #fff;
-	background-color: #30D0DF;
+	background-color: #FF5722;
 	border-radius: 3px
 }
 
 .submit:hover {
 	color: #fff;
-	background-color: #1db1bf
+	background-color: #DD4A1C
 }
 
 .media-body {
@@ -2190,7 +2190,7 @@ body {
 
 .subscribe-email .input-subscribe {
 	padding: 10px 20px;
-	background: #1ed0e1;
+	background: #FF5722;
 	color: #fff
 }
 
@@ -2267,7 +2267,7 @@ body {
 }
 
 .no-touch .back-top:hover {
-	background-color: #1ed0e1;
+	background-color: #FF5722;
 	opacity: 1
 }
 
@@ -2475,19 +2475,19 @@ body {
 }
 
 .list-fav-btn a {
-	border: 1px solid #1ed0e1;
-	color: #1ed0e1;
+	border: 1px solid #FF5722;
+	color: #FF5722;
 	width: 90px
 }
 
 .list-fav-btn a:hover {
 	color: #fff;
-	background: #1ed0e1
+	background: #FF5722
 }
 
 .list-fav-btn.faved a {
 	color: #fff;
-	background: #1ed0e1
+	background: #FF5722
 }
 
 .fav-number {
@@ -2531,17 +2531,17 @@ body {
 .list-all,.list-all.active {
 	border-top-left-radius: 3px;
 	border-bottom-left-radius: 3px;
-	border: 1px solid #1ed0e1
+	border: 1px solid #FF5722
 }
 
 .list-faved,.list-faved.active {
 	border-top-right-radius: 3px;
 	border-bottom-right-radius: 3px;
-	border: 1px solid #1ed0e1
+	border: 1px solid #FF5722
 }
 
 .list-all.active,.list-faved.active {
-	background: #1ed0e1;
+	background: #FF5722;
 	color: #fff
 }
 
