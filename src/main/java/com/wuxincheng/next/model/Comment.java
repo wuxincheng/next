@@ -1,7 +1,6 @@
 package com.wuxincheng.next.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 评论
@@ -24,7 +23,7 @@ public class Comment implements Serializable {
 
 	private String content;
 
-	private Date createTime;
+	private String createTime;
 
 	private String commentState;
 
@@ -72,11 +71,11 @@ public class Comment implements Serializable {
 		this.content = content;
 	}
 
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
 

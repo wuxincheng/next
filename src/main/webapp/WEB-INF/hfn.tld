@@ -31,5 +31,11 @@
     <function-class>com.wuxincheng.next.util.HfntldUtil</function-class>
     <function-signature>java.lang.String getWeekday(java.lang.String)</function-signature>
   </function>
+  
+  <function>
+    <name>relativeDateFormat</name>
+    <function-class>com.wuxincheng.next.util.HfntldUtil</function-class>
+    <function-signature>java.lang.String getRelativeDateFormat(java.lang.String)</function-signature>
+  </function>
 
 </taglib>

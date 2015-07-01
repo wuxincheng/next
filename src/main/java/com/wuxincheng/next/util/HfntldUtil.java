@@ -13,6 +13,23 @@ import java.util.Date;
  * 
  */
 public class HfntldUtil {
+	
+	/**
+	 * 获取几秒前，几分钟前，几小时前，几天前，几月前，几年前
+	 * 
+	 * @param formatDate
+	 * @return
+	 */
+	public static String getRelativeDateFormat(String formatDate){
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
+		Date date = null;
+		try {
+			date = format.parse(formatDate);
+		} catch (ParseException e) {
+			return null;
+		}
+		return RelativeDateFormat.format(date);
+	}
 
 	/**
 	 * 根据日期获取英语月份缩写

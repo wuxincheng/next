@@ -17,7 +17,15 @@
   
   <select id="queryByProductid" resultMap="CommentMapping" parameterClass="java.lang.String">
     SELECT 
-      t.* 
+      t.commentid,
+      t.commentrefid,
+      t.productid,
+      t.userid,
+      t.content,
+      t.commentstate,
+      t.likesum,
+      t.replysum,
+      DATE_FORMAT(t.createtime,'%Y-%m-%d %H:%i:%S') AS createtime 
     FROM 
       t_next_comment t 
     WHERE 

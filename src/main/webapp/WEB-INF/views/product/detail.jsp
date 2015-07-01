@@ -151,7 +151,7 @@
               </div>
               <div class="comment-content">
                 <p>${comment.content}</p>
-                <em>5 小时前</em>
+                <em>${hfn:relativeDateFormat(comment.createTime)}</em>
               </div>
               <!-- 
               <p>- <a class="reply" href="">回复</a><span class="reply">(1)</span></p>
