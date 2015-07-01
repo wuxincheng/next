@@ -88,7 +88,7 @@
 
                   <div class="product-comment">
                     <a class="product-comments" href="http://next.36kr.com/posts/14782#comments"
-                      target="_blank"> 9 </a>
+                      target="_blank"> ${obj.commentSum} </a>
                   </div>
                 </li>
               </ul>
