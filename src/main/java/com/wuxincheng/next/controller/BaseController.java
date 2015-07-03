@@ -32,4 +32,19 @@ public class BaseController {
 		return user.getUserid();
 	}
 	
+	/**
+	 * 处理信息提示
+	 */
+	protected void requestMessageProcess(HttpServletRequest request){
+		String msgError = request.getParameter(Constants.MSG_ERROR);
+		String msgWarn = request.getParameter(Constants.MSG_WARN);
+		String msgInfo = request.getParameter(Constants.MSG_INFO);
+		String msgSuccess = request.getParameter(Constants.MSG_SUCCESS);
+		
+		request.setAttribute(Constants.MSG_ERROR, msgError);
+		request.setAttribute(Constants.MSG_WARN, msgWarn);
+		request.setAttribute(Constants.MSG_INFO, msgInfo);
+		request.setAttribute(Constants.MSG_SUCCESS, msgSuccess);
+	}
+	
 }

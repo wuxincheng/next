@@ -35,5 +35,7 @@ public class Constants {
 	public static final String ORDER_BY_ASC = "ASC";
 
 	public static final String CURRENT_USER = "user";
+	
+	public static final String CURRENT_USERID = "userid";
 
 }
