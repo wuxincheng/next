@@ -42,6 +42,9 @@ public class Product implements Serializable {
 
 	private Integer userid;
 
+	/** 产品集主键 */
+	private Integer collectid;
+
 	public Integer getProdid() {
 		return prodid;
 	}
@@ -120,6 +123,14 @@ public class Product implements Serializable {
 
 	public void setUserid(Integer userid) {
 		this.userid = userid;
+	}
+
+	public Integer getCollectid() {
+		return collectid;
+	}
+
+	public void setCollectid(Integer collectid) {
+		this.collectid = collectid;
 	}
 
 }

@@ -24,10 +24,17 @@
   
   <mvc:interceptors>
     <mvc:interceptor>
+      <!-- user -->
       <mvc:mapping path="/user/**" />
+      <!-- product -->
       <mvc:mapping path="/product/postUI" />
       <mvc:mapping path="/product/doPost" />
+      <!-- comment -->
       <mvc:mapping path="/comment/post" />
+      <!-- collection -->
+      <mvc:mapping path="/collect/edit" />
+      <mvc:mapping path="/collect/create" />
+      <!-- interceptor -->
       <bean class="com.wuxincheng.next.interceptor.LoginSessionInterceptor" />
     </mvc:interceptor>
   </mvc:interceptors>

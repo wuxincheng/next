@@ -82,8 +82,8 @@ public class ProductService {
 	/**
 	 * 根据产品集主键查询产品列表
 	 */
-	public List<Product> queryProductsByCollectionid(String collectionid) {
-		return null;
+	public List<Product> queryProductsByCollectid(String collectid) {
+		return productDao.queryProductsByCollectid(collectid);
 	}
 
 }

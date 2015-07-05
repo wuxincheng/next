@@ -72,7 +72,7 @@
     </h1>
     <nav class="navigation text-center">
       <ul>
-        <li><a class="main-nav " href="http://next.36kr.com/posts/collections">产品集</a></li>
+        <li><a class="main-nav " href="${root}/collect/list">产品集</a></li>
         
         <c:choose>
         <c:when test="${not empty user}">

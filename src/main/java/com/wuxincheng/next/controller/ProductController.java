@@ -59,8 +59,16 @@ public class ProductController extends BaseController {
 	}
 
 	@RequestMapping(value = "/postUI")
-	public String postUI(Model model) {
+	public String postUI(Model model, String collectid) {
 		logger.info("显示发布分享新产品页");
+		
+		if (StringUtils.isNotEmpty(collectid)) {
+			if (StringUtils.isEmpty(collectid) || !Validation.isIntPositive(collectid)) {
+				return "404";
+			}
+			
+			model.addAttribute("collectid", collectid);
+		}
 
 		return "product/postUI";
 	}

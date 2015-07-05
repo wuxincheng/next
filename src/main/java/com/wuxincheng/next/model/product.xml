@@ -14,6 +14,7 @@
     <result property="postDate" column="postdate" />
     <result property="postDateTime" column="postdatetime" />
     <result property="userid" column="userid" />
+    <result property="collectid" column="collectid" />
   </resultMap>
   
   <select id="queryDetailByProdid" parameterClass="java.lang.String" resultMap="ProductMapping">
@@ -37,8 +38,29 @@
   </select>
 
   <insert id="post" parameterClass="Product">
-    INSERT INTO t_next_product(prodname, produrl, memo, likesum, commentsum, prodstate, postdate, postdatetime, userid)
-    VALUES (#prodName#, #prodUrl#, #memo#, #likeSum#, #commentSum#, #prodState#, #postDate#, #postDateTime#, #userid#)
+    INSERT INTO 
+      t_next_product(
+        prodname, 
+        produrl, 
+        memo, 
+        likesum, 
+        commentsum, 
+        prodstate, 
+        postdate, 
+        postdatetime, 
+        userid, 
+        collectid)
+    VALUES (
+        #prodName#, 
+        #prodUrl#, 
+        #memo#, 
+        #likeSum#, 
+        #commentSum#, 
+        #prodState#, 
+        #postDate#, 
+        #postDateTime#, 
+        #userid#, 
+        #collectid#)
   </insert>
   
   <update id="plusCommentSum" parameterClass="java.lang.String">
@@ -47,4 +69,11 @@
      WHERE prodid = #prodid#
   </update>
 
+  <select id="queryProductsByCollectid" resultMap="ProductMapping" parameterClass="java.lang.String">
+    SELECT t.* 
+      FROM t_next_product t 
+     WHERE t.collectid = #collectid# 
+     ORDER BY t.postDateTime DESC
+  </select>
+  
 </sqlMap>

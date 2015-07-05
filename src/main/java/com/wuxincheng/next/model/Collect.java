@@ -9,18 +9,21 @@ import java.io.Serializable;
  * @date 2015年7月3日 下午2:47:08
  * 
  */
-public class Collection implements Serializable {
+public class Collect implements Serializable {
 
 	private static final long serialVersionUID = -2048622308852729384L;
 
 	/** 产品集主键 */
-	private Integer collectionid;
+	private Integer collectid;
 
 	/** 产品集名称 */
-	private String collectionName;
+	private String collectName;
 
 	/** 集封面路径 */
 	private String coverImgPath;
+
+	/** 封面图片文件 */
+	// private MultipartFile coverImgFile;
 
 	/** 用户创建ID */
 	private Integer userid;
@@ -44,25 +47,9 @@ public class Collection implements Serializable {
 	private String createTime;
 
 	/** 产品集状态 */
-	private String state;
+	private String collectState;
 
-	public Collection() {
-	}
-
-	public Integer getCollectionid() {
-		return collectionid;
-	}
-
-	public void setCollectionid(Integer collectionid) {
-		this.collectionid = collectionid;
-	}
-
-	public String getCollectionName() {
-		return collectionName;
-	}
-
-	public void setCollectionName(String collectionName) {
-		this.collectionName = collectionName;
+	public Collect() {
 	}
 
 	public String getCoverImgPath() {
@@ -129,12 +116,28 @@ public class Collection implements Serializable {
 		this.createTime = createTime;
 	}
 
-	public String getState() {
-		return state;
+	public Integer getCollectid() {
+		return collectid;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setCollectid(Integer collectid) {
+		this.collectid = collectid;
+	}
+
+	public String getCollectName() {
+		return collectName;
+	}
+
+	public void setCollectName(String collectName) {
+		this.collectName = collectName;
+	}
+
+	public String getCollectState() {
+		return collectState;
+	}
+
+	public void setCollectState(String collectState) {
+		this.collectState = collectState;
 	}
 
 }

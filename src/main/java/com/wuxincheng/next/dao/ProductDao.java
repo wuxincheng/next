@@ -31,4 +31,9 @@ public class ProductDao extends BaseDao {
 		this.getSqlMapClientTemplate().update("Product.plusCommentSum", prodid+"");
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Product> queryProductsByCollectid(String collectid) {
+		return this.getSqlMapClientTemplate().queryForList("Product.queryProductsByCollectid", collectid);
+	}
+
 }
