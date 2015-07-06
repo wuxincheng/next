@@ -103,7 +103,7 @@
       </ul>
     </nav>
   </header>
-
+  
     <c:if test="${not empty success}">
     <div class="alert alert-success fade in row" style="margin-top: 30px;">
       <h4>${success}</h4>
@@ -127,5 +127,6 @@
       <h4>${danger}</h4>
     </div>
     </c:if>
+ 
 </body>
 </html>
