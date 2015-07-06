@@ -1,11 +1,18 @@
 package com.wuxincheng.next.util;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 
 /**
  * 基本验证
@@ -644,6 +651,37 @@ public class Validation {
 		}
 
 		return true;
+	}
+	
+	/**
+	 * 验证图片类型
+	 * 
+	 * @param imageFile
+	 * @throws IOException
+	 */
+	public static String checkImageType(File imageFile) throws IOException {
+		// get image format in a file
+		File file = imageFile;
+
+		// create an image input stream from the specified file
+		ImageInputStream iis = ImageIO.createImageInputStream(file);
+
+		// get all currently registered readers that recognize the image format
+		Iterator<ImageReader> iter = ImageIO.getImageReaders(iis);
+
+		if (!iter.hasNext()) {
+			throw new RuntimeException("No readers found!");
+		}
+
+		// get the first reader
+		ImageReader reader = iter.next();
+
+		String formatName = reader.getFormatName();
+
+		// close stream
+		iis.close();
+
+		return formatName;
 	}
 
 }
