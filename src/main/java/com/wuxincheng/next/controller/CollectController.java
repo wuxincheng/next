@@ -172,7 +172,7 @@ public class CollectController extends BaseController {
 		}
 
 		try {
-			FileOutputStream out = new FileOutputStream(saveFilePath + imgFileName);
+			FileOutputStream out = new FileOutputStream(saveFilePath + "coverbg/" + imgFileName);
 			// 写入文件
 			out.write(filedata.getBytes());
 			out.flush();
