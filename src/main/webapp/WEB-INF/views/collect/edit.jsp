@@ -24,7 +24,7 @@
     <div class="content row row cf">
       <div class="forms">
         <form accept-charset="UTF-8" action="${root}/collect/create" class="simple_form new_note"
-          method="post" >
+          method="post" enctype="multipart/form-data">
           <div style="display: none">
             <input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token"
               type="hidden" value="UPiDrTAjt2KU/pN2Pk67fOAFuScLNlZ77yx8CJ+TfSE=" />
@@ -43,7 +43,7 @@
           <div class="form-group string required note_title">
             <label class="string required" for="note_title">产品集背景图片</label>
             <input aria-required="true" autofocus="autofocus" class="form-control input-small" 
-              id="coverImgFile" name="coverImgFile" required="required" type="text" />
+              id="coverImgFile" name="coverImgFile" required="required" type="file" />
           </div>
           <div class="form-group text required note_summary">
             <label class="text required" for="note_summary">产品集说明</label>

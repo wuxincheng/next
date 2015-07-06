@@ -21,8 +21,11 @@
       <section class="main-header cf row">
         <div class="list-sort left">
           <a class="list-all active" href="/posts/collections">最新</a>
-          <a class="list-faved " href="/posts/collections/hot">热门</a>  </div>
+          <a class="list-faved " href="/posts/collections/hot">热门</a>
+        </div>
+        <c:if test="${'1' eq user.collectPermission}">
         <a class="btn submit-btn right" href="${root}/collect/edit">创建产品集</a>
+        </c:if>
       </section>
       <section class="list">
         <ul class="list-grid cf">

@@ -16,6 +16,22 @@ import com.wuxincheng.next.util.Constants;
  */
 @Controller
 public class BaseController {
+	
+	/**
+	 * 判断用户是否有创建产品集的权限
+	 */
+	protected boolean isCollectPermission(HttpServletRequest request){
+		User user = (User)request.getSession().getAttribute(Constants.CURRENT_USER);
+		if (null == user) {
+			return false;
+		}
+		
+		if ("1".equals(user.getCollectPermission())) {
+			return true;
+		}
+		
+		return false;
+	}
 
 	/**
 	 * 获取当前Session下的用户信息

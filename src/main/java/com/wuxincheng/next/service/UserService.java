@@ -20,6 +20,7 @@ public class UserService {
 
 	public void register(User user) {
 		user.setUserState(Constants.DEFAULT_STATE);
+		user.setCollectPermission(Constants.DEFAULT_STATE);
 		userDao.register(user);
 	}
 

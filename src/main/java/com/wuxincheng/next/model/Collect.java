@@ -2,6 +2,8 @@ package com.wuxincheng.next.model;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * 产品集
  * 
@@ -23,7 +25,7 @@ public class Collect implements Serializable {
 	private String coverImgPath;
 
 	/** 封面图片文件 */
-	// private MultipartFile coverImgFile;
+	private MultipartFile coverImgFile;
 
 	/** 用户创建ID */
 	private Integer userid;
@@ -138,6 +140,14 @@ public class Collect implements Serializable {
 
 	public void setCollectState(String collectState) {
 		this.collectState = collectState;
+	}
+
+	public MultipartFile getCoverImgFile() {
+		return coverImgFile;
+	}
+
+	public void setCoverImgFile(MultipartFile coverImgFile) {
+		this.coverImgFile = coverImgFile;
 	}
 
 }

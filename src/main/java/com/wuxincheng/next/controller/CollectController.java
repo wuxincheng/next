@@ -59,6 +59,12 @@ public class CollectController extends BaseController {
 	public String edit(HttpServletRequest request) {
 		logger.info("显示添加产品集页面");
 		
+		// 判断用户是否有创建产品集权限
+		if (isCollectPermission(request)) {
+			request.setAttribute(Constants.MSG_INFO, "您还没有该项权限");
+			return "redirect:list";
+		}
+		
 		request.setAttribute(Constants.CURRENT_USERID, getCurrentUserid(request));
 		
 		return "collect/edit";
@@ -68,15 +74,33 @@ public class CollectController extends BaseController {
 	public String create(Model model, HttpServletRequest request, Collect collect) {
 		logger.info("添加新的产品集 collection={}", StringUtil.toStringMultiLine(collect));
 		
-		// 基本验证
+		// 判断用户是否有创建产品集权限
+		if (isCollectPermission(request)) {
+			request.setAttribute(Constants.MSG_INFO, "您还没有该项权限");
+			return "redirect:list";
+		}
+		
+		// TODO 验证产品集名称和说明是否为空
+		
+		// TODO 验证是否上传了图片
+		
+		// TODO 验证图片的格式
+		
+		// TODO 生成图片名称
 		String coverImgPath = System.currentTimeMillis() + ".jpg";
-		// saveFile(coverImgPath, collect.getCoverImgFile());
+		logger.info("封面图片 coverImgPath={}", coverImgPath);
+
+		// TODO 保存图片到服务器
+		saveFile(coverImgPath, collect.getCoverImgFile());
+		// 设置Collect对中图片存储的路径
 		collect.setCoverImgPath(coverImgPath);
+		logger.info("封面图片存储成功");
 		
 		try {
 			collectService.create(collect);
+			logger.info("产品集创建成功");
 		} catch (Exception e) {
-			
+			logger.error("产品集创建出现异常", e);
 		}
 		
 		return "redirect:list";

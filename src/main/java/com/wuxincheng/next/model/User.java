@@ -25,6 +25,9 @@ public class User implements Serializable {
 	private String postion;
 
 	private String userState;
+	
+	/** 产品集权限 */
+	private String collectPermission;
 
 	public Integer getUserid() {
 		return userid;
@@ -104,6 +107,14 @@ public class User implements Serializable {
 
 	public void setUserState(String userState) {
 		this.userState = userState;
+	}
+
+	public String getCollectPermission() {
+		return collectPermission;
+	}
+
+	public void setCollectPermission(String collectPermission) {
+		this.collectPermission = collectPermission;
 	}
 
 }
