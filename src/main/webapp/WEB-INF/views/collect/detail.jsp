@@ -18,7 +18,7 @@
     <jsp:include page="../HEADER.jsp" />
 
     <section class="list-header">
-      <div class="list-header-cover" style="background-image: url(https://rs-images.b0.upaiyun.com/uploads/note_collection/feature_image/283/464c33a8-cd4c-48f0-8edc-3e1386fdf618.jpg!1600x1600);">
+      <div class="list-header-cover" style="background-image: url(${root}/collect/coverbg/${collect.coverImgPath});">
       </div>
       <div class="list-header-info row">
         <h2>${collect.collectName}</h2>

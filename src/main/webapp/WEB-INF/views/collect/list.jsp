@@ -32,7 +32,7 @@
           <c:if test="${not empty collects}">
           <c:forEach items="${collects}" var="collect">
           <li class="list-item">
-            <a class="cover" href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank" style="background-image: url(https://rs-images.b0.upaiyun.com/uploads/note_collection/feature_image_preview/1/e4f71a82-4bae-4b02-9bfe-50a20a2b476a.png!160x160)">
+            <a class="cover" href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank" style="background-image: url(${root}/collect/coverbg/${collect.coverImgPath})">
               <div class="cover-meta">
                 <h3>${collect.collectName}</h3>
                 <ul class="list-meta">

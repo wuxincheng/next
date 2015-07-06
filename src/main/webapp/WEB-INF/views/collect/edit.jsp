@@ -41,7 +41,7 @@
               name="collectName" placeholder="产品集名称" required="required" type="text" />
           </div>
           <div class="form-group string required note_title">
-            <label class="string required" for="note_title">产品集背景图片</label>
+            <label class="string required" for="note_title">产品集背景图片（建议：1600*600）</label>
             <input aria-required="true" autofocus="autofocus" class="form-control input-small" 
               id="coverImgFile" name="coverImgFile" required="required" type="file" />
           </div>

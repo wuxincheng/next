@@ -18,7 +18,7 @@
   </resultMap>
   
   <select id="queryAll" resultMap="CollectMapping">
-    SELECT * FROM t_next_collect ORDER BY updatetime
+    SELECT * FROM t_next_collect ORDER BY updatetime DESC
   </select>
   
   <insert id="create" parameterClass="Collect">

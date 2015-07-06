@@ -96,9 +96,9 @@ public class CollectController extends BaseController {
 			return "redirect:edit";
 		}
 		
-		// 控制图片大小不能大于2M
-		if (collect.getCoverImgFile().getSize() > 220000) {
-			model.addAttribute(Constants.MSG_INFO, "产品集背景图片不能超过2M");
+		// 控制图片大小不能大于3M
+		if (collect.getCoverImgFile().getSize() > 400000) {
+			model.addAttribute(Constants.MSG_INFO, "产品集背景图片不能超过3M");
 			return "redirect:edit";
 		}
 		
@@ -111,7 +111,7 @@ public class CollectController extends BaseController {
 		}
 		
 		// 生成图片名称
-		String ctxPath = request.getSession().getServletContext().getRealPath("/")+""; 
+		String ctxPath = request.getSession().getServletContext().getRealPath("/") + "collect/coverbg/"; 
 		String coverImgPath = System.currentTimeMillis() + lastFix;
 		logger.info("封面图片 coverImgPath={}", coverImgPath);
 		
@@ -122,7 +122,7 @@ public class CollectController extends BaseController {
 		logger.info("封面图片存储成功");
 		
 		try {
-			// collectService.create(collect);
+			collectService.create(collect);
 			logger.info("产品集创建成功");
 			model.addAttribute(Constants.MSG_SUCCESS, "产品集创建成功");
 		} catch (Exception e) {
@@ -172,7 +172,7 @@ public class CollectController extends BaseController {
 		}
 
 		try {
-			FileOutputStream out = new FileOutputStream(saveFilePath + "coverbg/" + imgFileName);
+			FileOutputStream out = new FileOutputStream(saveFilePath + imgFileName);
 			// 写入文件
 			out.write(filedata.getBytes());
 			out.flush();
