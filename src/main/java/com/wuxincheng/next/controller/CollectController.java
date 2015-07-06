@@ -19,7 +19,6 @@ import com.wuxincheng.next.model.Collect;
 import com.wuxincheng.next.model.Product;
 import com.wuxincheng.next.service.CollectService;
 import com.wuxincheng.next.service.ProductService;
-import com.wuxincheng.next.util.ConfigHelper;
 import com.wuxincheng.next.util.Constants;
 import com.wuxincheng.next.util.StringUtil;
 import com.wuxincheng.next.util.Validation;
@@ -56,12 +55,13 @@ public class CollectController extends BaseController {
 	}
 	
 	@RequestMapping(value = "/edit")
-	public String edit(HttpServletRequest request) {
+	public String edit(Model model, HttpServletRequest request) {
 		logger.info("显示添加产品集页面");
+		requestMessageProcess(request);
 		
 		// 判断用户是否有创建产品集权限
-		if (isCollectPermission(request)) {
-			request.setAttribute(Constants.MSG_INFO, "您还没有该项权限");
+		if (!isCollectPermission(request)) {
+			model.addAttribute(Constants.MSG_INFO, "您还没有该项权限");
 			return "redirect:list";
 		}
 		
@@ -75,32 +75,59 @@ public class CollectController extends BaseController {
 		logger.info("添加新的产品集 collection={}", StringUtil.toStringMultiLine(collect));
 		
 		// 判断用户是否有创建产品集权限
-		if (isCollectPermission(request)) {
-			request.setAttribute(Constants.MSG_INFO, "您还没有该项权限");
-			return "redirect:list";
+		if (!isCollectPermission(request)) {
+			model.addAttribute(Constants.MSG_INFO, "您还没有该项权限");
+			return "redirect:edit";
 		}
 		
-		// TODO 验证产品集名称和说明是否为空
+		// 验证产品集名称和说明是否为空
+		if (StringUtils.isEmpty(collect.getCollectName())) {
+			model.addAttribute(Constants.MSG_INFO, "产品集名称不能为空");
+			return "redirect:edit";
+		}
+		if (StringUtils.isEmpty(collect.getMemo())) {
+			model.addAttribute(Constants.MSG_INFO, "产品集说明不能为空");
+			return "redirect:edit";
+		}
 		
-		// TODO 验证是否上传了图片
+		// 验证是否上传了图片
+		if (null == collect.getCoverImgFile()) {
+			model.addAttribute(Constants.MSG_INFO, "产品集背景图片不能为空");
+			return "redirect:edit";
+		}
 		
-		// TODO 验证图片的格式
+		// 控制图片大小不能大于2M
+		if (collect.getCoverImgFile().getSize() > 220000) {
+			model.addAttribute(Constants.MSG_INFO, "产品集背景图片不能超过2M");
+			return "redirect:edit";
+		}
 		
-		// TODO 生成图片名称
-		String coverImgPath = System.currentTimeMillis() + ".jpg";
+		// 验证图片的格式(只支持png、jpg格式)
+		String checkFileName = collect.getCoverImgFile().getOriginalFilename();
+		String lastFix = checkFileName.substring(checkFileName.lastIndexOf("."), checkFileName.length());
+		if (!".png|.jpg".contains(lastFix)) {
+			model.addAttribute(Constants.MSG_INFO, "产品集背景图片仅支持png、jpg格式");
+			return "redirect:edit";
+		}
+		
+		// 生成图片名称
+		String ctxPath = request.getSession().getServletContext().getRealPath("/")+""; 
+		String coverImgPath = System.currentTimeMillis() + lastFix;
 		logger.info("封面图片 coverImgPath={}", coverImgPath);
-
-		// TODO 保存图片到服务器
-		saveFile(coverImgPath, collect.getCoverImgFile());
+		
+		// 保存图片到服务器
+		saveFile(ctxPath, coverImgPath, collect.getCoverImgFile());
 		// 设置Collect对中图片存储的路径
 		collect.setCoverImgPath(coverImgPath);
 		logger.info("封面图片存储成功");
 		
 		try {
-			collectService.create(collect);
+			// collectService.create(collect);
 			logger.info("产品集创建成功");
+			model.addAttribute(Constants.MSG_SUCCESS, "产品集创建成功");
 		} catch (Exception e) {
 			logger.error("产品集创建出现异常", e);
+			model.addAttribute(Constants.MSG_ERROR, "产品集创建错误");
 		}
 		
 		return "redirect:list";
@@ -132,15 +159,12 @@ public class CollectController extends BaseController {
 	/**
 	 * 保存图片
 	 * 
-	 * @param newFileName
+	 * @param imgFileName
 	 *            上传照片文件名
 	 * @param filedata
 	 *            文件数据
 	 */
-	public void saveFile(String newFileName, MultipartFile filedata) {
-		// 根据配置文件获取服务器图片存放路径
-		String saveFilePath = ConfigHelper.getInstance().getConfig("collectCoverHomePath");
-
+	public void saveFile(String saveFilePath, String imgFileName, MultipartFile filedata) {
 		// 构建文件目录
 		File fileDir = new File(saveFilePath);
 		if (!fileDir.exists()) {
@@ -148,7 +172,7 @@ public class CollectController extends BaseController {
 		}
 
 		try {
-			FileOutputStream out = new FileOutputStream(saveFilePath + "\\" + newFileName);
+			FileOutputStream out = new FileOutputStream(saveFilePath + imgFileName);
 			// 写入文件
 			out.write(filedata.getBytes());
 			out.flush();
