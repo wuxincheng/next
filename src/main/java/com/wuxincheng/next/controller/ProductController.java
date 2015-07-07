@@ -40,8 +40,9 @@ public class ProductController extends BaseController {
 	private ProductService productService;
 
 	@RequestMapping(value = "/list")
-	public String list(Model model, String currentPage) {
+	public String list(Model model, HttpServletRequest request, String currentPage) {
 		logger.info("显示产品列表");
+		requestMessageProcess(request);
 
 		// 根据产品发布的日期分组
 		List<String> groupDates = productService.queryGroupByDate();
@@ -59,8 +60,9 @@ public class ProductController extends BaseController {
 	}
 
 	@RequestMapping(value = "/postUI")
-	public String postUI(Model model, String collectid) {
+	public String postUI(Model model, HttpServletRequest request, String collectid) {
 		logger.info("显示发布分享新产品页");
+		requestMessageProcess(request);
 		
 		if (StringUtils.isNotEmpty(collectid)) {
 			if (StringUtils.isEmpty(collectid) || !Validation.isIntPositive(collectid)) {
@@ -103,8 +105,9 @@ public class ProductController extends BaseController {
 			model.addAttribute(Constants.MSG_ERROR, "产品发布出现异常，请稍后重试！");
 			return "product/postUI";
 		}
-
-		return list(model, null);
+		
+		return product.getCollectid() == null ? "redirect:list"
+				: "redirect:/collect/detail?collectid=" + product.getCollectid();
 	}
 	
 	@RequestMapping(value = "/detail")
