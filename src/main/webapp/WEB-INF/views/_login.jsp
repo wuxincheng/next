@@ -17,7 +17,7 @@
 <body id="home" class="notes-index">
   <div class="container">
     <jsp:include page="HEADER.jsp" />
-    <div class="content login-row cf">
+    <div class="content row cf">
       <div class="forms">
         <form accept-charset="UTF-8"
           action="${root}/login/doLogin"
@@ -43,23 +43,32 @@
           </div>
           <button class="btn submit" name="button" type="submit">登录</button>
 
-          <div class="oauth-panel">
-            <h4>使用第三方账号登录：</h4><br>
-            <a href="${root}/oauth/qq/login">
-            <img src="${root}/assets/img/oauth/qq_oauth.png" style="width: 35px; height: 35px;" />
-            </a>
-          </div>
-  
-          <!-- 
+          <hr>
+
           <a href="${root}/register/">注册</a><br> <a
             href="http://next.36kr.com/users/password/new">忘记密码?</a><br>
           <a href="http://next.36kr.com/users/confirmation/new">没有收到验证邮件?</a><br>
-           -->
         </form>
       </div>
 
       <aside class="aside">
+        <h4>使用第三方账号登录：</h4>
+        <div>
+        <img src="${root}/assets/img/oauth/qq_oauth.png" style="width: 35px; height: 35px;" />
+        <img src="${root}/assets/img/oauth/qq_oauth.png" style="width: 35px; height: 35px;" />
+        </div>
         
+        <!-- 
+        <img
+          src="http://next.36kr.com/users/sign_in_qrcode?t=1435142215.894246"
+          alt="微信二维码" id="sign_in_qrcode_image" width="160" height="160"
+          data-ok-url="/posts">
+        <ul class="aside-tips">
+          <li>1.微信授权仅用于获取昵称和头像信息</li>
+          <li>2.定制关注和订阅，个性化内容和动态提醒</li>
+          <li>3.定向推送最新产品信息，还有更多…</li>
+        </ul>
+         -->
       </aside>
 
     </div>

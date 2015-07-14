@@ -876,6 +876,20 @@ opacity
 	padding-left: 10px
 }
 
+.login-row {
+    max-width: 330px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.oauth-panel {
+  margin: 20px 0; 
+  padding: 20px 0; 
+  border-top: 1px solid #f0f0f0;
+}
+
 .row:after {
 	content: "";
 	display: table;
