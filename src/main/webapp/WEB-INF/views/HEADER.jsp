@@ -78,7 +78,7 @@
         <c:when test="${not empty user}">
         <li class="account login-menu">
           <a class="account-menu main-nav" href="javascript:">
-            <img alt="2e319c99 9ca7 4576 bb10 28bde38c9084" class="avatar" height="30" src="${root}/assets/images/user_thumb-default.png" width="30" />
+            <img class="avatar" height="30" src="${user.socialPicPath}" width="30" />
           </a>
           <ul class="dropdown login-dropdown">
             <li><a href="${root}/user/main">我的主页</a></li>
