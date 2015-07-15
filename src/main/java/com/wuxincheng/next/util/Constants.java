@@ -38,4 +38,13 @@ public class Constants {
 	
 	public static final String CURRENT_USERID = "userid";
 
+	/** 授权平台：QQ */
+	public static final String OAUTH_QQ = "qq";
+	
+	/** 授权平台：微信 */
+	public static final String OAUTH_WECHAT = "wechat";
+	
+	/** 授权平台：新浪微博 */
+	public static final String OAUTH_WEIBO = "weibo";
+
 }
