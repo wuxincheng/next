@@ -2,32 +2,61 @@ package com.wuxincheng.next.model;
 
 import java.io.Serializable;
 
+/**
+ * 用户
+ * 
+ * @author wuxincheng(wxcking) 
+ * @date 2015年7月15日 下午5:13:39 
+ *
+ */
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	/** 用户主键 */
 	private Integer userid;
 
+	/** 昵称 */
 	private String nickName;
 
+	/** 登录密码 */
 	private String password;
 
+	/** 登录邮箱 */
 	private String loginEmail;
 
+	/** 自定义头像 */
 	private String picPath;
 
+	/** 社交平台头像 */
 	private String socialPicPath;
 
+	/** 个人简介 */
 	private String memo;
 
+	/** 用户组 */
 	private String userGroup;
 
+	/** 用户职位 */
 	private String postion;
 
+	/** 用户状态 */
 	private String userState;
-	
+
 	/** 产品集权限 */
 	private String collectPermission;
+
+	/** 第三方授权Token */
+	private String accessToken;
+
+	/** 第三方授权expireIn */
+	private long tokenExpireIn;
+
+	/** 第三方授权Openid */
+	private String openID;
+
+	/** 第三方平台类型 */
+	private String loginType;
 
 	public Integer getUserid() {
 		return userid;
@@ -115,6 +144,38 @@ public class User implements Serializable {
 
 	public void setCollectPermission(String collectPermission) {
 		this.collectPermission = collectPermission;
+	}
+
+	public String getAccessToken() {
+		return accessToken;
+	}
+
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}
+
+	public long getTokenExpireIn() {
+		return tokenExpireIn;
+	}
+
+	public void setTokenExpireIn(long tokenExpireIn) {
+		this.tokenExpireIn = tokenExpireIn;
+	}
+
+	public String getOpenID() {
+		return openID;
+	}
+
+	public void setOpenID(String openID) {
+		this.openID = openID;
+	}
+
+	public String getLoginType() {
+		return loginType;
+	}
+
+	public void setLoginType(String loginType) {
+		this.loginType = loginType;
 	}
 
 }
