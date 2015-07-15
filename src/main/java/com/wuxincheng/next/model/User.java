@@ -53,7 +53,7 @@ public class User implements Serializable {
 	private long tokenExpireIn;
 
 	/** 第三方授权Openid */
-	private String openID;
+	private String openid;
 
 	/** 第三方平台类型 */
 	private String loginType;
@@ -162,12 +162,12 @@ public class User implements Serializable {
 		this.tokenExpireIn = tokenExpireIn;
 	}
 
-	public String getOpenID() {
-		return openID;
+	public String getOpenid() {
+		return openid;
 	}
 
-	public void setOpenID(String openID) {
-		this.openID = openID;
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 
 	public String getLoginType() {

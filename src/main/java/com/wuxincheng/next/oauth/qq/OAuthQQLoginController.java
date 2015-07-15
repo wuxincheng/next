@@ -81,7 +81,7 @@ public class OAuthQQLoginController {
 					oauthUser.setSocialPicPath(userInfoBean.getAvatar().getAvatarURL50());
 					oauthUser.setAccessToken(accessTokenObj.getAccessToken());
 					oauthUser.setTokenExpireIn(accessTokenObj.getExpireIn());
-					oauthUser.setOpenID(openIDObj.getUserOpenID());
+					oauthUser.setOpenid(openIDObj.getUserOpenID());
 					oauthUser.setLoginType(Constants.OAUTH_QQ);
 					
 					checkAndProcessOAuthUser(oauthUser, request);

@@ -15,11 +15,22 @@
     <result property="postion" column="postion" />
     <result property="userState" column="userstate" />
     <result property="collectPermission" column="collectpermission" />
-    
+    <result property="accessToken" column="accesstoken" />
+    <result property="tokenExpireIn" column="tokenexpirein" />
+    <result property="openid" column="openid" />
+    <result property="loginType" column="logintype" />
   </resultMap>
   
+  <select id="queryByUserid" parameterClass="java.lang.String" resultMap="UserMapping">
+    SELECT t.* FROM t_next_user t WHERE t.userid = #userid#
+  </select>
+
   <select id="queryByLoginEmail" parameterClass="java.lang.String" resultMap="UserMapping">
     SELECT t.* FROM t_next_user t WHERE t.loginemail = #loginEmail#
+  </select>
+  
+  <select id="queryByOAuthOpenid" parameterClass="java.lang.String" resultMap="UserMapping">
+    SELECT t.* FROM t_next_user t WHERE t.openid = #openid#
   </select>
 
   <insert id="register" parameterClass="User">
@@ -34,7 +45,11 @@
         usergroup, 
         postion, 
         userstate,
-        collectpermission)
+        collectpermission,
+        accesstoken,
+        tokenexpirein,
+        openid,
+        logintype)
     VALUES (
         #nickName#, 
         #password#, 
@@ -45,7 +60,30 @@
         #userGroup#, 
         #postion#, 
         #userState#,
-        #collectPermission#)
+        #collectPermission#,
+        #accessToken#,
+        #tokenExpireIn#,
+        #openid#
+        #loginType#)
   </insert>
+  
+  <update id="register" parameterClass="User">
+    UPDATE t_next_user 
+        SET nickname = #nickName#, 
+        password = #password#, 
+        loginemail = #loginEmail#, 
+        picpath = #picPath#, 
+        socialpicpath = #socialPicPath#, 
+        memo = #memo#, 
+        usergroup = #userGroup#, 
+        postion = #postion#, 
+        userstate = #userState#,
+        collectpermission = #collectPermission#,
+        accesstoken = #accessToken#,
+        tokenexpirein = #tokenExpireIn#,
+        openid = #openid,
+        logintype = #loginType#
+    WHERE userid = #userid# 
+  </update>
 
 </sqlMap>

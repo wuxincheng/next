@@ -34,7 +34,7 @@ public class UserService {
 	 * 验证授权登录用户
 	 */
 	public User validateOAuthUser(User oauthUser) {
-		User queryOAuthUser = userDao.queryByOAuthOpenid(oauthUser.getOpenID());
+		User queryOAuthUser = userDao.queryByOAuthOpenid(oauthUser.getOpenid());
 		
 		if (queryOAuthUser == null) {
 			// 记录这条信息
@@ -46,7 +46,7 @@ public class UserService {
 			queryOAuthUser.setAccessToken(oauthUser.getAccessToken());
 			queryOAuthUser.setTokenExpireIn(oauthUser.getTokenExpireIn());
 			
-			this.updateInfo(queryOAuthUser);
+			userDao.updateInfo(queryOAuthUser);
 		}
 		
 		return queryOAuthUser;
@@ -55,8 +55,14 @@ public class UserService {
 	/**
 	 * 更新用户信息
 	 */
-	private void updateInfo(User user) {
-		userDao.updateInfo(user);
+	public void updateInfo(User user) {
+		// 根据用户主键查询用户信息是否存在
+		User updateUser = userDao.queryByUserid(user.getUserid());
+		if (updateUser != null) {
+			// TODO 具体更新的内容
+			// updateUser.setNickName(user.getNickName());
+			userDao.updateInfo(updateUser);
+		}
 	}
 
 }
