@@ -14,5 +14,13 @@ public class UserDao extends BaseDao {
 	public void register(User user) {
 		this.getSqlMapClientTemplate().update("User.register", user);
 	}
+
+	public void updateInfo(User user) {
+		this.getSqlMapClientTemplate().update("User.updateInfo", user);
+	}
+
+	public User queryByOAuthOpenid(String openID) {
+		return (User) this.getSqlMapClientTemplate().queryForObject("User.queryByOAuthOpenid", openID);
+	}
 	
 }
