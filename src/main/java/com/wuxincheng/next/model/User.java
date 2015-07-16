@@ -50,7 +50,7 @@ public class User implements Serializable {
 	private String accessToken;
 
 	/** 第三方授权expireIn */
-	private long tokenExpireIn;
+	private String tokenExpireIn;
 
 	/** 第三方授权Openid */
 	private String openid;
@@ -154,11 +154,11 @@ public class User implements Serializable {
 		this.accessToken = accessToken;
 	}
 
-	public long getTokenExpireIn() {
+	public String getTokenExpireIn() {
 		return tokenExpireIn;
 	}
 
-	public void setTokenExpireIn(long tokenExpireIn) {
+	public void setTokenExpireIn(String tokenExpireIn) {
 		this.tokenExpireIn = tokenExpireIn;
 	}
 

@@ -36,38 +36,22 @@
   <insert id="register" parameterClass="User">
     INSERT INTO 
       t_next_user(
-        nickname, 
-        password, 
-        loginemail, 
-        picpath, 
-        socialpicpath, 
-        memo, 
-        usergroup, 
-        postion, 
-        userstate,
+        nickname, password, loginemail, 
+        picpath, socialpicpath,  memo, 
+        usergroup, postion, userstate,
         collectpermission,
-        accesstoken,
-        tokenexpirein,
-        openid,
-        logintype)
+        accesstoken, tokenexpirein,
+        openid, logintype)
     VALUES (
-        #nickName#, 
-        #password#, 
-        #loginEmail#, 
-        #picPath#, 
-        #socialPicPath#, 
-        #memo#, 
-        #userGroup#, 
-        #postion#, 
-        #userState#,
+        #nickName#, #password#, #loginEmail#, 
+        #picPath#, #socialPicPath#, #memo#, 
+        #userGroup#, #postion#, #userState#,
         #collectPermission#,
-        #accessToken#,
-        #tokenExpireIn#,
-        #openid#
-        #loginType#)
+        #accessToken#, #tokenExpireIn#,
+        #openid#, #loginType#)
   </insert>
   
-  <update id="register" parameterClass="User">
+  <update id="updateInfo" parameterClass="User">
     UPDATE t_next_user 
         SET nickname = #nickName#, 
         password = #password#, 
@@ -81,7 +65,7 @@
         collectpermission = #collectPermission#,
         accesstoken = #accessToken#,
         tokenexpirein = #tokenExpireIn#,
-        openid = #openid,
+        openid = #openid#,
         logintype = #loginType#
     WHERE userid = #userid# 
   </update>

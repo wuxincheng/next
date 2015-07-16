@@ -80,7 +80,7 @@ public class OAuthQQLoginController {
 					oauthUser.setNickName(userInfoBean.getNickname());
 					oauthUser.setSocialPicPath(userInfoBean.getAvatar().getAvatarURL50());
 					oauthUser.setAccessToken(accessTokenObj.getAccessToken());
-					oauthUser.setTokenExpireIn(accessTokenObj.getExpireIn());
+					oauthUser.setTokenExpireIn(accessTokenObj.getExpireIn()+"");
 					oauthUser.setOpenid(openIDObj.getUserOpenID());
 					oauthUser.setLoginType(Constants.OAUTH_QQ);
 					
@@ -120,6 +120,7 @@ public class OAuthQQLoginController {
 		
 		// 用户信息放入在Session中
 		request.getSession().setAttribute(Constants.CURRENT_USER, checkUser);
+		logger.info("授权成功 user={}", StringUtil.toStringMultiLine(checkUser));
 	}
 
 }

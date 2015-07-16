@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.wuxincheng.next.controller.BaseController;
 import com.wuxincheng.next.model.User;
 import com.wuxincheng.next.service.UserService;
 import com.wuxincheng.next.util.Constants;
@@ -24,7 +25,7 @@ import com.wuxincheng.next.util.Validation;
  */
 @Controller
 @RequestMapping("/login")
-public class Login {
+public class Login extends BaseController {
 
 	private static final Logger logger = LoggerFactory.getLogger(Login.class);
 	
@@ -32,8 +33,10 @@ public class Login {
 	private UserService userService;
 	
 	@RequestMapping(value = "/")
-	public String login(Model model) {
+	public String login(Model model, HttpServletRequest request) {
 		logger.info("显示用户登录页面");
+		
+		requestMessageProcess(request);
 		
 		return "login";
 	}

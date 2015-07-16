@@ -8,8 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TOP | 不错过任何一个新产品</title>
-<link data-turbolinks-track="true" href="${root}/assets/css/application.css" media="all"
-  rel="stylesheet">
+<link data-turbolinks-track="true" href="${root}/assets/css/application.css" media="all" rel="stylesheet">
 <script async="" src="http://www.google-analytics.com/analytics.js"></script>
 <script data-turbolinks-track="true" src="${root}/assets/js/application.js"></script>
 
@@ -78,7 +77,14 @@
         <c:when test="${not empty user}">
         <li class="account login-menu">
           <a class="account-menu main-nav" href="javascript:">
+            <c:choose>
+            <c:when test="${not empty user.socialPicPath}">
             <img class="avatar" height="30" src="${user.socialPicPath}" width="30" />
+            </c:when>
+            <c:otherwise>
+            <img class="avatar" height="30" src="${root}/assets/images/user_thumb-default.png" width="30" />
+            </c:otherwise>
+            </c:choose>
           </a>
           <ul class="dropdown login-dropdown">
             <li><a href="${root}/user/main">我的主页</a></li>
