@@ -3,6 +3,30 @@
 <sqlMap namespace="Product">
   <typeAlias alias="Product" type="com.wuxincheng.next.model.Product" />
 
+  <resultMap class="Product" id="ProductDetailMapping">
+    <!-- 产品信息 -->
+    <result property="prodid" column="prodid" />
+    <result property="prodName" column="prodname" />
+    <result property="prodUrl" column="produrl" />
+    <result property="memo" column="memo" />
+    <result property="likeSum" column="likesum" />
+    <result property="commentSum" column="commentsum" />
+    <result property="prodState" column="prodstate" />
+    <result property="postDate" column="postdate" />
+    <result property="postDateTime" column="postdatetime" />
+    <result property="userid" column="userid" />
+    <result property="collectid" column="collectid" />
+    
+    <!-- 发布该产品用户的信息 -->
+    <result property="nickName" column="nickname" />
+    <result property="loginEmail" column="loginemail" />
+    <result property="picPath" column="picpath" />
+    <result property="socialPicPath" column="socialpicpath" />
+    <result property="userMemo" column="usermemo" />
+    <result property="userGroup" column="usergroup" />
+    <result property="postion" column="postion" />
+  </resultMap>
+
   <resultMap class="Product" id="ProductMapping">
     <result property="prodid" column="prodid" />
     <result property="prodName" column="prodname" />
@@ -17,15 +41,21 @@
     <result property="collectid" column="collectid" />
   </resultMap>
   
-  <select id="queryDetailByProdid" parameterClass="java.lang.String" resultMap="ProductMapping">
-    SELECT t.* 
+  <select id="queryDetailByProdid" parameterClass="java.lang.String" resultMap="ProductDetailMapping">
+    SELECT t.*, 
+           u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
+           u.memo AS usermemo, u.usergroup, u.postion 
       FROM t_next_product t 
+      LEFT JOIN t_next_user u ON t.userid = u.userid
      WHERE t.prodid = #prodid#
   </select>
   
-  <select id="queryByPostDate" resultMap="ProductMapping" parameterClass="java.lang.String">
-    SELECT t.* 
+  <select id="queryByPostDate" resultMap="ProductDetailMapping" parameterClass="java.lang.String">
+    SELECT t.*, 
+           u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
+           u.memo AS usermemo, u.usergroup, u.postion 
       FROM t_next_product t 
+      LEFT JOIN t_next_user u ON t.userid = u.userid
      WHERE t.postdate = #queryPostDate# 
      ORDER BY t.postDateTime DESC
   </select>

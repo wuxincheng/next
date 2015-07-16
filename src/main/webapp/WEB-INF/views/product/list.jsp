@@ -38,10 +38,10 @@
           <c:forEach items="${map.value}" var="obj">
           <li class="product-item ">
             <div class="posts-group cf">
-              <div class="upvote ">
-                <a class="upvote-link vote-up"
-                  href="http://next.36kr.com/users/sign_in?ok_url=%2Fposts"> <i
-                  class="upvote-arrow"></i> <span class="vote-count">75</span>
+              <div class="upvote voted">
+                <a class="upvote-link vote-up" href="#"> 
+                  <i class="upvote-arrow"></i> 
+                  <span class="vote-count">75</span>
                 </a>
               </div>
 
@@ -51,44 +51,24 @@
                   class="post-tagline">${obj.memo}</span>
               </div>
               <ul class="product-meta right">
-                <li class="product-mark">
-                  <div class="mark" title="二十一点睡前故事 的团队成员已经入驻 NEXT，你的评论反馈会被关注和回复">
-                    <i class="marks mark-founder"></i>
-                  </div>
-                </li>
-
-                <li class="product-mark">
-                  <div class="mark" title="二十一点睡前故事 适用于 iOS 平台">
-                    <i class="marks mark-ios"></i>
-                  </div>
-                </li>
-
                 <li class="product-avatar">
                   <div class="user-image">
-                    <a class="user-image-link" href="http://next.36kr.com/users/6322"> <img
-                      alt="806c1ab9 5ac2 497f aa03 f44fd3b0a56e" class="avatar" height="60"
-                      src="${root}/assets/images/mock/806c1ab9-5ac2-497f-aa03-f44fd3b0a56e.png!50x50"
-                      width="60">
+                    <a class="user-image-link" href="#">
+                      <img class="avatar" height="60" src="${obj.socialPicPath}" width="60" />
                     </a>
                   </div>
 
                   <div class="user-tooltip">
-                    <a class="user-image-link" href="http://next.36kr.com/users/6322"> <img
-                      alt="806c1ab9 5ac2 497f aa03 f44fd3b0a56e" class="avatar avatar-big"
-                      height="120"
-                      src="${root}/assets/images/mock/806c1ab9-5ac2-497f-aa03-f44fd3b0a56e.png!160x160"
-                      width="120">
+                    <a class="user-image-link" href="#">
+                      <img class="avatar avatar-big" height="120" src="${obj.socialPicPath}" width="120" />
                     </a>
-                    <h3 class="user-nickname">芋头君</h3>
-                    <h4 class="user-title">
-                      颜文字输入法 - 创始人<br>
-                    </h4>
-                    <p class="user-bio">颜文字输入法独立开发者。大搜车前端团队负责人，前端乱炖社区创始人。</p>
+                    <h3 class="user-nickname">${obj.nickName}</h3>
+                    <h4 class="user-title">${user.userGroup} - ${user.position}<br></h4>
+                    <p class="user-bio">${obj.userMemo}</p>
                   </div>
 
                   <div class="product-comment">
-                    <a class="product-comments" href="http://next.36kr.com/posts/14782#comments"
-                      target="_blank"> ${obj.commentSum} </a>
+                    <a class="product-comments" href="#"> ${obj.commentSum} </a>
                   </div>
                 </li>
               </ul>

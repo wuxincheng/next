@@ -41,17 +41,17 @@
               <ul class="product-meta right">
                 <li class="product-avatar">
                   <div class="user-image">
-                    <a class="user-image-link" href="/users/2673">
-                      <img alt="0" class="avatar" height="60" src="http://wx.qlogo.cn/mmopen/t5Vs01SBdHex8k5QQQeicibDrAjI5G6R0NOMXOO6uGRCff12vSBrXxt4yvKDrVVK4MQpXnPRobtg61nllz6jajBw/0" width="60" />
+                    <a class="user-image-link" href="#">
+                      <img alt="0" class="avatar" height="60" src="${product.socialPicPath}" width="60" />
                     </a>
                   </div>
                   <div class="user-tooltip">
-                    <a class="user-image-link" href="/users/2673">
-                      <img alt="0" class="avatar avatar-big" height="120" src="http://wx.qlogo.cn/mmopen/t5Vs01SBdHex8k5QQQeicibDrAjI5G6R0NOMXOO6uGRCff12vSBrXxt4yvKDrVVK4MQpXnPRobtg61nllz6jajBw/0" width="120" />
+                    <a class="user-image-link" href="#">
+                      <img alt="0" class="avatar avatar-big" height="120" src="${product.socialPicPath}" width="120" />
                     </a>
-                    <h3 class="user-nickname">徐奕奕奕奕</h3>
-                    <h4 class='user-title'>36氪 - NEXT<br></h4>
-                    <p class="user-bio"> 有好产品，别出声</p>
+                    <h3 class="user-nickname">${product.nickName}</h3>
+                    <h4 class='user-title'>${product.userGroup} - ${product.postion}<br></h4>
+                    <p class="user-bio"> ${product.userMemo} </p>
                   </div>
                 </li>
               </ul>
@@ -60,7 +60,7 @@
         </ul>
       
         <div class="upvotes">
-          <h2>7人觉得很赞：</h2>
+          <h2>${product.likeSum}人觉得很赞：</h2>
           <ul class="upvote-users cf">
             <li class="product-avatar">
               <div class="user-image">
@@ -130,24 +130,24 @@
         <div class="media comment" id="comment_25191">
           <div class="comment-avatar">
             <div class="user-image">
-              <a class="user-image-link" href="/users/5133">
-                <img alt="Fa10347b 7a54 42dc 9376 1bf0d7c219bb" class="avatar" height="60" src="${root}/assets/images/user_thumb-default.png" width="60" />
+              <a class="user-image-link" href="#">
+                <img class="avatar" height="60" src="${comment.socialPicPath}" width="60" />
               </a>
             </div>
             <div class="user-tooltip">
-              <a class="user-image-link" href="/users/5133">
-                <img alt="Fa10347b 7a54 42dc 9376 1bf0d7c219bb" class="avatar avatar-big" height="120" src="${root}/assets/images/user_thumb-default.png" width="120" />
+              <a class="user-image-link" href="#">
+                <img class="avatar avatar-big" height="120" src="${comment.socialPicPath}" width="120" />
               </a>
-              <h3 class="user-nickname">iamjohnny</h3>
-              <h4 class='user-title'>邪恶组织 - 卧底<br></h4>
-              <p class="user-bio">If anyone can have it, I don&#39;t want it!</p>
+              <h3 class="user-nickname">${comment.nickName}</h3>
+              <h4 class='user-title'>${comment.userGroup} - ${comment.postion}<br></h4>
+              <p class="user-bio">${comment.userMemo}</p>
             </div>
           </div>
           <div class="media-body">
             <div class="comment-details">
               <div class='comment-meta cf'>
-                <h3 class="user-nickname"><a href="/users/5133">iamjohnny</a></h3>
-                <span class="user-bio">If anyone can have it, I don&#39;t want it!</span>
+                <h3 class="user-nickname"><a href="#">${comment.nickName}</a></h3>
+                <span class="user-bio">${comment.userMemo}</span>
               </div>
               <div class="comment-content">
                 <p>${comment.content}</p>
