@@ -46,7 +46,7 @@
           <div class="oauth-panel">
             <h4>使用第三方账号登录：</h4><br>
             <a href="${root}/oauth/qq/login">
-            <img src="${root}/assets/img/oauth/qq_oauth.png" style="width: 35px; height: 35px;" />
+            <img src="${root}/assets/img/oauth/Connect_logo_1.png" />
             </a>
           </div>
   
