@@ -58,7 +58,7 @@ public class Product implements Serializable {
 	
 	private String userGroup;
 	
-	private String postion;
+	private String position;
 
 	public Integer getProdid() {
 		return prodid;
@@ -196,12 +196,12 @@ public class Product implements Serializable {
 		this.userGroup = userGroup;
 	}
 
-	public String getPostion() {
-		return postion;
+	public String getPosition() {
+		return position;
 	}
 
-	public void setPostion(String postion) {
-		this.postion = postion;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 }

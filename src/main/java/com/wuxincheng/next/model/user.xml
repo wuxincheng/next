@@ -12,7 +12,7 @@
     <result property="socialPicPath" column="socialpicpath" />
     <result property="memo" column="memo" />
     <result property="userGroup" column="usergroup" />
-    <result property="postion" column="postion" />
+    <result property="position" column="position" />
     <result property="userState" column="userstate" />
     <result property="collectPermission" column="collectpermission" />
     <result property="accessToken" column="accesstoken" />
@@ -38,14 +38,14 @@
       t_next_user(
         nickname, password, loginemail, 
         picpath, socialpicpath,  memo, 
-        usergroup, postion, userstate,
+        usergroup, position, userstate,
         collectpermission,
         accesstoken, tokenexpirein,
         openid, logintype)
     VALUES (
         #nickName#, #password#, #loginEmail#, 
         #picPath#, #socialPicPath#, #memo#, 
-        #userGroup#, #postion#, #userState#,
+        #userGroup#, #position#, #userState#,
         #collectPermission#,
         #accessToken#, #tokenExpireIn#,
         #openid#, #loginType#)
@@ -60,7 +60,7 @@
         socialpicpath = #socialPicPath#, 
         memo = #memo#, 
         usergroup = #userGroup#, 
-        postion = #postion#, 
+        position = #position#, 
         userstate = #userState#,
         collectpermission = #collectPermission#,
         accesstoken = #accessToken#,

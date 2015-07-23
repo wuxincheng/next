@@ -48,11 +48,13 @@ public class ProductController extends BaseController {
 		List<String> groupDates = productService.queryGroupByDate();
 		
 		if (null == groupDates || groupDates.size() < 1) {
+			logger.info("没有查询到产品发布日期");
 			return "product/list";
 		}
 		
 		// 每次分页只显示三个日期下发布的产品
 		Pager pager = productService.queryProductsByDate(groupDates);
+		logger.info("查询到产品信息");
 		
 		model.addAttribute("pager", pager);
 		

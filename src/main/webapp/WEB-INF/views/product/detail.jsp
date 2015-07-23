@@ -50,7 +50,7 @@
                       <img alt="0" class="avatar avatar-big" height="120" src="${product.socialPicPath}" width="120" />
                     </a>
                     <h3 class="user-nickname">${product.nickName}</h3>
-                    <h4 class='user-title'>${product.userGroup} - ${product.postion}<br></h4>
+                    <h4 class='user-title'>${product.userGroup} - ${product.position}<br></h4>
                     <p class="user-bio"> ${product.userMemo} </p>
                   </div>
                 </li>
@@ -139,7 +139,7 @@
                 <img class="avatar avatar-big" height="120" src="${comment.socialPicPath}" width="120" />
               </a>
               <h3 class="user-nickname">${comment.nickName}</h3>
-              <h4 class='user-title'>${comment.userGroup} - ${comment.postion}<br></h4>
+              <h4 class='user-title'>${comment.userGroup} - ${comment.position}<br></h4>
               <p class="user-bio">${comment.userMemo}</p>
             </div>
           </div>

@@ -24,7 +24,7 @@
     <result property="socialPicPath" column="socialpicpath" />
     <result property="userMemo" column="usermemo" />
     <result property="userGroup" column="usergroup" />
-    <result property="postion" column="postion" />
+    <result property="position" column="position" />
   </resultMap>
 
   <resultMap class="Product" id="ProductMapping">
@@ -44,7 +44,7 @@
   <select id="queryDetailByProdid" parameterClass="java.lang.String" resultMap="ProductDetailMapping">
     SELECT t.*, 
            u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
-           u.memo AS usermemo, u.usergroup, u.postion 
+           u.memo AS usermemo, u.usergroup, u.position 
       FROM t_next_product t 
       LEFT JOIN t_next_user u ON t.userid = u.userid
      WHERE t.prodid = #prodid#
@@ -53,7 +53,7 @@
   <select id="queryByPostDate" resultMap="ProductDetailMapping" parameterClass="java.lang.String">
     SELECT t.*, 
            u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
-           u.memo AS usermemo, u.usergroup, u.postion 
+           u.memo AS usermemo, u.usergroup, u.position 
       FROM t_next_product t 
       LEFT JOIN t_next_user u ON t.userid = u.userid
      WHERE t.postdate = #queryPostDate# 
