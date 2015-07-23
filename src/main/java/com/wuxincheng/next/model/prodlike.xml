@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ProdLike">
+  <typeAlias alias="ProdLike" type="com.wuxincheng.next.model.ProdLike" />
+
+  <resultMap class="ProdLike" id="ProdLikeMapping">
+    <result property="userid" column="userid" />
+    <result property="prodid" column="prodid" />
+    <result property="likeTime" column="liketime" />
+    <result property="likeState" column="likestate" />
+  </resultMap>
+
+  <insert id="insert" parameterClass="ProdLike">
+    INSERT INTO 
+      t_next_prodlike(userid, prodid, liketime, likestate)
+    VALUES (#userid#, #prodid#, #likeTime#, #likeState#)
+  </insert>
+  
+  <delete id="delete" parameterClass="ProdLike">
+    DELETE FROM t_next_prodlike WHERE userid = #userid# AND prodid = #prodid#
+  </delete>
+  
+</sqlMap>

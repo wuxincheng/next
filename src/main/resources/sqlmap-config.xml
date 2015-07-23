@@ -9,5 +9,6 @@
   <sqlMap resource="com/wuxincheng/next/model/user.xml" />
   <sqlMap resource="com/wuxincheng/next/model/comment.xml" />
   <sqlMap resource="com/wuxincheng/next/model/collect.xml" />
+  <sqlMap resource="com/wuxincheng/next/model/prodlike.xml" />
 
 </sqlMapConfig>

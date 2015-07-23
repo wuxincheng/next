@@ -16,6 +16,7 @@ import com.wuxincheng.next.Pager;
 import com.wuxincheng.next.model.Comment;
 import com.wuxincheng.next.model.Product;
 import com.wuxincheng.next.service.CommentService;
+import com.wuxincheng.next.service.ProdLikeService;
 import com.wuxincheng.next.service.ProductService;
 import com.wuxincheng.next.util.Constants;
 import com.wuxincheng.next.util.StringUtil;
@@ -38,6 +39,9 @@ public class ProductController extends BaseController {
 	
 	@Resource
 	private ProductService productService;
+	
+	@Resource
+	private ProdLikeService prodLikeService;
 
 	@RequestMapping(value = "/list")
 	public String list(Model model, HttpServletRequest request, String currentPage) {
@@ -135,6 +139,7 @@ public class ProductController extends BaseController {
 		return "product/detail";
 	}
 	
+	// 点赞属于异步操作
 	@RequestMapping(value = "/like")
 	public String like(Model model, String prodid) {
 		logger.info("显示产品详细页面 prodid={}", prodid);

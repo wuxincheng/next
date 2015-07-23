@@ -49,7 +49,7 @@ public class LoginSessionInterceptor implements HandlerInterceptor {
 				
 				// request.getRequestDispatcher("/next/login/").forward(request, response); // 转发
 				
-				response.sendRedirect("/next/login/");  // 重定向
+				response.sendRedirect("/top/login/");  // 重定向
 				
 				return false;   
 			}
