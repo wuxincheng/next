@@ -20,4 +20,8 @@
     DELETE FROM t_next_prodlike WHERE userid = #userid# AND prodid = #prodid#
   </delete>
   
+  <select id="query" parameterClass="ProdLike" resultMap="ProdLikeMapping">
+    SELECT * FROM t_next_prodlike WHERE userid = #userid# AND prodid = #prodid#
+  </select>
+  
 </sqlMap>

@@ -31,9 +31,15 @@
         </div>
         <p class="list-bio">${collect.memo}</p>
         <div class="list-header-meta cf">
-          <div class="list-fav-btn ">
-              <a class="btn " data-disfav-text="收藏" data-faved-text="已收藏" data-method="put" data-remote="true" href="/posts/collections/283/like" rel="nofollow">收藏</a>
-            <span class="fav-number"><span class='total-count'>5</span> 人已收藏</span>
+          <div class="list-fav-btn <c:if test="${not empty collectUser}">faved</c:if>">
+            <c:if test="${empty collectUser}">
+            <a class="btn " href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">收藏</a>
+            </c:if>
+            
+            <c:if test="${not empty collectUser}">
+            <a class="btn fav" href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">已收藏</a>
+            </c:if>
+            <span class="fav-number"><span class='total-count'>${collect.collectSum}</span> 人已收藏</span>
           </div>
           <div class="share">
             <div class="share-weibo">

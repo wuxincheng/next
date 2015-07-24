@@ -34,6 +34,7 @@
       <!-- collection -->
       <mvc:mapping path="/collect/edit" />
       <mvc:mapping path="/collect/create" />
+      <mvc:mapping path="/collect/collect" />
       <!-- interceptor -->
       <bean class="com.wuxincheng.next.interceptor.LoginSessionInterceptor" />
     </mvc:interceptor>

@@ -84,7 +84,7 @@
             <img class="avatar" height="30" src="${user.socialPicPath}" width="30" />
             </c:when>
             <c:otherwise>
-            <img class="avatar" height="30" src="${root}/assets/images/user_thumb-default.png" width="30" />
+            <img class="avatar" height="30" src="${root}/assets/img/logo/toplogo.png" width="30" />
             </c:otherwise>
             </c:choose>
           </a>

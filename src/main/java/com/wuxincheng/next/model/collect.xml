@@ -56,5 +56,13 @@
   <update id="addProductSum" parameterClass="java.lang.String">
     UPDATE t_next_collect SET productsum = (productsum+1) WHERE collectid = #collectid#
   </update>
+  
+  <update id="addCollectSum" parameterClass="java.lang.String">
+    UPDATE t_next_collect SET collectsum = (collectsum+1) WHERE collectid = #collectid#
+  </update>
+  
+  <update id="cutCollectSum" parameterClass="java.lang.String">
+    UPDATE t_next_collect SET collectsum = (collectsum-1) WHERE collectid = #collectid# AND collectsum &gt; 0
+  </update>
 
 </sqlMap>

@@ -45,6 +45,9 @@ public class BaseController {
 	 */
 	protected Integer getCurrentUserid(HttpServletRequest request) {
 		User user = getCurrentUser(request);
+		if (null == user) {
+			return null;
+		}
 		return user.getUserid();
 	}
 

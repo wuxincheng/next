@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.wuxincheng.next.model.Collect;
+import com.wuxincheng.next.model.CollectUser;
 import com.wuxincheng.next.model.Product;
 import com.wuxincheng.next.service.CollectService;
+import com.wuxincheng.next.service.CollectUserService;
 import com.wuxincheng.next.service.ProductService;
 import com.wuxincheng.next.util.Constants;
 import com.wuxincheng.next.util.StringUtil;
@@ -40,6 +42,9 @@ public class CollectController extends BaseController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	CollectUserService collectUserService;
 	
 	@RequestMapping(value = "/list")
 	public String list(HttpServletRequest request) {
@@ -137,21 +142,33 @@ public class CollectController extends BaseController {
 	public String detail(HttpServletRequest request, String collectid) {
 		logger.info("显示产品集 collectionid={}", collectid);
 		
+		// 提示信息显示
 		requestMessageProcess(request);
 		
+		// 判断collectid
 		if (StringUtils.isEmpty(collectid) || !Validation.isIntPositive(collectid)) {
 			return "redirect:list";
 		}
 		
+		// 是否存在这个产品集
 		Collect collect = collectService.queryDetailByCollectid(collectid);
 		if (null == collect) {
 			return "redirect:list";
 		}
 		
+		// 查询这个产品集下的所有产品
 		List<Product> products = productService.queryProductsByCollectid(collectid);
 		
 		request.setAttribute("products", products);
 		request.setAttribute("collect", collect);
+		
+		// 判断用户是否已经登录
+		if (getCurrentUserid(request) != null) {
+			// 如果登录，查询该用户是否已经收藏该产品集
+			CollectUser collectUser =collectUserService.query(Integer.parseInt(collectid), 
+					getCurrentUserid(request));
+			request.setAttribute("collectUser", collectUser);
+		}
 		
 		return "collect/detail";
 	}
@@ -180,6 +197,22 @@ public class CollectController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * 产品集收藏和取消收藏操作
+	 * 
+	 * @param collectid
+	 * @param userid
+	 * @return
+	 */
+	@RequestMapping(value = "/collect")
+	public String collect(Integer collectid, Integer userid) {
+		if (collectid != null && userid != null) {
+			collectUserService.collect(collectid, userid);
+		}
+		
+		return "redirect:/collect/detail?collectid="+collectid;
 	}
 
 }
