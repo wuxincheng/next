@@ -9,7 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta charset="utf-8">
-<link rel="shortcut icon" href="http://next.36kr.com/favicon.ico">
+
+<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
+<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
 
 <meta name="author" content="36Kr">
 <meta name="description" content="NEXT - 不错过任何一个新产品">
@@ -83,7 +85,7 @@
         <div class="share">
           <h3>分享到</h3>
           <div class="share-weibo">
-            <a href="http://service.weibo.com/share/share.php?searchPic=false&amp;title=${product.prodName} - ${product.memo}&amp;url=http://www.kaffeedaily.com/next/product/detail?prodid=${product.prodid}" target="_blank" title="点击分享到微博">
+            <a href="http://service.weibo.com/share/share.php?searchPic=false&amp;title=${product.prodName} - ${product.memo}&amp;url=http://www.zhuanlemei.com/top/product/detail?prodid=${product.prodid}" target="_blank" title="点击分享到微博">
               <i class="svg-weibo"></i> <span>微博</span>
             </a>
           </div>
@@ -92,7 +94,7 @@
               <i class="svg-wechat"></i> <span>微信</span>
             </a>
             <div class="dropdown share-dropdown">
-              <img height="156" src="http://s.jiathis.com/qrcode.php?url=http://www.kaffeedaily.com/next/product/detail?prodid=${product.prodid}" width="156" />
+              <img height="156" src="http://s.jiathis.com/qrcode.php?url=http://www.zhuanlemei.com/top/product/detail?prodid=${product.prodid}" width="156" />
               <span>微信扫一扫：分享</span>
             </div>
           </div>

@@ -52,5 +52,9 @@
       FROM t_next_collect t 
      WHERE t.collectid = #collectid#
   </select>
+  
+  <update id="addProductSum" parameterClass="java.lang.String">
+    UPDATE t_next_collect SET productsum = (productsum+1) WHERE collectid = #collectid#
+  </update>
 
 </sqlMap>

@@ -22,4 +22,8 @@ public class CollectDao extends BaseDao {
 		return (Collect) this.getSqlMapClientTemplate().queryForObject("Collect.queryDetailByCollectid", collectid);
 	}
 
+	public void addProductSum(String collectid) {
+		this.getSqlMapClientTemplate().update("Collect.addProductSum", collectid);
+	}
+
 }

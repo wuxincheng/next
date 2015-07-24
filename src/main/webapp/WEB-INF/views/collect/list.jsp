@@ -12,6 +12,10 @@
 <meta name="author" content="36Kr">
 <meta name="description" content="NEXT - 不错过任何一个新产品">
 <meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
+
+<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
+<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
+
 </head>
 <body id="home" class="notes-index">
   <div class="container">
@@ -19,10 +23,12 @@
 
     <div class="content row ">
       <section class="main-header cf row">
+        <!-- 
         <div class="list-sort left">
           <a class="list-all active" href="/posts/collections">最新</a>
           <a class="list-faved " href="/posts/collections/hot">热门</a>
         </div>
+         -->
         <c:if test="${'1' eq user.collectPermission}">
         <a class="btn submit-btn right" href="${root}/collect/edit">创建产品集</a>
         </c:if>
@@ -36,8 +42,8 @@
               <div class="cover-meta">
                 <h3>${collect.collectName}</h3>
                 <ul class="list-meta">
-                  <li><span>45</span>个产品</li>
-                  <li><span class="liked-count">909</span>人收藏</li>
+                  <li><span>${collect.productSum}</span>个产品</li>
+                  <li><span class="liked-count">${collect.collectSum}</span>人收藏</li>
                 </ul>
               </div>
             </a>

@@ -12,6 +12,10 @@
 <meta name="author" content="36Kr">
 <meta name="description" content="NEXT - 不错过任何一个新产品">
 <meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
+
+<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
+<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
+
 </head>
 <body id="home" class="notes-index">
   <div class="container">
@@ -33,7 +37,7 @@
           </div>
           <div class="share">
             <div class="share-weibo">
-              <a href="http://service.weibo.com/share/share.php?searchPic=false&amp;title=%E4%B8%AD%E5%B0%8F%E4%BC%81%E4%B8%9A%E6%B3%95%E5%BE%8B%E6%9C%8D%E5%8A%A1+O2O+-+%E8%B0%81%E6%98%AF%E4%B8%8B%E4%B8%80%E5%9D%97+B2B+%E5%9E%82%E7%9B%B4%E6%B3%95%E5%BE%8B%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%9C%80%E5%A4%A7%E8%9B%8B%E7%B3%95%EF%BC%9F+-+NEXT&amp;url=http%3A%2F%2Fnext.36kr.com%2Fposts%2Fcollections%2F283%3Ft%3D2015-07-05T20%253A55%253A11%252B08%253A00%26uid%3D39627%26utm_campaign%3Dpost_show%26utm_content%3Dshare_button%26utm_medium%3Dnext%26utm_source%3Dweibo" target="_blank" title="点击分享到微博">
+              <a href="http://service.weibo.com/share/share.php?searchPic=false&amp;title=${collect.collectName} - ${collect.memo}&amp;url=http://www.zhuanlemei.com/top/collect/detail?collectid=${collect.collectid}" target="_blank" title="点击分享到微博">
                 <i class="svg-weibo"></i> <span>微博</span>
               </a>
             </div>
@@ -42,7 +46,7 @@
                 <i class="svg-wechat"></i> <span>微信</span>
               </a>
               <div class="dropdown share-dropdown">
-                <img alt="Qrcode.php?url=http%3a%2f%2fnext.36kr" height="156" src="http://s.jiathis.com/qrcode.php?url=http%3A%2F%2Fnext.36kr.com%2Fposts%2Fcollections%2F283%3Fshow_wechat_share_tip%3Dtrue" width="156" />
+                <img height="156" src="http://s.jiathis.com/qrcode.php?url=http://www.zhuanlemei.com/top/collect/detail?collectid=${collect.collectid}" width="156" />
                 <span>微信扫一扫：分享</span>
               </div>
             </div>
@@ -56,7 +60,7 @@
         <div class="list-tip left">
           <p><p>还有更好的产品没出现在这里？点击右边的按钮添加吧！</p>
         </div>
-        <a class="btn submit-btn right" href="${root}/product/postUI?collectid=${collect.collectid}" target="_blank">补充好产品</a>
+        <a class="btn submit-btn right" href="${root}/product/postUI?collectid=${collect.collectid}">补充好产品</a>
       </section>
       <section class="post">
         <ul class="product-list">

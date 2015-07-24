@@ -9,7 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta charset="utf-8">
-<link rel="shortcut icon" href="http://next.36kr.com/favicon.ico">
+
+<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
+<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
 
 <meta name="author" content="36Kr">
 <meta name="description" content="NEXT - 不错过任何一个新产品">

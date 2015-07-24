@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.wuxincheng.next.Pager;
+import com.wuxincheng.next.dao.CollectDao;
 import com.wuxincheng.next.dao.ProductDao;
 import com.wuxincheng.next.model.Product;
 import com.wuxincheng.next.util.Constants;
@@ -27,6 +28,7 @@ import com.wuxincheng.next.util.DateUtil;
 public class ProductService {
 	
 	@Resource private ProductDao productDao;
+	@Resource private CollectDao collectDao;
 	
 	/**
 	 * 发布产品
@@ -40,6 +42,11 @@ public class ProductService {
 		product.setProdState(Constants.DEFAULT_STATE);
 		product.setPostDateTime(DateUtil.getCurrentDate(date, Constants.DEFAULT_DATE_FORMAT));
 		product.setUserid(userid);
+		
+		if (product.getCollectid() != null) {
+			// 更新产品集中产品的数量
+			collectDao.addProductSum(product.getCollectid()+"");
+		}
 		
 		productDao.post(product);
 	}
