@@ -8,6 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录 - TOP</title>
 
+<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
+<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
+
 <!-- meta -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
