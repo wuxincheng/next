@@ -32,6 +32,8 @@ public class HttpsClient {
 	 * @return JSONObject(通过JSONObject.get(key)的方式获取json对象的属性值)
 	 */
 	public static JSONObject httpsRequest(String requestUrl, String requestMethod, String outputStr) {
+		logger.info("发送https请求");
+		
 		JSONObject jsonObject = null;
 		StringBuffer buffer = new StringBuffer();
 		try {
