@@ -16,7 +16,7 @@
     <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
   </context:component-scan>
   
-  <!-- 微信参数配置 -->
+  <!-- 微信相关参数配置 -->
   <util:properties id="wechatConfigSettings" location="classpath:com/wuxincheng/next/oauth/wechat/config/wechat.properties" />
 
   <bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
