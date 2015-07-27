@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.wuxincheng.next.oauth.wechat.config.WechatConfig;
+import com.wuxincheng.next.oauth.wechat.util.HttpsConnection;
 import com.wuxincheng.next.util.Constants;
-import com.wuxincheng.next.util.HttpsConnection;
 
 /**
  * 微信登录验证

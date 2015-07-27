@@ -1,4 +1,4 @@
-package com.wuxincheng.next.util;
+package com.wuxincheng.next.oauth.wechat.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
