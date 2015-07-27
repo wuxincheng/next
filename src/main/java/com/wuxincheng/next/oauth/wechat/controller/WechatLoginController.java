@@ -1,8 +1,6 @@
-package com.wuxincheng.next.oauth.wechat;
+package com.wuxincheng.next.oauth.wechat.controller;
 
 import javax.servlet.http.HttpServletRequest;
-
-import net.sf.json.JSONObject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.wuxincheng.next.oauth.wechat.config.WechatConfig;
 import com.wuxincheng.next.util.Constants;
-import com.wuxincheng.next.util.HttpsClient;
+import com.wuxincheng.next.util.HttpsConnection;
 
 /**
  * 微信登录验证
@@ -23,13 +23,13 @@ import com.wuxincheng.next.util.HttpsClient;
  */
 @Controller
 @RequestMapping("/oauth/wechat")
-public class WeChatLoginController {
-	private static final Logger logger = LoggerFactory.getLogger(WeChatLoginController.class);
+public class WechatLoginController {
+	private static final Logger logger = LoggerFactory.getLogger(WechatLoginController.class);
 	
 	/**
 	 * 用户授权后QQ后台返回信息
 	 */
-	@RequestMapping(value = "/callback")
+	@RequestMapping(value = "/callback", method=RequestMethod.GET)
 	public String callback(Model model, HttpServletRequest request) {
 		logger.info("接收微信用户登录返回的信息");
 		
@@ -49,10 +49,18 @@ public class WeChatLoginController {
 		logger.info("开始获取 access_token");
 		
 		// 通过code获取access_token
-		String accessTokenUrl = WeChatConfig.GET_ACCESS_TOKEN_URL.replace("CODE", code);
+		String accessTokenUrl = WechatConfig.GET_ACCESS_TOKEN_URL.replace("CODE", code);
 		
 		logger.info("获取地址 accessTokenUrl={}", accessTokenUrl);
 		
+		try {
+			String response = HttpsConnection.doGet(accessTokenUrl, null, 500, 1000);
+			logger.info("接收的返回 response={}", response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		/**
 		// 发送GET请求并处理返回数据
 		JSONObject responseJSON = HttpsClient.httpsRequest(accessTokenUrl, "GET", null);
 		logger.info("请求的返回信息 responseJSONObject={}", responseJSON);
@@ -76,6 +84,7 @@ public class WeChatLoginController {
 		JSONObject responseUserJSON = HttpsClient.httpsRequest(getUserinfoUrl, "GET", null);
 		
 		logger.info("获取用户信息 responseUserJSON={}", responseUserJSON);
+		 */
 		
 		model.addAttribute(Constants.MSG_INFO, "微信登录成功");
 		

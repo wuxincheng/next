@@ -14,11 +14,11 @@ import javax.net.ssl.TrustManager;
 
 import net.sf.json.JSONObject;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HttpsClient {
-
-	public static Logger logger = Logger.getLogger(HttpsClient.class);
+	private static final Logger logger = LoggerFactory.getLogger(HttpsClient.class);
 
 	/**
 	 * 发起https请求并获取结果

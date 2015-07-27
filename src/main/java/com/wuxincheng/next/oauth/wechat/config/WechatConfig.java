@@ -1,7 +1,10 @@
-package com.wuxincheng.next.oauth.wechat;
+package com.wuxincheng.next.oauth.wechat.config;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * 微信相关配置
@@ -10,9 +13,13 @@ import java.net.URLEncoder;
  * @date 2015年7月27日 下午2:19:23
  * 
  */
-public class WeChatConfig {
+@Component
+public class WechatConfig {
+	
+	
 	/** 应用唯一标识 appid */
-	public static final String APPID = "wx8bc224d6280b4ace";
+	@Value("#{wechatConfigSettings.appid}")
+	private String appid;
 
 	/** AppSecret */
 	public static final String APP_SECRET = "9c32c2593dae71344bc1cb1973e0969e";
@@ -27,12 +34,12 @@ public class WeChatConfig {
 
 	/** 请求CODE地址 */
 	public static String REQUEST_CODE_URL = "https://open.weixin.qq.com/connect/qrconnect?appid="
-			+ APPID + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE
-			+ "&state=STATE#wechat_redirect";
+			+ "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=" + SCOPE
+			+ "&state=3d6be0a4035d839573b04816624a415e#wechat_redirect";
 
 	/** 获取access_token地址 */
 	public static String GET_ACCESS_TOKEN_URL = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="
-			+ APPID + "&secret=" + APP_SECRET + "&code=CODE&grant_type=authorization_code";
+			+ "&secret=" + APP_SECRET + "&code=CODE&grant_type=authorization_code";
 	
 	/** 获取用户个人信息（UnionID机制） */
 	public static String GET_USERINFO_URL = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID";
