@@ -16,6 +16,7 @@
     <result property="postDateTime" column="postdatetime" />
     <result property="userid" column="userid" />
     <result property="collectid" column="collectid" />
+    <result property="score" column="score" />
     
     <!-- 发布该产品用户的信息 -->
     <result property="nickName" column="nickname" />
@@ -39,6 +40,7 @@
     <result property="postDateTime" column="postdatetime" />
     <result property="userid" column="userid" />
     <result property="collectid" column="collectid" />
+    <result property="score" column="score" />
   </resultMap>
   
   <select id="queryDetailByProdid" parameterClass="java.lang.String" resultMap="ProductDetailMapping">
@@ -61,49 +63,30 @@
   </select>
   
   <select id="queryGroupByDate" resultClass="java.lang.String">
-    SELECT t.postdate 
-    FROM t_next_product t 
-    GROUP BY t.postdate 
-    ORDER BY t.postdate DESC
+    SELECT t.postdate FROM t_next_product t GROUP BY t.postdate ORDER BY t.postdate DESC
   </select>
 
   <insert id="post" parameterClass="Product">
     INSERT INTO 
       t_next_product(
-        prodname, 
-        produrl, 
-        memo, 
-        likesum, 
-        commentsum, 
-        prodstate, 
-        postdate, 
-        postdatetime, 
-        userid, 
-        collectid)
+        prodname, produrl, memo, likesum, commentsum, prodstate, 
+        postdate, postdatetime, userid, collectid, score)
     VALUES (
-        #prodName#, 
-        #prodUrl#, 
-        #memo#, 
-        #likeSum#, 
-        #commentSum#, 
-        #prodState#, 
-        #postDate#, 
-        #postDateTime#, 
-        #userid#, 
-        #collectid#)
+        #prodName#, #prodUrl#, #memo#, #likeSum#, #commentSum#, #prodState#, 
+        #postDate#, #postDateTime#, #userid#, #collectid#, #score#)
   </insert>
   
   <update id="plusCommentSum" parameterClass="java.lang.String">
-    UPDATE t_next_product
-       SET commentsum=commentsum+1
-     WHERE prodid = #prodid#
+    UPDATE t_next_product SET commentsum=commentsum+1 WHERE prodid = #prodid#
   </update>
 
   <select id="queryProductsByCollectid" resultMap="ProductMapping" parameterClass="java.lang.String">
-    SELECT t.* 
-      FROM t_next_product t 
-     WHERE t.collectid = #collectid# 
-     ORDER BY t.postDateTime DESC
+    SELECT t.* FROM t_next_product t 
+    WHERE t.collectid = #collectid# ORDER BY t.postDateTime DESC
   </select>
+  
+  <update id="score" parameterClass="java.util.Map">
+    UPDATE t_next_product SET score=(score+#score#) WHERE prodid = #prodid#
+  </update>
   
 </sqlMap>

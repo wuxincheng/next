@@ -1,6 +1,7 @@
 package com.wuxincheng.next.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -34,6 +35,10 @@ public class ProductDao extends BaseDao {
 	@SuppressWarnings("unchecked")
 	public List<Product> queryProductsByCollectid(String collectid) {
 		return this.getSqlMapClientTemplate().queryForList("Product.queryProductsByCollectid", collectid);
+	}
+
+	public void score(Map<String, Object> like) {
+		this.getSqlMapClientTemplate().update("Product.score", like);
 	}
 
 }

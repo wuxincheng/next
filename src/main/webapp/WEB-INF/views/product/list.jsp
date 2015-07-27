@@ -40,10 +40,10 @@
           <c:forEach items="${map.value}" var="obj">
           <li class="product-item ">
             <div class="posts-group cf">
-              <div class="upvote"><!-- voted -->
-                <a class="upvote-link vote-up" href="#"> 
+              <div class="upvote " id="prodlike${obj.prodid}"><!-- voted -->
+                <a class="upvote-link vote-up" onclick="likeProduct('${obj.prodid}')"> 
                   <i class="upvote-arrow"></i> 
-                  <span class="vote-count">75</span>
+                  <span class="vote-count" id="span${obj.prodid}">${obj.score}</span>
                 </a>
               </div>
 
@@ -115,6 +115,37 @@
   </div>
 
   <jsp:include page="../FOOTER.jsp" />
+  
+  <script type="text/javascript">
+  	function likeProduct (prodid) {
+	  var url = "${root}/product/like";
+	  
+	  $.ajax({
+	  	url : url, // 跳转到 action    
+	  	data : {prodid : prodid},
+	  	type : 'post',
+	  	beforeSend:function(){
+	  	},
+	  	cache : false,
+	  	dataType : 'json',
+	  	success : function(data) {
+			var result = data;
+			var clazz = 'voted'; // 样式
+			var divname = '#prodlike'+result.prodid; // 产品div
+			var scorespan = '#span'+result.prodid; // 产品关注度div
+			if ('1' == result.flag) { // 点赞标志
+				$(divname).addClass(clazz);
+			} else {
+				$(divname).removeClass(clazz);
+			}
+			$(scorespan).text(result.score); // 产品关注度
+	  	},
+	  	error : function() {
+	  		alert("友情提示：您还未登录!");
+	  	}
+	  });
+	}  
+  </script>
 
 </body>
 </html>

@@ -29,6 +29,7 @@
       <!-- product -->
       <mvc:mapping path="/product/postUI" />
       <mvc:mapping path="/product/doPost" />
+      <mvc:mapping path="/product/like" />
       <!-- comment -->
       <mvc:mapping path="/comment/post" />
       <!-- collection -->

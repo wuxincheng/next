@@ -15,4 +15,8 @@ public class ProdLikeDao extends BaseDao {
 		this.getSqlMapClientTemplate().delete("ProdLike.delete", prodLike);
 	}
 	
+	public ProdLike query(ProdLike prodLike) {
+		return (ProdLike)this.getSqlMapClientTemplate().queryForObject("ProdLike.query", prodLike);
+	}
+	
 }

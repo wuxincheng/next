@@ -42,6 +42,7 @@ public class ProductService {
 		product.setProdState(Constants.DEFAULT_STATE);
 		product.setPostDateTime(DateUtil.getCurrentDate(date, Constants.DEFAULT_DATE_FORMAT));
 		product.setUserid(userid);
+		product.setScore("0"); // 产品关注度初始为0
 		
 		if (product.getCollectid() != null) {
 			// 更新产品集中产品的数量

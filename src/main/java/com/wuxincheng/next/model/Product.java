@@ -44,20 +44,23 @@ public class Product implements Serializable {
 
 	/** 产品集主键 */
 	private Integer collectid;
-	
+
+	/** 产品关注度 */
+	private String score;
+
 	// ===== 用户信息 =====
 	private String nickName;
-	
+
 	private String loginEmail;
-	
+
 	private String picPath;
-	
+
 	private String socialPicPath;
-	
+
 	private String userMemo;
-	
+
 	private String userGroup;
-	
+
 	private String position;
 
 	public Integer getProdid() {
@@ -202,6 +205,14 @@ public class Product implements Serializable {
 
 	public void setPosition(String position) {
 		this.position = position;
+	}
+
+	public String getScore() {
+		return score;
+	}
+
+	public void setScore(String score) {
+		this.score = score;
 	}
 
 }

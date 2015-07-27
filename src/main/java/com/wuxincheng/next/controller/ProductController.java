@@ -1,6 +1,7 @@
 package com.wuxincheng.next.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wuxincheng.next.Pager;
 import com.wuxincheng.next.model.Comment;
@@ -139,18 +141,30 @@ public class ProductController extends BaseController {
 		return "product/detail";
 	}
 	
-	// 点赞属于异步操作
+	/**
+	 * 点赞属于异步操作
+	 */
 	@RequestMapping(value = "/like")
-	public String like(Model model, String prodid) {
-		logger.info("显示产品详细页面 prodid={}", prodid);
+	@ResponseBody
+	public Map<String, String> like(Model model, HttpServletRequest request, String prodid) {
+		logger.info("点赞异步操作 prodid={}", prodid);
 		
+		// 验证prodid和userid的合法性
 		if (StringUtils.isEmpty(prodid) || !Validation.isIntPositive(prodid)) {
-			return "404";
+			return null;
 		}
 
-		productService.queryDetailByProdid(prodid);
+		// 获取当前登录用户ID
+		String userid = getCurrentUseridStr(request);
+		if (StringUtils.isEmpty(userid)) {
+			return null;
+		}
 		
-		return "product/detail";
+		Map<String, String> result = prodLikeService.like(prodid, userid);
+		
+		logger.info("点赞操作结果 result={}", result);
+		
+		return result;
 	}
 
 }
