@@ -1,6 +1,8 @@
 package com.wuxincheng.next.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -40,6 +42,12 @@ public class CommentService {
 		
 		// 更新产品的评论数
 		productDao.plusCommentSum(comment.getProductid());
+		
+		// 更新产品的关注度
+		Map<String, Object> updateMap = new HashMap<String, Object>();
+		updateMap.put("prodid", comment.getProductid());
+		updateMap.put("score", 3);
+		productDao.score(updateMap);
 		
 		return 1;
 	}

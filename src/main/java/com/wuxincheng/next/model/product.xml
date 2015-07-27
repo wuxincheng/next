@@ -26,6 +26,9 @@
     <result property="userMemo" column="usermemo" />
     <result property="userGroup" column="usergroup" />
     <result property="position" column="position" />
+    
+    <!-- 用户赞 -->
+    <result property="likeState" column="likestate" />
   </resultMap>
 
   <resultMap class="Product" id="ProductMapping">
@@ -43,21 +46,25 @@
     <result property="score" column="score" />
   </resultMap>
   
-  <select id="queryDetailByProdid" parameterClass="java.lang.String" resultMap="ProductDetailMapping">
+  <select id="queryDetailByProdid" parameterClass="java.util.Map" resultMap="ProductDetailMapping">
     SELECT t.*, 
            u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
-           u.memo AS usermemo, u.usergroup, u.position 
+           u.memo AS usermemo, u.usergroup, u.position, p.likestate 
       FROM t_next_product t 
       LEFT JOIN t_next_user u ON t.userid = u.userid
+      LEFT JOIN (SELECT * FROM t_next_prodlike WHERE userid = #userid#)p
+        ON t.prodid = p.prodid
      WHERE t.prodid = #prodid#
   </select>
   
-  <select id="queryByPostDate" resultMap="ProductDetailMapping" parameterClass="java.lang.String">
+  <select id="queryByPostDate" resultMap="ProductDetailMapping" parameterClass="java.util.Map">
     SELECT t.*, 
            u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
-           u.memo AS usermemo, u.usergroup, u.position 
+           u.memo AS usermemo, u.usergroup, u.position, p.likestate 
       FROM t_next_product t 
       LEFT JOIN t_next_user u ON t.userid = u.userid
+      LEFT JOIN (SELECT * FROM t_next_prodlike WHERE userid = #userid#)p
+        ON t.prodid = p.prodid
      WHERE t.postdate = #queryPostDate# 
      ORDER BY t.postDateTime DESC
   </select>

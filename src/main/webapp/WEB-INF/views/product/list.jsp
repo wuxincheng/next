@@ -40,7 +40,8 @@
           <c:forEach items="${map.value}" var="obj">
           <li class="product-item ">
             <div class="posts-group cf">
-              <div class="upvote " id="prodlike${obj.prodid}"><!-- voted -->
+              <!-- 使用voted样式, 表示用户已经赞这个产品 -->
+              <div class="upvote <c:if test="${not empty obj.likeState}">voted</c:if>" id="prodlike${obj.prodid}">
                 <a class="upvote-link vote-up" onclick="likeProduct('${obj.prodid}')"> 
                   <i class="upvote-arrow"></i> 
                   <span class="vote-count" id="span${obj.prodid}">${obj.score}</span>

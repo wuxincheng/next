@@ -62,13 +62,17 @@ public class ProductService {
 	/**
 	 * 查询产品
 	 */
-	public Pager queryProductsByDate(List<String> groupDates) {
+	public Pager queryProductsByDate(List<String> groupDates, String userid) {
 		Pager pager = new Pager();
 		
 		List<Map<String, List<Product>>> productMapList = new ArrayList<Map<String, List<Product>>>();
 		
+		Map<String, String> queryMap = null;
 		for (String queryPostDate : groupDates) {
-			List<Product> products = productDao.queryByPostDate(queryPostDate);
+			queryMap = new HashMap<String, String>();
+			queryMap.put("queryPostDate", queryPostDate);
+			queryMap.put("userid", userid);
+			List<Product> products = productDao.queryByPostDate(queryMap);
 			Map<String, List<Product>> productMap = new HashMap<String, List<Product>>();
 			productMap.put(queryPostDate, products);
 			
@@ -83,8 +87,11 @@ public class ProductService {
 	/**
 	 * 根据产品编号查询详细信息
 	 */
-	public Product queryDetailByProdid(String prodid) {
-		return productDao.queryDetailByProdid(prodid);
+	public Product queryDetailByProdid(String prodid, String userid) {
+		Map<String, String> queryMap = new HashMap<String, String>();
+		queryMap.put("prodid", prodid);
+		queryMap.put("userid", userid);
+		return productDao.queryDetailByProdid(queryMap);
 	}
 
 	/**

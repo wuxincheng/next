@@ -62,6 +62,9 @@ public class Product implements Serializable {
 	private String userGroup;
 
 	private String position;
+	
+	// ====== 用户赞 ======
+	private String likeState;
 
 	public Integer getProdid() {
 		return prodid;
@@ -213,6 +216,14 @@ public class Product implements Serializable {
 
 	public void setScore(String score) {
 		this.score = score;
+	}
+
+	public String getLikeState() {
+		return likeState;
+	}
+
+	public void setLikeState(String likeState) {
+		this.likeState = likeState;
 	}
 
 }

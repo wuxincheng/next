@@ -24,4 +24,8 @@
     SELECT * FROM t_next_prodlike WHERE userid = #userid# AND prodid = #prodid#
   </select>
   
+  <select id="queryByUserid" parameterClass="java.lang.String" resultMap="ProdLikeMapping">
+    SELECT * FROM t_next_prodlike WHERE userid = #userid#
+  </select>
+  
 </sqlMap>

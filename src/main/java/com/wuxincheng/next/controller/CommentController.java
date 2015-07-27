@@ -40,7 +40,9 @@ public class CommentController extends BaseController {
 	public String post(Model model, HttpServletRequest request, Comment commment) {
 		logger.info("保存评论数据 commment={}", StringUtil.toStringMultiLine(commment));
 		
-		Product product = productService.queryDetailByProdid(commment.getProductid()+"");
+		// 判断是否有用户登录
+		String userid = getCurrentUseridStr(request);
+		Product product = productService.queryDetailByProdid(commment.getProductid()+"", userid);
 		
 		if (null == product) {
 			model.addAttribute(Constants.MSG_WARN, "评论失败：产品信息不存在！");

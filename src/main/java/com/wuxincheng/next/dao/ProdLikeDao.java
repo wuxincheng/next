@@ -1,5 +1,7 @@
 package com.wuxincheng.next.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.wuxincheng.next.model.ProdLike;
@@ -17,6 +19,11 @@ public class ProdLikeDao extends BaseDao {
 	
 	public ProdLike query(ProdLike prodLike) {
 		return (ProdLike)this.getSqlMapClientTemplate().queryForObject("ProdLike.query", prodLike);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ProdLike> queryByUserid(String userid) {
+		return this.getSqlMapClientTemplate().queryForList("ProdLike.queryByUserid", userid);
 	}
 	
 }

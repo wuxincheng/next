@@ -72,7 +72,11 @@ public class ProdLikeService {
 			productDao.score(like);
 		}
 		
-		Product product = productDao.queryDetailByProdid(prodid);
+		Map<String, String> queryMap = new HashMap<String, String>();
+		queryMap.put("prodid", prodid);
+		queryMap.put("userid", userid);
+		
+		Product product = productDao.queryDetailByProdid(queryMap);
 		result.put("score", product.getScore()); // 点赞后产品关注分数
 		
 		return result;

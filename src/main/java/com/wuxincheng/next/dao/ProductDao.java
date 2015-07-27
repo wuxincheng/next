@@ -20,12 +20,12 @@ public class ProductDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Product> queryByPostDate(String queryPostDate) {
-		return this.getSqlMapClientTemplate().queryForList("Product.queryByPostDate", queryPostDate);
+	public List<Product> queryByPostDate(Map<String, String> queryMap) {
+		return this.getSqlMapClientTemplate().queryForList("Product.queryByPostDate", queryMap);
 	}
 
-	public Product queryDetailByProdid(String prodid) {
-		return (Product) this.getSqlMapClientTemplate().queryForObject("Product.queryDetailByProdid", prodid);
+	public Product queryDetailByProdid(Map<String, String> queryMap) {
+		return (Product) this.getSqlMapClientTemplate().queryForObject("Product.queryDetailByProdid", queryMap);
 	}
 
 	public void plusCommentSum(Integer prodid) {

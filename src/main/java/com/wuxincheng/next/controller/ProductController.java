@@ -58,8 +58,11 @@ public class ProductController extends BaseController {
 			return "product/list";
 		}
 		
+		// 判断是否有用户登录
+		String userid = getCurrentUseridStr(request);
+		
 		// 每次分页只显示三个日期下发布的产品
-		Pager pager = productService.queryProductsByDate(groupDates);
+		Pager pager = productService.queryProductsByDate(groupDates, userid);
 		logger.info("查询到产品信息");
 		
 		model.addAttribute("pager", pager);
@@ -119,14 +122,17 @@ public class ProductController extends BaseController {
 	}
 	
 	@RequestMapping(value = "/detail")
-	public String detail(Model model, String prodid) {
+	public String detail(Model model, HttpServletRequest request, String prodid) {
 		logger.info("显示产品详细页面 prodid={}", prodid);
 		
 		if (StringUtils.isEmpty(prodid) || !Validation.isIntPositive(prodid)) {
 			return "404";
 		}
+		
+		// 判断是否有用户登录
+		String userid = getCurrentUseridStr(request);
 
-		Product product = productService.queryDetailByProdid(prodid);
+		Product product = productService.queryDetailByProdid(prodid, userid);
 		
 		if (null == product) {
 			return "404";
