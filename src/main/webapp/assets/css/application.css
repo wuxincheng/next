@@ -1146,9 +1146,7 @@ input:focus,textarea:focus,select:focus {
 	display: inline-block;
 	position: relative;
 	top: -2px;
-	background:
-		url(https://rs-assets.b0.upaiyun.com/assets/upvote-99f83139d8bc63e75f3f598f4197dd5f.svg)
-		no-repeat
+	background: url(../img/ico/upvoted.svg) no-repeat
 }
 
 .voted .upvote-link {

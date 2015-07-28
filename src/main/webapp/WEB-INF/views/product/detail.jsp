@@ -64,8 +64,8 @@
         <c:if test="${not empty prodLikes}">
         <div class="upvotes">
           <h2>${product.likeSum}人觉得很赞：</h2>
-          <c:forEach items="${prodLikes}" var="prodLike">
           <ul class="upvote-users cf">
+          <c:forEach items="${prodLikes}" var="prodLike">
             <li class="product-avatar">
               <div class="user-image">
                 <a class="user-image-link" href="#">
@@ -81,8 +81,8 @@
                 <p class="user-bio">${prodLike.memo}</p>
               </div>
             </li>
-          </ul>
           </c:forEach>
+          </ul>
         </div>
         </c:if>
       
