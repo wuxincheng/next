@@ -1,4 +1,4 @@
-package com.wuxincheng.next.oauth.wechat.config;
+package com.wuxincheng.next.oauth.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

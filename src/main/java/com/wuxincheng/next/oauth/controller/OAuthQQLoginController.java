@@ -1,4 +1,4 @@
-package com.wuxincheng.next.oauth.qq;
+package com.wuxincheng.next.oauth.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

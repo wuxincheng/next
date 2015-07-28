@@ -1,4 +1,4 @@
-package com.wuxincheng.next.oauth.wechat;
+package com.wuxincheng.next.oauth.helper;
 
 import java.util.HashMap;
 import java.util.Map;

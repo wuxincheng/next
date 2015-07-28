@@ -1,5 +1,8 @@
-package com.wuxincheng.next.oauth.wechat.controller;
+package com.wuxincheng.next.oauth.controller;
 
+import java.util.Map;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -10,8 +13,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.wuxincheng.next.oauth.wechat.config.WechatConfig;
-import com.wuxincheng.next.oauth.wechat.util.HttpsConnection;
+import com.wuxincheng.next.oauth.helper.WechatHttpsHelper;
 import com.wuxincheng.next.util.Constants;
 
 /**
@@ -25,6 +27,8 @@ import com.wuxincheng.next.util.Constants;
 @RequestMapping("/oauth/wechat")
 public class WechatLoginController {
 	private static final Logger logger = LoggerFactory.getLogger(WechatLoginController.class);
+	
+	@Resource WechatHttpsHelper wechatHttpsHelper;
 	
 	/**
 	 * 用户授权后QQ后台返回信息
@@ -46,48 +50,23 @@ public class WechatLoginController {
 			return "redirect:/product/list";
 		}
 		
-		logger.info("开始获取 access_token");
-		
+		logger.debug("开始获取 access_token");
 		// 通过code获取access_token
-		String accessTokenUrl = WechatConfig.GET_ACCESS_TOKEN_URL.replace("CODE", code);
-		
-		logger.info("获取地址 accessTokenUrl={}", accessTokenUrl);
-		
-		try {
-			String response = HttpsConnection.doGet(accessTokenUrl, null, 500, 1000);
-			logger.info("接收的返回 response={}", response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		/**
-		// 发送GET请求并处理返回数据
-		JSONObject responseJSON = HttpsClient.httpsRequest(accessTokenUrl, "GET", null);
-		logger.info("请求的返回信息 responseJSONObject={}", responseJSON);
-		if (null == responseJSON) {
-			model.addAttribute(Constants.MSG_WARN, "微信返回数据为空");
+		Map<String, String> responseMap = wechatHttpsHelper.getAccessTokenByCode(code);
+		if (null == responseMap) {
+			model.addAttribute(Constants.MSG_WARN, "获取微信AccessToken失败");
 			return "redirect:/product/list";
 		}
-		logger.info("已获取到access_token");
+		
+		logger.debug("开始获取用户个人信息");
+		Map<String, String> responseUserInfoMap = wechatHttpsHelper.getUserInfoUnionID(
+				responseMap.get("access_token"), responseMap.get("openid"));
 
-		String accessToken = responseJSON.getString("access_token");
-		String openid = responseJSON.getString("openid");
-		responseJSON.getString("refresh_token");
-		
-		logger.info("获取到 accessToken={}", accessToken);
-		logger.info("获取到 openid={}", openid);
-		
-		logger.info("开始获取用户信息");
-		// 获取用户信息
-		String getUserinfoUrl = WeChatConfig.GET_USERINFO_URL.replaceAll("ACCESS_TOKEN", accessToken).replaceAll("OPENID", openid);
-		
-		JSONObject responseUserJSON = HttpsClient.httpsRequest(getUserinfoUrl, "GET", null);
-		
-		logger.info("获取用户信息 responseUserJSON={}", responseUserJSON);
-		 */
+		logger.info("个人信息获取成功 responseUserInfoMap={}", responseUserInfoMap);
 		
 		model.addAttribute(Constants.MSG_INFO, "微信登录成功");
 		
 		return "redirect:/product/list";
 	}
+	
 }

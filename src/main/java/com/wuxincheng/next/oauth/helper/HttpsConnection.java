@@ -1,4 +1,4 @@
-package com.wuxincheng.next.oauth.wechat.util;
+package com.wuxincheng.next.oauth.helper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -103,6 +103,10 @@ public class HttpsConnection {
 		return rsp;
 	}
 
+	public static String doGet(String url) throws Exception{
+		return doGet(url, null, 500, 1000);
+	}
+	
 	public static String doGet(String url, String ctype, int connectTimeout, int readTimeout) throws Exception {
 		HttpsURLConnection conn = null;
 		String rsp = null;
