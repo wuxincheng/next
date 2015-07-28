@@ -25,5 +25,10 @@ public class ProdLikeDao extends BaseDao {
 	public List<ProdLike> queryByUserid(String userid) {
 		return this.getSqlMapClientTemplate().queryForList("ProdLike.queryByUserid", userid);
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<ProdLike> queryLikeUserDetail(String prodid) {
+		return this.getSqlMapClientTemplate().queryForList("ProdLike.queryLikeUserDetail", prodid);
+	}
 	
 }

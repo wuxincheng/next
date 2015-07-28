@@ -40,5 +40,9 @@ public class ProductDao extends BaseDao {
 	public void score(Map<String, Object> like) {
 		this.getSqlMapClientTemplate().update("Product.score", like);
 	}
+	
+	public void postLikeScore(Map<String, Object> likeScore) {
+		this.getSqlMapClientTemplate().update("Product.postLikeScore", likeScore);
+	}
 
 }

@@ -74,43 +74,39 @@
           <c:forEach items="${products}" var="product">
           <li class="product-item">
             <div class="posts-group cf">
-              <div class="upvote ">
-                <a class="upvote-link vote-up" data-method="put" data-remote="true" href="/posts/8189/vote.html" rel="nofollow">
+              <div class="upvote <c:if test="${not empty product.likeState}">voted</c:if>" id="prodlike${product.prodid}">
+                <a class="upvote-link vote-up" data-method="put" data-remote="true" onclick="likeProduct('${product.prodid}')">
                   <i class="upvote-arrow"></i>
-                  <span class="vote-count">61</span>
+                  <span class="vote-count">${product.score}</span>
                 </a>
               </div>
               <div class="product-url">
-                <a class="post-url" data-client="null" href="/posts/8189/hit" ref="nofollow" target="_blank" title="lvzheng.com">${product.prodName}</a>
+                <a class="post-url" data-client="null" href="${product.prodUrl}" ref="nofollow" target="_blank">${product.prodName}</a>
                 <br>
                 <span class="post-tagline">${product.memo}</span>
               </div>
               <ul class="product-meta right">
-                <li class="product-mark">
-                  <div class="mark" title="小微律政 的团队成员已经入驻 NEXT，你的评论反馈会被关注和回复">
-                    <i class="marks mark-founder"></i>
-                  </div>
-                </li>
                 <li class="product-avatar">
                   <div class="user-image">
-                    <a class="user-image-link" href="/users/17682">
-                      <img alt="0" class="avatar" height="60" src="http://wx.qlogo.cn/mmopen/2pm5Nb2cMaPm9TsSIDaic2YGf2ckV6YqEbcFzmsuTiaOEiaYx4f0pxiczLUTdZ63gNMa9yz0XiarZ3lEzcxjeQKVGeA/0" width="60" />
+                    <a class="user-image-link" href="#">
+                      <img alt="0" class="avatar" height="60" src="${product.socialPicPath}" width="60" />
                     </a>
                   </div>
                   <div class="user-tooltip">
-                    <a class="user-image-link" href="/users/17682">
-                      <img alt="0" class="avatar avatar-big" height="120" src="http://wx.qlogo.cn/mmopen/2pm5Nb2cMaPm9TsSIDaic2YGf2ckV6YqEbcFzmsuTiaOEiaYx4f0pxiczLUTdZ63gNMa9yz0XiarZ3lEzcxjeQKVGeA/0" width="120" />
+                    <a class="user-image-link" href="#">
+                      <img alt="0" class="avatar avatar-big" height="120" src="${product.socialPicPath}" width="120" />
                     </a>
-                    <h3 class="user-nickname">崔东蛟</h3>
-                    <p class="user-bio"></p>
+                    <h3 class="user-nickname">${product.nickName}</h3>
+                    <h4 class="user-title">${product.userGroup} - ${product.position}<br></h4>
+                    <p class="user-bio">${product.userMemo}</p>
                   </div>
                   <div class="product-comment">
-                    <a class="product-comments" href="/posts/8189#comments" target="_blank">4</a>      
+                    <a class="product-comments" href="#"> ${product.commentSum} </a>
                   </div>
                 </li>
               </ul>
           </div>
-          <a class="product-link" href="/posts/8189" target="_blank"></a>
+          <a class="product-link" href="${root}/product/detail?prodid=${product.prodid}" target="_blank"></a>
           </li>          
           </c:forEach>
           </c:if>
@@ -120,6 +116,35 @@
   </div>    
 
   <jsp:include page="../FOOTER.jsp" />
-
+  <script type="text/javascript">
+    function likeProduct (prodid) {
+      var url = "${root}/product/like";
+      
+      $.ajax({
+        url : url, // 跳转到 action    
+        data : {prodid : prodid},
+        type : 'post',
+        beforeSend:function(){
+        },
+        cache : false,
+        dataType : 'json',
+        success : function(data) {
+        var result = data;
+        var clazz = 'voted'; // 样式
+        var divname = '#prodlike'+result.prodid; // 产品div
+        var scorespan = '#span'+result.prodid; // 产品关注度div
+        if ('1' == result.flag) { // 点赞标志
+          $(divname).addClass(clazz);
+        } else {
+          $(divname).removeClass(clazz);
+        }
+        $(scorespan).text(result.score); // 产品关注度
+        },
+        error : function() {
+          alert("友情提示：您还未登录!");
+        }
+      });
+    }  
+  </script>
 </body>
 </html>

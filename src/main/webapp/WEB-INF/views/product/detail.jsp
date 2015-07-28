@@ -29,10 +29,10 @@
         <ul class="product-list">
           <li class="product-item">
             <div class="posts-group cf row">
-              <div class="upvote  ">
-                  <a class="upvote-link vote-up" href="/users/sign_in?ok_url=%2Fposts%2F14941">
+              <div class="upvote <c:if test="${not empty product.likeState}">voted</c:if>" id="prodlike${product.prodid}">
+                  <a class="upvote-link vote-up" onclick="likeProduct('${product.prodid}')">
                     <i class="upvote-arrow"></i>
-                    <span class="vote-count">27</span>
+                    <span class="vote-count">${product.score}</span>
                   </a>        
               </div>
               <div class="product-url">
@@ -61,26 +61,30 @@
           </li>
         </ul>
       
+        <c:if test="${not empty prodLikes}">
         <div class="upvotes">
           <h2>${product.likeSum}人觉得很赞：</h2>
+          <c:forEach items="${prodLikes}" var="prodLike">
           <ul class="upvote-users cf">
             <li class="product-avatar">
               <div class="user-image">
-                <a class="user-image-link" href="/users/171">
-                  <img alt="0" class="avatar" height="60" src="http://wx.qlogo.cn/mmopen/2pm5Nb2cMaNmdZ87OJZicZExoMfnYtEN29l7k5He9v6x8EjaxV9mrY8Q9mAqelmAXicx4QJ0qXnujzd4k5eRfbYg/0" width="60" />
+                <a class="user-image-link" href="#">
+                  <img class="avatar" height="60" src="${prodLike.socialPicPath}" width="60" />
                 </a>
               </div>
               <div class="user-tooltip">
-                <a class="user-image-link" href="/users/171">
-                  <img alt="0" class="avatar avatar-big" height="120" src="http://wx.qlogo.cn/mmopen/2pm5Nb2cMaNmdZ87OJZicZExoMfnYtEN29l7k5He9v6x8EjaxV9mrY8Q9mAqelmAXicx4QJ0qXnujzd4k5eRfbYg/0" width="120" />
+                <a class="user-image-link" href="#">
+                  <img class="avatar avatar-big" height="120" src="${prodLike.socialPicPath}" width="120" />
                 </a>
-                <h3 class="user-nickname">Allen朝辉</h3>
-                <h4 class='user-title'>Biu App - Designer<br></h4>
-                <p class="user-bio"> 微信公众号: Emoji_News</p>
+                <h3 class="user-nickname">${prodLike.nickName}</h3>
+                <h4 class="user-title">${prodLike.userGroup} - ${prodLike.position}<br></h4>
+                <p class="user-bio">${prodLike.memo}</p>
               </div>
             </li>
           </ul>
+          </c:forEach>
         </div>
+        </c:if>
       
         <div class="share">
           <h3>分享到</h3>
@@ -172,6 +176,37 @@
   </div>
 
   <jsp:include page="../FOOTER.jsp" />
+
+  <script type="text/javascript">
+    function likeProduct (prodid) {
+      var url = "${root}/product/like";
+      
+      $.ajax({
+        url : url, // 跳转到 action    
+        data : {prodid : prodid},
+        type : 'post',
+        beforeSend:function(){
+        },
+        cache : false,
+        dataType : 'json',
+        success : function(data) {
+        var result = data;
+        var clazz = 'voted'; // 样式
+        var divname = '#prodlike'+result.prodid; // 产品div
+        var scorespan = '#span'+result.prodid; // 产品关注度div
+        if ('1' == result.flag) { // 点赞标志
+          $(divname).addClass(clazz);
+        } else {
+          $(divname).removeClass(clazz);
+        }
+        $(scorespan).text(result.score); // 产品关注度
+        },
+        error : function() {
+          alert("友情提示：您还未登录!");
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>

@@ -96,4 +96,8 @@
     UPDATE t_next_product SET score=(score+#score#) WHERE prodid = #prodid#
   </update>
   
+  <update id="postLikeScore" parameterClass="java.util.Map">
+    UPDATE t_next_product SET likesum=(likesum+#likeSum#), score=(score+#score#) WHERE prodid = #prodid#
+  </update>
+  
 </sqlMap>

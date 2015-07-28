@@ -10,7 +10,7 @@ import java.io.Serializable;
  * 
  */
 public class ProdLike implements Serializable {
-	
+
 	private static final long serialVersionUID = 5101762374272334624L;
 
 	private Integer userid;
@@ -21,6 +21,14 @@ public class ProdLike implements Serializable {
 
 	/** 点赞是否有效: 0-有效, 1-无效 */
 	private String likeState;
+
+	// ======= 用户信息
+	private String nickName;
+	private String socialPicPath;
+	private String memo;
+	private String userGroup;
+	private String position;
+	private String sex;
 
 	public Integer getUserid() {
 		return userid;
@@ -52,6 +60,54 @@ public class ProdLike implements Serializable {
 
 	public void setLikeState(String likeState) {
 		this.likeState = likeState;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getSocialPicPath() {
+		return socialPicPath;
+	}
+
+	public void setSocialPicPath(String socialPicPath) {
+		this.socialPicPath = socialPicPath;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	public String getUserGroup() {
+		return userGroup;
+	}
+
+	public void setUserGroup(String userGroup) {
+		this.userGroup = userGroup;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
 }

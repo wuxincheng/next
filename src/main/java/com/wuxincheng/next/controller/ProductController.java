@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wuxincheng.next.Pager;
 import com.wuxincheng.next.model.Comment;
+import com.wuxincheng.next.model.ProdLike;
 import com.wuxincheng.next.model.Product;
 import com.wuxincheng.next.service.CommentService;
 import com.wuxincheng.next.service.ProdLikeService;
@@ -132,17 +133,17 @@ public class ProductController extends BaseController {
 		// 判断是否有用户登录
 		String userid = getCurrentUseridStr(request);
 
+		// 产品详细
 		Product product = productService.queryDetailByProdid(prodid, userid);
-		
-		if (null == product) {
-			return "404";
-		}
+		model.addAttribute("product", product);
 		 
 		// 评论列表
 		List<Comment> comments = commentService.queryByProductid(prodid);
-		
-		model.addAttribute("product", product);
 		model.addAttribute("comments", comments);
+		
+		// 赞列表
+		List<ProdLike> prodLikes = prodLikeService.queryLikeUserDetail(prodid);
+		model.addAttribute("prodLikes", prodLikes);
 		
 		return "product/detail";
 	}

@@ -2,6 +2,7 @@ package com.wuxincheng.next.service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -57,8 +58,9 @@ public class ProdLikeService {
 			result.put("flag", "0"); // 点赞(1)或取消点赞(0)
 			
 			like.put("prodid", prodid);
-			like.put("score", -1);
-			productDao.score(like);
+			like.put("score", -1); // 关注度变化
+			like.put("likeSum", -1); // 点赞数量变化
+			productDao.postLikeScore(like);
 		} else { // 还未点赞
 			// 点赞
 			queryProdLike.setLikeState(Constants.DEFAULT_STATE);
@@ -69,7 +71,8 @@ public class ProdLikeService {
 			
 			like.put("prodid", prodid);
 			like.put("score", 1);
-			productDao.score(like);
+			like.put("likeSum", 1);
+			productDao.postLikeScore(like);
 		}
 		
 		Map<String, String> queryMap = new HashMap<String, String>();
@@ -80,6 +83,16 @@ public class ProdLikeService {
 		result.put("score", product.getScore()); // 点赞后产品关注分数
 		
 		return result;
+	}
+
+	/**
+	 * 查询点赞用户详细信息列表
+	 * 
+	 * @param prodid
+	 * @return
+	 */
+	public List<ProdLike> queryLikeUserDetail(String prodid) {
+		return prodLikeDao.queryLikeUserDetail(prodid);
 	}
 
 }

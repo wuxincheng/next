@@ -60,13 +60,12 @@
                       <img class="avatar" height="60" src="${obj.socialPicPath}" width="60" />
                     </a>
                   </div>
-
                   <div class="user-tooltip">
                     <a class="user-image-link" href="#">
                       <img class="avatar avatar-big" height="120" src="${obj.socialPicPath}" width="120" />
                     </a>
                     <h3 class="user-nickname">${obj.nickName}</h3>
-                    <h4 class="user-title">${user.userGroup} - ${user.position}<br></h4>
+                    <h4 class="user-title">${obj.userGroup} - ${obj.position}<br></h4>
                     <p class="user-bio">${obj.userMemo}</p>
                   </div>
 
