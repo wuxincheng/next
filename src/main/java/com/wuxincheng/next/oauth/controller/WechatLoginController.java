@@ -13,7 +13,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.wuxincheng.next.model.User;
 import com.wuxincheng.next.oauth.helper.WechatHttpsHelper;
+import com.wuxincheng.next.service.UserService;
 import com.wuxincheng.next.util.Constants;
 
 /**
@@ -29,6 +31,8 @@ public class WechatLoginController {
 	private static final Logger logger = LoggerFactory.getLogger(WechatLoginController.class);
 	
 	@Resource WechatHttpsHelper wechatHttpsHelper;
+	
+	@Resource private UserService userService;
 	
 	/**
 	 * 用户授权后QQ后台返回信息
@@ -64,9 +68,31 @@ public class WechatLoginController {
 
 		logger.info("个人信息获取成功 responseUserInfoMap={}", responseUserInfoMap);
 		
-		model.addAttribute(Constants.MSG_INFO, "微信登录成功");
+		// 保存用户数据
+		User oauthUser = new User();
+		oauthUser.setNickName(responseUserInfoMap.get("nickname"));
+		oauthUser.setSocialPicPath(responseUserInfoMap.get("headimgurl"));
+		oauthUser.setAccessToken(responseMap.get("access_token"));
+		oauthUser.setTokenExpireIn(code);
+		oauthUser.setOpenid(responseUserInfoMap.get("openid"));
+		oauthUser.setLoginType(Constants.OAUTH_WECHAT);
+		checkAndProcessOAuthUser(oauthUser, request);
+		
+		model.addAttribute(Constants.MSG_INFO, "微信授权登录成功");
 		
 		return "redirect:/product/list";
+	}
+	
+	/**
+	 * 处理用户登录信息
+	 */
+	private void checkAndProcessOAuthUser(User oauthUser, HttpServletRequest request) {
+		// 验证是否已经在库中有记录，如果有记录更新，没记录新增
+		User checkUser = userService.validateOAuthUser(oauthUser);
+		
+		// 用户信息放入在Session中
+		request.getSession().setAttribute(Constants.CURRENT_USER, checkUser);
+		logger.info("用户授权成功");
 	}
 	
 }

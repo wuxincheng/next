@@ -27,6 +27,8 @@ public class User implements Serializable {
 
 	/** 自定义头像 */
 	private String picPath;
+	
+	private String sex;
 
 	/** 社交平台头像 */
 	private String socialPicPath;
@@ -176,6 +178,14 @@ public class User implements Serializable {
 
 	public void setLoginType(String loginType) {
 		this.loginType = loginType;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
 }

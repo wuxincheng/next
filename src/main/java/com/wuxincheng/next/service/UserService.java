@@ -50,6 +50,9 @@ public class UserService {
 			// 记录这条信息
 			this.register(oauthUser);
 			logger.info("用户授权登录信息已添加");
+			
+			// 再查询一次
+			queryOAuthUser = userDao.queryByOAuthOpenid(oauthUser.getOpenid());
 		} else {
 			logger.info("已查询这该用户授权登录信息");
 			// 更新这条信息

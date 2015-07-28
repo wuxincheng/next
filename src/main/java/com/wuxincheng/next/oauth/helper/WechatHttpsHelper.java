@@ -22,7 +22,6 @@ import com.wuxincheng.next.oauth.config.WechatConfig;
  */
 @Component
 public class WechatHttpsHelper {
-	
 	private static final Logger logger = LoggerFactory.getLogger(WechatHttpsHelper.class);
 
 	@Resource WechatConfig wechatConfig;
@@ -54,11 +53,14 @@ public class WechatHttpsHelper {
 			logger.error("获取access_token请求出现异常", e);
 		}
 		
+		// 处理返回数据
 		Map<String, String> responseMap = parseResponseMap(response);
 		logger.info("获取access_token请求返回 responseMap={}", responseMap);
 		
 		return responseMap;
 	}
+	
+	
 	
 	/**
 	 * 获取个人用户信息（UnionID机制）
@@ -86,6 +88,7 @@ public class WechatHttpsHelper {
 			logger.error("获取用户个人信息请求出现异常", e);
 		}
 		
+		// 处理返回数据
 		Map<String, String> responseMap = parseResponseMap(response);
 		logger.info("获取用户个人信息请求返回 responseMap={}", responseMap);
 		
