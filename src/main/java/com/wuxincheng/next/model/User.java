@@ -21,6 +21,7 @@ public class User implements Serializable {
 
 	/** 登录密码 */
 	private String password;
+	private String password2;
 
 	/** 登录邮箱 */
 	private String loginEmail;
@@ -186,6 +187,14 @@ public class User implements Serializable {
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public String getPassword2() {
+		return password2;
+	}
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
 	}
 
 }

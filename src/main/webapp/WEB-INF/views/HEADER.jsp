@@ -98,8 +98,14 @@
         </c:when>
         <c:otherwise>
         <li class="account login-wechat">
+          <a class="login-btn main-nav" href="${root}/login/">登录</a>
+        </li> 
+        
+        <!-- 
+        <li class="account login-wechat">
           <a class="login-btn main-nav" href="https://open.weixin.qq.com/connect/qrconnect?appid=wx8bc224d6280b4ace&redirect_uri=http%3A%2F%2Fwww.zhuanlemei.com%2Ftop%2Foauth%2Fwechat%2Fcallback&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect">微信登录</a>
         </li>        
+         -->
         </c:otherwise>
         </c:choose>
       </ul>

@@ -18,57 +18,40 @@
 
 </head>
 <body id="home" class="notes-index">
+  <jsp:include page="HEADER.jsp" />
+  
   <div class="container">
-    <jsp:include page="HEADER.jsp" />
-    <div class="content row cf">
-      <div class="forms">
-        <form accept-charset="UTF-8" action="${root}/register/doRegister"
-          class="simple_form form" id="new_user" method="post">
+    <div class="subcontent login-row cf">
+      <div class="forms login-box">
+        <form accept-charset="UTF-8" action="${root}/register/doRegister" class="simple_form form" id="new_user" method="post">
           <div style="display: none">
-            <input name="utf8" type="hidden" value="&#x2713;" /><input
-              name="authenticity_token" type="hidden"
-              value="yXHXPCuoke25kYrOhAbhrrdplZICg6L01fjRe3X6+Q4=" />
+            <input name="utf8" type="hidden" value="&#x2713;" />
+            <input name="authenticity_token" type="hidden" value="yXHXPCuoke25kYrOhAbhrrdplZICg6L01fjRe3X6+Q4=" />
           </div>
           <div class="form-group email optional user_email">
-            <label class="email optional" for="loginEmail">邮箱</label><input
-              class="string email optional form-control input-small"
-              id="loginEmail" name="loginEmail"
-              placeholder="name@your_company.com" type="email" value="" />
+            <label class="email optional" for="loginEmail">邮箱</label>
+            <input class="string email optional form-control input-small" id="loginEmail" name="loginEmail"
+              placeholder="name@your_company.com" type="email" value="" maxlength="50" />
           </div>
           <div class="form-group password required user_password">
-            <label class="password required" for="password">密码</label><input
-              aria-required="true"
-              class="password required form-control input-small"
-              id="password" name="password" placeholder="密码"
-              required="required" type="password" />
+            <label class="password required" for="password">密码</label>
+            <input aria-required="true" class="password required form-control input-small" maxlength="50"
+              id="password" name="password" placeholder="密码" required="required" type="password" />
           </div>
-          <input class="btn submit" name="commit" type="submit"
-            value="完成注册" />
-
-          <hr>
-
-          <a href="${root}/login/">登录</a><br> <a
-            href="http://next.36kr.com/users/confirmation/new">没有收到验证邮件?</a><br>
+          <div class="form-group password required user_password">
+            <label class="password required" for="password">重新输入密码</label>
+            <input aria-required="true" class="password required form-control input-small" maxlength="50"
+              id="password2" name="password2" placeholder="重新输入密码" required="required" type="password" />
+          </div>
+          <input class="btn submit" name="commit" type="submit" value="完成注册" />
+          &nbsp;&nbsp;
+          <a href="${root}/login/">我已注册，立即登录</a>
+          <p>&nbsp;</p><p>&nbsp;</p>
         </form>
       </div>
-
-      <aside class="aside">
-        <h4>微信扫一扫：立即登录、快速注册～</h4>
-        <img
-          src="http://next.36kr.com/users/sign_in_qrcode?t=1435142215.894246"
-          alt="微信二维码" id="sign_in_qrcode_image" width="160" height="160"
-          data-ok-url="/posts">
-        <ul class="aside-tips">
-          <li>1.微信授权仅用于获取昵称和头像信息</li>
-          <li>2.定制关注和订阅，个性化内容和动态提醒</li>
-          <li>3.定向推送最新产品信息，还有更多…</li>
-        </ul>
-      </aside>
-
     </div>
   </div>
 
   <jsp:include page="FOOTER.jsp" />
-
 </body>
 </html>

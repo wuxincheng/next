@@ -69,6 +69,8 @@ public class Login extends BaseController {
 			return "login";
 		}
 		
+		model.addAttribute(Constants.MSG_SUCCESS, "登录成功");
+		
 		return "redirect:/product/list";
 	}
 	
