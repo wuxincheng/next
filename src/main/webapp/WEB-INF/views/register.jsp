@@ -29,9 +29,14 @@
             <input name="authenticity_token" type="hidden" value="yXHXPCuoke25kYrOhAbhrrdplZICg6L01fjRe3X6+Q4=" />
           </div>
           <div class="form-group email optional user_email">
-            <label class="email optional" for="loginEmail">邮箱</label>
-            <input class="string email optional form-control input-small" id="loginEmail" name="loginEmail"
+            <label class="email optional" for="loginEmail">邮箱（用于登录）</label>
+            <input aria-required="true" class="string email optional form-control input-small" id="loginEmail" name="loginEmail"
               placeholder="name@your_company.com" type="email" value="" maxlength="50" />
+          </div>
+          <div class="form-group nickname optional user_nickname">
+            <label class="nickname optional" for="loginEmail">昵称</label>
+            <input aria-required="true" class="string nickname optional form-control input-small" id="nickName" name="nickName"
+              placeholder="昵称" type="text" value="" maxlength="10" />
           </div>
           <div class="form-group password required user_password">
             <label class="password required" for="password">密码</label>

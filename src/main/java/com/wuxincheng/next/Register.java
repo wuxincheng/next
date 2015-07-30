@@ -48,14 +48,20 @@ public class Register extends BaseController {
 		
 		// 验证空
 		if (Validation.isBlank(user.getLoginEmail()) || Validation.isBlank(user.getPassword())
-				|| Validation.isBlank(user.getPassword2())) {
-			model.addAttribute(Constants.MSG_WARN, "用户邮箱和密码都不能为空");
+				|| Validation.isBlank(user.getPassword2()) || Validation.isBlank(user.getNickName())) {
+			model.addAttribute(Constants.MSG_WARN, "所有内容都不能为空");
 			return "redirect:/register/";
 		}
 		
 		// 验证邮箱的格式
 		if (!Validation.checkEmail(user.getLoginEmail())) {
 			model.addAttribute(Constants.MSG_WARN, "邮箱格式不正确");
+			return "redirect:/register/";
+		}
+		
+		// 昵称长度(数据库中可重复)
+		if (user.getNickName().length() < 4 || user.getNickName().length() > 10) {
+			model.addAttribute(Constants.MSG_WARN, "昵称长度不符合（4至10位）");
 			return "redirect:/register/";
 		}
 		
