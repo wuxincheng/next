@@ -45,6 +45,7 @@ public class Login extends BaseController {
 	public String doLogin(Model model, HttpServletRequest request, User user) {
 		logger.info("用户登录 loginEmail={}", user.getLoginEmail());
 		
+		// 验证登录信息
 		if (Validation.isBlank(user.getLoginEmail()) || Validation.isBlank(user.getPassword())) {
 			model.addAttribute(Constants.MSG_WARN, "用户邮箱和密码都不能为空");
 			return "login";

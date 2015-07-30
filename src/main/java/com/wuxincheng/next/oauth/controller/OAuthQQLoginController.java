@@ -35,13 +35,14 @@ public class OAuthQQLoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(OAuthQQLoginController.class);
 	
-	@Resource private UserService userService;
+	@Resource 
+	private UserService userService;
 
 	/**
 	 * 跳转到QQ登录的授权页面
 	 */
 	@RequestMapping(value = "/login")
-	public void list(HttpServletRequest request, HttpServletResponse response) {
+	public void login(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html;charset=utf-8");
 
 		try {

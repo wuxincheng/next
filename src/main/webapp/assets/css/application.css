@@ -124,7 +124,8 @@ button,input,select,textarea {
 	border: none;
 	outline: none;
 	border-radius: 0;
-	vertical-align: baseline
+	vertical-align: baseline;
+	font-family: Arial, 微软雅黑, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 button,input[type="button"],input[type="reset"],input[type="submit"] {

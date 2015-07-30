@@ -38,13 +38,13 @@ public class CollectController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(CollectController.class);
 	
 	@Autowired
-	CollectService collectService;
+	private CollectService collectService;
 	
 	@Autowired
-	ProductService productService;
+	private ProductService productService;
 	
 	@Autowired
-	CollectUserService collectUserService;
+	private CollectUserService collectUserService;
 	
 	@RequestMapping(value = "/list")
 	public String list(HttpServletRequest request) {
