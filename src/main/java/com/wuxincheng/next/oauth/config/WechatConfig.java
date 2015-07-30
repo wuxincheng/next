@@ -24,6 +24,10 @@ public class WechatConfig {
 	@Value("#{wechatSettings.scope}")
 	private String scope;
 
+	/** 微信授权登录页面 */
+	@Value("#{wechatSettings.wechatOAuthUrl}")
+	private String wechatOAuthUrl;
+
 	/** 登录返回地址 */
 	@Value("#{wechatSettings.redirectUrl}")
 	private String redirectUrl;
@@ -62,6 +66,14 @@ public class WechatConfig {
 
 	public void setScope(String scope) {
 		this.scope = scope;
+	}
+
+	public String getWechatOAuthUrl() {
+		return wechatOAuthUrl;
+	}
+
+	public void setWechatOAuthUrl(String wechatOAuthUrl) {
+		this.wechatOAuthUrl = wechatOAuthUrl;
 	}
 
 	public String getRedirectUrl() {

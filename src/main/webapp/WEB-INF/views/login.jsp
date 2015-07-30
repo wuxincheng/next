@@ -47,7 +47,7 @@
               </li>
               <li class="product-avatar">
                 <div class="user-image">
-                  <a class="user-image-link" href="https://open.weixin.qq.com/connect/qrconnect?appid=wx8bc224d6280b4ace&redirect_uri=http%3A%2F%2Fwww.zhuanlemei.com%2Ftop%2Foauth%2Fwechat%2Fcallback&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect">
+                  <a class="user-image-link" href="${root}/oauth/wechat/login">
                     <img src="${root}/assets/img/oauth/icon16_wx_logo.png" />
                   </a>
                 </div>
@@ -56,6 +56,13 @@
                 <div class="user-image">
                   <a class="user-image-link" href="${root}/oauth/qq/login">
                     <img  src="${root}/assets/img/oauth/Connect_logo_1.png" />
+                  </a>
+                </div>
+              </li>
+              <li class="product-avatar">
+                <div class="user-image">
+                  <a class="user-image-link" href="${root}/oauth/weibo/login">
+                    <img src="${root}/assets/img/oauth/icon16_weibo_logo.png" />
                   </a>
                 </div>
               </li>

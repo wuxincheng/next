@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,12 +31,32 @@ import com.wuxincheng.next.util.Constants;
 public class WechatLoginController {
 	private static final Logger logger = LoggerFactory.getLogger(WechatLoginController.class);
 	
-	@Resource WechatHttpsHelper wechatHttpsHelper;
+	@Resource 
+	private WechatHttpsHelper wechatHttpsHelper;
 	
-	@Resource private UserService userService;
+	@Resource 
+	private UserService userService;
 	
 	/**
-	 * 用户授权后QQ后台返回信息
+	 * 跳转到微信登录授权页面
+	 */
+	@RequestMapping(value = "/login")
+	public void login(HttpServletRequest request, HttpServletResponse response) {
+		logger.info("跳转到微信登录授权页面");
+		
+		response.setContentType("text/html;charset=utf-8");
+		
+		try {
+			String sessionid = request.getSession().getId();
+			String wechatOAuthUrl = wechatHttpsHelper.getOAuthLoginSession(sessionid);
+			response.sendRedirect(wechatOAuthUrl); // 跳转到微信登录授权页面
+		} catch (Exception e) {
+			logger.error("连接登录微信异常", e);
+		}
+	}
+	
+	/**
+	 * 用户授权后微信后台返回信息
 	 */
 	@RequestMapping(value = "/callback", method=RequestMethod.GET)
 	public String callback(Model model, HttpServletRequest request) {
@@ -43,7 +64,18 @@ public class WechatLoginController {
 		
 		// 接收到自定义state参数和微信的Code
 		String state = request.getParameter("state");
-		logger.info("返回数据 state={}", state);
+		logger.info("返回数据 state(sessionid)={}", state);
+
+		if (StringUtils.isEmpty(state)) {
+			model.addAttribute(Constants.MSG_WARN, "授权失败，Session为空");
+			return "redirect:/product/list";
+		}
+		
+		// 验证state参数
+		if (!request.getSession().getId().equals(state)) {
+			model.addAttribute(Constants.MSG_WARN, "授权失败，不合法的Session");
+			return "redirect:/product/list";
+		}
 		
 		String code = request.getParameter("code");
 		logger.info("返回数据 code={}", code);
