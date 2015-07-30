@@ -44,12 +44,16 @@
                 <li class="product-avatar">
                   <div class="user-image">
                     <a class="user-image-link" href="#">
-                      <img alt="0" class="avatar" height="60" src="${product.socialPicPath}" width="60" />
+                      <img alt="0" class="avatar" height="60" width="60" 
+                        <c:if test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:if>
+                        <c:if test="${empty product.socialPicPath}">src="${root}/assets/img/logo/toplogo.png"</c:if> />
                     </a>
                   </div>
                   <div class="user-tooltip">
                     <a class="user-image-link" href="#">
-                      <img alt="0" class="avatar avatar-big" height="120" src="${product.socialPicPath}" width="120" />
+                      <img alt="0" class="avatar avatar-big" height="120" width="120"
+                        <c:if test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:if>
+                        <c:if test="${empty product.socialPicPath}">src="${root}/assets/img/logo/toplogo.png"</c:if> />
                     </a>
                     <h3 class="user-nickname">${product.nickName}</h3>
                     <h4 class='user-title'>${product.userGroup} - ${product.position}<br></h4>
@@ -69,12 +73,16 @@
             <li class="product-avatar">
               <div class="user-image">
                 <a class="user-image-link" href="#">
-                  <img class="avatar" height="60" src="${prodLike.socialPicPath}" width="60" />
+                  <img class="avatar" height="60" width="60" 
+                    <c:if test="${not empty prodLike.socialPicPath}">src="${prodLike.socialPicPath}"</c:if>
+                    <c:if test="${empty prodLike.socialPicPath}">src="${root}/assets/img/logo/toplogo.png"</c:if> />
                 </a>
               </div>
               <div class="user-tooltip">
                 <a class="user-image-link" href="#">
-                  <img class="avatar avatar-big" height="120" src="${prodLike.socialPicPath}" width="120" />
+                  <img class="avatar avatar-big" height="120" width="120"
+                    <c:if test="${not empty prodLike.socialPicPath}">src="${prodLike.socialPicPath}"</c:if>
+                    <c:if test="${empty prodLike.socialPicPath}">src="${root}/assets/img/logo/toplogo.png"</c:if> />
                 </a>
                 <h3 class="user-nickname">${prodLike.nickName}</h3>
                 <h4 class="user-title">${prodLike.userGroup} - ${prodLike.position}<br></h4>
@@ -137,12 +145,16 @@
           <div class="comment-avatar">
             <div class="user-image">
               <a class="user-image-link" href="#">
-                <img class="avatar" height="60" src="${comment.socialPicPath}" width="60" />
+                <img class="avatar" height="60" width="60" 
+                  <c:if test="${not empty comment.socialPicPath}">src="${comment.socialPicPath}"</c:if>
+                  <c:if test="${empty comment.socialPicPath}">src="${root}/assets/img/logo/toplogo.png"</c:if> />
               </a>
             </div>
             <div class="user-tooltip">
               <a class="user-image-link" href="#">
-                <img class="avatar avatar-big" height="120" src="${comment.socialPicPath}" width="120" />
+                <img class="avatar avatar-big" height="120" width="120" 
+                  <c:if test="${not empty comment.socialPicPath}">src="${comment.socialPicPath}"</c:if>
+                  <c:if test="${empty comment.socialPicPath}">src="${root}/assets/img/logo/toplogo.png"</c:if> />
               </a>
               <h3 class="user-nickname">${comment.nickName}</h3>
               <h4 class='user-title'>${comment.userGroup} - ${comment.position}<br></h4>
