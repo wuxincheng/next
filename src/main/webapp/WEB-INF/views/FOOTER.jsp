@@ -14,9 +14,11 @@
           © 2014-2015 <strong>TOP</strong>. All Rights Reserved. A <a href="http://www.zhuanlemei.com/">zhuanlemei</a>
           product.
         </p>
+        <!-- 
         <p class="">
           <span>上 TOP，每天刷新更酷的生活方式。</span>
         </p>
+         -->
       </div>
     </div>
 

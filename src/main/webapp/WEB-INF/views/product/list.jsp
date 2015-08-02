@@ -13,7 +13,7 @@
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
 
 <meta name="author" content="36Kr">
-<meta name="description" content="NEXT - 不错过任何一个新产品">
+<meta name="description" content="NEXT - 找到你喜欢的理财产品">
 <meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
 
 </head>
@@ -89,6 +89,8 @@
         </div>
          -->
       </section>
+      
+      <!-- 
       <section class="featured cf">
         <a class="featured-item" href="http://next.36kr.com/posts/collections/273"
           style="background-image: url(https://rs-images.b0.upaiyun.com/uploads/note_collection/feature_image/273/33bd3c7c-0ef5-49df-8aee-108ad05bad6d.jpg!800x800)"
@@ -99,6 +101,7 @@
           </div>
         </a>
       </section>
+       -->
       </c:forEach>
       </c:forEach>
       </c:when>

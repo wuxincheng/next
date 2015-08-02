@@ -917,7 +917,7 @@ input:focus,textarea:focus,select:focus {
 
 .content {
 	padding-top: 60px;
-	padding-bottom: 60px;
+	padding-bottom: 0px;
 	min-height: 400px;
 	position: relative
 }
@@ -1090,7 +1090,7 @@ input:focus,textarea:focus,select:focus {
 	padding: 5px;
 	width: 48px;
 	height: 48px;
-	background: #948CF1;
+	background: #FF5722;
 	color: #fff;
 	text-align: center
 }
@@ -2174,20 +2174,18 @@ body {
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	height: 410px;
 	width: 100%;
 	color: #747f8c;
 	text-align: center;
 	background: #332e36;
-	padding-top: 50px;
-	padding-bottom: 50px;
+	padding-top: 30px;
+	padding-bottom: 30px;
 	border-top: 1px solid #1d111e
 }
 
 @media screen and (min-width: 48.0625em) {
 	.footer {
 		text-align: left;
-		height: 145px
 	}
 }
 

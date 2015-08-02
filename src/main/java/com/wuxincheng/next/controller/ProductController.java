@@ -111,7 +111,7 @@ public class ProductController extends BaseController {
 			// 发布产品
 			productService.post(product, getCurrentUserid(request));
 			logger.info("产品信息发布成功");
-			model.addAttribute(Constants.MSG_INFO, "产品信息发布成功");
+			model.addAttribute(Constants.MSG_SUCCESS, "产品信息发布成功");
 		} catch (Exception e) {
 			logger.error("产品发布出现异常：", e);
 			model.addAttribute(Constants.MSG_ERROR, "产品发布出现异常，请稍后重试！");

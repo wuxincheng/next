@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>TOP | 不错过任何一个新产品</title>
+<title>TOP | 找到你喜欢的理财产品</title>
 <link data-turbolinks-track="true" href="${root}/assets/css/application.css" media="all" rel="stylesheet">
 <script async="" src="http://www.google-analytics.com/analytics.js"></script>
 <script data-turbolinks-track="true" src="${root}/assets/js/application.js"></script>
@@ -22,7 +22,7 @@
 
 <!-- info -->
 <meta name="author" content="36Kr">
-<meta name="description" content="NEXT - 不错过任何一个新产品">
+<meta name="description" content="NEXT - 找到你喜欢的理财产品">
 <meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
 <link rel="author" href="http://next.36kr.com/humans.txt">
 
@@ -62,17 +62,24 @@
   <!--[if lt IE 9]>
   <div class="for-ie-suckers">
     <div class="row">
-      <b>36<del>0</del>TOP安全卫士提醒您：</b>您的 IE 浏览器不被支持。试试其他的：<a href="http://www.google.com/chrome">Google 浏览器</a>、<a href="http://firefox.com.cn/">火狐浏览器</a>、<a href="http://www.apple.com.cn/safari/">Safari</a>
+      <b>36<del>0</del>TOP安全卫士提醒您：</b>您的 IE 浏览器不被支持。试试其他的：
+      <a href="http://www.google.com/chrome">Google 浏览器</a>、
+      <a href="http://firefox.com.cn/">火狐浏览器</a>、
+      <a href="http://www.apple.com.cn/safari/">Safari</a>
     </div>
   </div>
 <![endif]-->
 
   <header class="topbar cf">
     <h1 class="brand">
-      <a href="${root}/product/list" class="logo" id="logo">TOP</a> <span class="slogan">不错过任何一个新产品</span>
+      <a href="${root}/product/list" class="logo" id="logo">TOP</a> <span class="slogan">找到你喜欢的理财产品</span>
     </h1>
     <nav class="navigation text-center">
       <ul>
+        <!-- 
+        <li><a class="main-nav " href="http://www.zhuanlemei.com" target="_blank">赚了没</a></li>
+        <li><a class="main-nav " href="http://www.zhuanlemei.com/news" target="_blank">咖啡日报</a></li>
+         -->
         <li><a class="main-nav " href="${root}/collect/list">产品集</a></li>
         
         <c:choose>
@@ -89,9 +96,11 @@
             </c:choose>
           </a>
           <ul class="dropdown login-dropdown">
+            <!-- 
             <li><a href="${root}/user/main">我的主页</a></li>
             <li><a href="${root}/user/collect">我的收藏</a></li>
             <li><a href="${root}/user/info">个人设置</a></li>
+             -->
             <li><a data-method="delete" href="${root}/logout/" rel="nofollow">退出登录</a></li>
           </ul>
         </li>        
@@ -100,12 +109,6 @@
         <li class="account login-wechat">
           <a class="login-btn main-nav" href="${root}/login/">登录</a>
         </li> 
-        
-        <!-- 
-        <li class="account login-wechat">
-          <a class="login-btn main-nav" href="https://open.weixin.qq.com/connect/qrconnect?appid=wx8bc224d6280b4ace&redirect_uri=http%3A%2F%2Fwww.zhuanlemei.com%2Ftop%2Foauth%2Fwechat%2Fcallback&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect">微信登录</a>
-        </li>        
-         -->
         </c:otherwise>
         </c:choose>
       </ul>

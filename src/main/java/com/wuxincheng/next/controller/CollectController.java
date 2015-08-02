@@ -66,7 +66,7 @@ public class CollectController extends BaseController {
 		
 		// 判断用户是否有创建产品集权限
 		if (!isCollectPermission(request)) {
-			model.addAttribute(Constants.MSG_INFO, "您还没有该项权限");
+			model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
 			return "redirect:list";
 		}
 		
@@ -81,29 +81,29 @@ public class CollectController extends BaseController {
 		
 		// 判断用户是否有创建产品集权限
 		if (!isCollectPermission(request)) {
-			model.addAttribute(Constants.MSG_INFO, "您还没有该项权限");
+			model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
 			return "redirect:edit";
 		}
 		
 		// 验证产品集名称和说明是否为空
 		if (StringUtils.isEmpty(collect.getCollectName())) {
-			model.addAttribute(Constants.MSG_INFO, "产品集名称不能为空");
+			model.addAttribute(Constants.MSG_WARN, "产品集名称不能为空");
 			return "redirect:edit";
 		}
 		if (StringUtils.isEmpty(collect.getMemo())) {
-			model.addAttribute(Constants.MSG_INFO, "产品集说明不能为空");
+			model.addAttribute(Constants.MSG_WARN, "产品集说明不能为空");
 			return "redirect:edit";
 		}
 		
 		// 验证是否上传了图片
 		if (null == collect.getCoverImgFile()) {
-			model.addAttribute(Constants.MSG_INFO, "产品集背景图片不能为空");
+			model.addAttribute(Constants.MSG_WARN, "产品集背景图片不能为空");
 			return "redirect:edit";
 		}
 		
 		// 控制图片大小不能大于3M
 		if (collect.getCoverImgFile().getSize() > 400000) {
-			model.addAttribute(Constants.MSG_INFO, "产品集背景图片不能超过3M");
+			model.addAttribute(Constants.MSG_WARN, "产品集背景图片不能超过3M");
 			return "redirect:edit";
 		}
 		
@@ -111,7 +111,7 @@ public class CollectController extends BaseController {
 		String checkFileName = collect.getCoverImgFile().getOriginalFilename();
 		String lastFix = checkFileName.substring(checkFileName.lastIndexOf("."), checkFileName.length());
 		if (!".png|.jpg".contains(lastFix)) {
-			model.addAttribute(Constants.MSG_INFO, "产品集背景图片仅支持png、jpg格式");
+			model.addAttribute(Constants.MSG_WARN, "产品集背景图片仅支持png、jpg格式");
 			return "redirect:edit";
 		}
 		
