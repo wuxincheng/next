@@ -115,29 +115,28 @@
     </nav>
   </header>
   
-    <c:if test="${not empty success}">
-    <div class="alert alert-success fade in row" style="margin-top: 30px;">
-      <h4>${success}</h4>
-    </div>
-    </c:if>
-    
-    <c:if test="${not empty info}">
-    <div class="alert alert-info fade in row" style="margin-top: 30px;">
-      <h4>${info}</h4>
-    </div>
-    </c:if>
+  <c:if test="${not empty success}">
+  <div id="msg-alert" class="alert alert-success fade in row" style="margin-top: 30px;">
+    <h4>${success}</h4>
+  </div>
+  </c:if>
+  
+  <c:if test="${not empty info}">
+  <div id="msg-alert" class="alert alert-info fade in row" style="margin-top: 30px;">
+    <h4>${info}</h4>
+  </div>
+  </c:if>
 
-    <c:if test="${not empty warning}">
-    <div class="alert alert-warning fade in row" style="margin-top: 30px;">
-      <h4>${warning}</h4>
-    </div>
-    </c:if>
+  <c:if test="${not empty warning}">
+  <div id="msg-alert" class="alert alert-warning fade in row" style="margin-top: 30px;">
+    <h4>${warning}</h4>
+  </div>
+  </c:if>
 
-    <c:if test="${not empty danger}">
-    <div class="alert alert-danger fade in row" style="margin-top: 30px;">
-      <h4>${danger}</h4>
-    </div>
-    </c:if>
- 
+  <c:if test="${not empty danger}">
+  <div id="msg-alert" class="alert alert-danger fade in row" style="margin-top: 30px;">
+    <h4>${danger}</h4>
+  </div>
+  </c:if>
 </body>
 </html>
