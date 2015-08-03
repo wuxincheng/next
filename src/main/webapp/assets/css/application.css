@@ -578,9 +578,7 @@ opacity
 	display: inline-block;
 	text-indent: -999em;
 	position: relative;
-	background:
-		url(https://rs-assets.b0.upaiyun.com/assets/logo-ce245543fa34eb1e1952d205ae5138e0.svg)
-		no-repeat
+	background: url(../img/logo/top-bar.png) no-repeat;
 }
 
 .logo:hover+.slogan {
