@@ -45,6 +45,25 @@
     <result property="collectid" column="collectid" />
     <result property="score" column="score" />
   </resultMap>
+
+  <select id="queryPostByUserid" parameterClass="java.lang.String" resultMap="ProductDetailMapping">
+    SELECT t.*, 
+           u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
+           u.memo AS usermemo, u.usergroup, u.position, '' likestate 
+      FROM t_next_product t 
+      LEFT JOIN t_next_user u ON t.userid = u.userid
+     WHERE t.userid = #userid#
+  </select>
+
+  <select id="queryLikeByUserid" parameterClass="java.lang.String" resultMap="ProductDetailMapping">
+    SELECT t.*, 
+           u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
+           u.memo AS usermemo, u.usergroup, u.position, p.likestate 
+      FROM t_next_product t 
+      LEFT JOIN t_next_user u ON t.userid = u.userid
+      LEFT JOIN t_next_prodlike p ON t.prodid = p.prodid
+     WHERE p.userid = #userid#
+  </select>
   
   <select id="queryDetailByProdid" parameterClass="java.util.Map" resultMap="ProductDetailMapping">
     SELECT t.*, 

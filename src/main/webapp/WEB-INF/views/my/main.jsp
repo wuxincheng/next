@@ -84,36 +84,7 @@
     </section>
     <div class="table-pagination"></div>
   </div>
-  <script type="text/javascript">
-    function likeProduct (prodid) {
-      var url = "${root}/product/like";
-      
-      $.ajax({
-        url : url, // 跳转到 action    
-        data : {prodid : prodid},
-        type : 'post',
-        beforeSend:function(){
-        },
-        cache : false,
-        dataType : 'json',
-        success : function(data) {
-        var result = data;
-        var clazz = 'voted'; // 样式
-        var divname = '#prodlike'+result.prodid; // 产品div
-        var scorespan = '#span'+result.prodid; // 产品关注度div
-        if ('1' == result.flag) { // 点赞标志
-          $(divname).addClass(clazz);
-        } else {
-          $(divname).removeClass(clazz);
-        }
-        $(scorespan).text(result.score); // 产品关注度
-        },
-        error : function() {
-          alert("友情提示：您还未登录!");
-        }
-      });
-    }  
-  </script>  
+  
   <jsp:include page="../FOOTER.jsp" />
 </body>
 </html>

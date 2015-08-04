@@ -5,15 +5,19 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.wuxincheng.next.Pager;
 import com.wuxincheng.next.controller.BaseController;
+import com.wuxincheng.next.model.Product;
+import com.wuxincheng.next.model.User;
 import com.wuxincheng.next.service.ProductService;
+import com.wuxincheng.next.service.UserService;
+import com.wuxincheng.next.util.Constants;
 
 /**
  * 个人中心：我的主页
@@ -30,28 +34,34 @@ public class MyHomeController extends BaseController {
 	@Resource
 	private ProductService productService;
 	
+	@Resource
+	private UserService userService;
+	
 	@RequestMapping(value = "/list")
-	public String list(Model model, HttpServletRequest request, String currentPage) {
-		logger.info("显示产品列表");
-		requestMessageProcess(request);
+	public String list(Model model, HttpServletRequest request, String userid) {
+		logger.info("显示用户中心");
 
-		// 根据产品发布的日期分组
-		List<String> groupDates = productService.queryGroupByDate();
-		
-		if (null == groupDates || groupDates.size() < 1) {
-			logger.info("没有查询到产品发布日期");
-			return "product/list";
+		// 验证userid不能为空
+		if (StringUtils.isEmpty(userid)) {
+			userid = getCurrentUseridStr(request);
+		}
+		if (StringUtils.isEmpty(userid)) {
+			model.addAttribute(Constants.MSG_WARN, "用户指定不明，不法查询信息");
+			return "redirect:/login/";
+		}
+
+		// 判断是否有登录用户
+		User user = getCurrentUser(request);
+		if (null == user) { 
+			// 如果为空，则根据userid查询用户信息
+			user = userService.queryByUserid(userid);
+			model.addAttribute("user", user);
 		}
 		
-		// 判断是否有用户登录
-		String userid = getCurrentUseridStr(request);
+		List<Product> products = productService.queryUserHome(userid);
 		
-		// 每次分页只显示三个日期下发布的产品
-		Pager pager = productService.queryProductsByDate(groupDates, userid);
-		logger.info("查询到产品信息");
+		model.addAttribute("products", products);
 		
-		model.addAttribute("pager", pager);
-		
-		return "product/list";
+		return "my/main";
 	}
 }

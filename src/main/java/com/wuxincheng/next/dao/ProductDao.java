@@ -45,4 +45,14 @@ public class ProductDao extends BaseDao {
 		this.getSqlMapClientTemplate().update("Product.postLikeScore", likeScore);
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Product> queryPostByUserid(String userid) {
+		return this.getSqlMapClientTemplate().queryForList("Product.queryPostByUserid", userid);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Product> queryLikeByUserid(String userid) {
+		return this.getSqlMapClientTemplate().queryForList("Product.queryLikeByUserid", userid);
+	}
+	
 }

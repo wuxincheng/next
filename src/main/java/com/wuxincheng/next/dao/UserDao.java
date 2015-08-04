@@ -23,7 +23,7 @@ public class UserDao extends BaseDao {
 		return (User) this.getSqlMapClientTemplate().queryForObject("User.queryByOAuthOpenid", openid);
 	}
 
-	public User queryByUserid(Integer userid) {
+	public User queryByUserid(String userid) {
 		return (User) this.getSqlMapClientTemplate().queryForObject("User.queryByUserid", userid);
 	}
 	

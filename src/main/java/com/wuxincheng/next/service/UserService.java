@@ -2,6 +2,7 @@ package com.wuxincheng.next.service;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -75,12 +76,22 @@ public class UserService {
 		logger.info("更新用户信息");
 		
 		// 根据用户主键查询用户信息是否存在
-		User updateUser = userDao.queryByUserid(user.getUserid());
+		User updateUser = userDao.queryByUserid(user.getUserid()+"");
 		if (updateUser != null) {
 			// TODO 具体更新的内容
 			// updateUser.setNickName(user.getNickName());
 			userDao.updateInfo(updateUser);
 		}
+	}
+	
+	/**
+	 * 根据用户主键查询用户信息
+	 */
+	public User queryByUserid(String userid){
+		if (StringUtils.isEmpty(userid)) {
+			return null;
+		}
+		return userDao.queryByUserid(userid);
 	}
 
 }
