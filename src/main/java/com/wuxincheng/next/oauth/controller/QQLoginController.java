@@ -74,6 +74,7 @@ public class QQLoginController {
 						+ accessTokenObj.getAccessToken() + "&" + "oauth_consumer_key=12345&openid="
 						+ openIDObj.getUserOpenID() + "&format=json ";
 				
+				logger.info(url);
 				
 				UserInfo qzoneUserInfo = new UserInfo(accessTokenObj.getAccessToken(), openIDObj.getUserOpenID());
 				UserInfoBean userInfoBean = qzoneUserInfo.getUserInfo();
