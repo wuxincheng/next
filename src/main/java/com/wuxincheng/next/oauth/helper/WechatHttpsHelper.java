@@ -6,14 +6,13 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import net.sf.json.JSONObject;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import com.wuxincheng.next.oauth.config.WechatConfig;
+import com.wuxincheng.next.util.JSONUtil;
 
 /**
  * 微信Https请求
@@ -60,7 +59,7 @@ public class WechatHttpsHelper {
 	 * @param accessCode
 	 * @return
 	 */
-	public Map<String, String> getAccessTokenByCode(String accessCode){
+	public Map<String, Object> getAccessTokenByCode(String accessCode){
 		logger.info("根据code获取access_token值 code={}", accessCode);
 		if (StringUtils.isEmpty(accessCode)) {
 			logger.warn("获取信息失败，参数不能为空");
@@ -82,7 +81,7 @@ public class WechatHttpsHelper {
 		}
 		
 		// 处理返回数据
-		Map<String, String> responseMap = parseResponseMap(response);
+		Map<String, Object> responseMap = JSONUtil.parseResponseMap(response);
 		logger.info("获取access_token请求返回 responseMap={}", responseMap);
 		
 		return responseMap;
@@ -97,49 +96,28 @@ public class WechatHttpsHelper {
 	 * @param openid
 	 * @return
 	 */
-	public Map<String, String> getUserInfoUnionID(String accessToken, String openid){
-		logger.info("获取用户个人信息 accessToken={}, openid={}", accessToken, openid);
+	public Map<String, Object> getUserInfoUnionID(String accessToken, String openid){
+		logger.info("获取微信用户个人信息 accessToken={}, openid={}", accessToken, openid);
 		if (StringUtils.isEmpty(accessToken) || StringUtils.isEmpty(openid)) {
-			logger.warn("获取信息失败，参数不能为空");
+			logger.warn("获取微信信息失败，参数不能为空");
 			return null;
 		}
 		
 		String userInfoUrl = wechatConfig.getUserInfoUrl().replaceAll("ACCESS_TOKEN", accessToken)
 				.replaceAll("OPENID", openid);
-		logger.info("请求的URL地址 userInfoUrl={}", userInfoUrl);
+		logger.info("请求微信的URL地址 userInfoUrl={}", userInfoUrl);
 		
 		String response = null;
 		try {
 			response = HttpsConnection.doGet(userInfoUrl);
-			logger.debug("获取用户个人信息请求发送成功");
+			logger.debug("获取微信用户个人信息请求发送成功");
 		} catch (Exception e) {
-			logger.error("获取用户个人信息请求出现异常", e);
+			logger.error("获取微信用户个人信息请求出现异常", e);
 		}
 		
 		// 处理返回数据
-		Map<String, String> responseMap = parseResponseMap(response);
-		logger.info("获取用户个人信息请求返回 responseMap={}", responseMap);
-		
-		return responseMap;
-	}
-	
-	/**
-	 * 将返回的JSON字符串转换成Map
-	 * 
-	 * @param responseString
-	 * @return
-	 */
-	private Map<String, String> parseResponseMap(String responseString){
-		if (StringUtils.isEmpty(responseString)) {
-			return null;
-		}
-		
-		// 将返回JSON字符串转换成JSON对象
-		JSONObject jsonObject = JSONObject.fromObject(responseString);
-		
-		// 将JSON转换成Map
-		@SuppressWarnings("unchecked")
-		Map<String, String> responseMap = jsonObject;
+		Map<String, Object> responseMap = JSONUtil.parseResponseMap(response);
+		logger.info("获取微信用户个人信息请求返回 responseMap={}", responseMap);
 		
 		return responseMap;
 	}

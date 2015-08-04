@@ -88,25 +88,25 @@ public class WechatLoginController {
 		
 		logger.debug("开始获取 access_token");
 		// 通过code获取access_token
-		Map<String, String> responseMap = wechatHttpsHelper.getAccessTokenByCode(code);
+		Map<String, Object> responseMap = wechatHttpsHelper.getAccessTokenByCode(code);
 		if (null == responseMap) {
 			model.addAttribute(Constants.MSG_WARN, "获取微信AccessToken失败");
 			return "redirect:/product/list";
 		}
 		
 		logger.debug("开始获取用户个人信息");
-		Map<String, String> responseUserInfoMap = wechatHttpsHelper.getUserInfoUnionID(
-				responseMap.get("access_token"), responseMap.get("openid"));
+		Map<String, Object> responseUserInfoMap = wechatHttpsHelper.getUserInfoUnionID(
+				responseMap.get("access_token").toString(), responseMap.get("openid").toString());
 
 		logger.info("个人信息获取成功 responseUserInfoMap={}", responseUserInfoMap);
 		
 		// 保存用户数据
 		User oauthUser = new User();
-		oauthUser.setNickName(responseUserInfoMap.get("nickname"));
-		oauthUser.setSocialPicPath(responseUserInfoMap.get("headimgurl"));
-		oauthUser.setAccessToken(responseMap.get("access_token"));
+		oauthUser.setNickName(responseUserInfoMap.get("nickname").toString());
+		oauthUser.setSocialPicPath(responseUserInfoMap.get("headimgurl").toString());
+		oauthUser.setAccessToken(responseMap.get("access_token").toString());
 		oauthUser.setTokenExpireIn(code);
-		oauthUser.setOpenid(responseUserInfoMap.get("openid"));
+		oauthUser.setOpenid(responseUserInfoMap.get("openid").toString());
 		oauthUser.setLoginType(Constants.OAUTH_WECHAT);
 		checkAndProcessOAuthUser(oauthUser, request);
 		
