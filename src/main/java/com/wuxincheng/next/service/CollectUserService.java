@@ -1,6 +1,7 @@
 package com.wuxincheng.next.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -59,6 +60,17 @@ public class CollectUserService {
 			// 产品集收藏-1
 			collectDao.cutCollectSum(collectid+"");
 		}
+	}
+
+	/**
+	 * 根据用户主键查询产品集主键
+	 * 
+	 * @param userid
+	 * @return
+	 */
+	public List<CollectUser> queryCollects(String userid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

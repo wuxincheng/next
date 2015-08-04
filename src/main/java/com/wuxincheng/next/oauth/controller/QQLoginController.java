@@ -31,9 +31,8 @@ import com.wuxincheng.next.util.StringUtil;
  */
 @Controller
 @RequestMapping("/oauth/qq")
-public class OAuthQQLoginController {
-
-	private static final Logger logger = LoggerFactory.getLogger(OAuthQQLoginController.class);
+public class QQLoginController {
+	private static final Logger logger = LoggerFactory.getLogger(QQLoginController.class);
 	
 	@Resource 
 	private UserService userService;
@@ -71,6 +70,11 @@ public class OAuthQQLoginController {
 				OpenID openIDObj = new OpenID(accessTokenObj.getAccessToken());
 				logger.info("QQ用户登录授权信息 openID={}", openIDObj.getUserOpenID());
 
+				String url = "https://graph.qq.com/user/get_user_info?" + "access_token="
+						+ accessTokenObj.getAccessToken() + "&" + "oauth_consumer_key=12345&openid="
+						+ openIDObj.getUserOpenID() + "&format=json ";
+				
+				
 				UserInfo qzoneUserInfo = new UserInfo(accessTokenObj.getAccessToken(), openIDObj.getUserOpenID());
 				UserInfoBean userInfoBean = qzoneUserInfo.getUserInfo();
 				logger.info("获取到的信息 userInfoBean={}", StringUtil.toStringMultiLine(userInfoBean));
@@ -79,6 +83,7 @@ public class OAuthQQLoginController {
 					oauthUser = new User();
 					
 					oauthUser.setNickName(userInfoBean.getNickname());
+					// figureurl_qq_2
 					oauthUser.setSocialPicPath(userInfoBean.getAvatar().getAvatarURL50());
 					oauthUser.setAccessToken(accessTokenObj.getAccessToken());
 					oauthUser.setTokenExpireIn(accessTokenObj.getExpireIn()+"");
