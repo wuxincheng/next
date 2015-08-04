@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
@@ -6,10 +7,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>注册 - TOP</title>
+<title>资料设置 - TOP</title>
 
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
+<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon"
+  rel="icon" />
+<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon"
+  rel="shortcut icon" />
 
 <!-- meta -->
 <meta charset="utf-8">
@@ -19,101 +22,124 @@
 </head>
 <body id="home" class="notes-index">
   <jsp:include page="../HEADER.jsp" />
-  
-  <div class="content row ">
-    <section class="profile">
-      <a class="user-image-link" href="/users/39627">
-        <img class="avatar" height="120" width="120" 
-          <c:if test="${empty user.socialPicPath}">src="${root}/assets/img/logo/toplogo.png"</c:if>
-          <c:if test="${not empty user.socialPicPath}">src="${user.socialPicPath}"</c:if> />
-      </a>
-      <h2 class="user-name">${user.nickName}</h2>
-      <p></p>
-      <p class="user-subtitle"> ${user.userGroup} - ${user.position}<br></p>
-      <p class="user-bio">${user.memo}</p>
-      <div class="profile-end-symbol">~</div>
-    </section>
-    
-    <section class="post">
-      <ul class="product-list">
-        <c:if test="${not empty products}">
-        <c:forEach items="${products}" var="product">
-        <li class="product-item">
-          <div class="posts-group cf">
-            <div class="upvote <c:if test="${not empty product.likeState}">voted</c:if>" id="prodlike${product.prodid}">
-              <a class="upvote-link vote-up" data-method="put" data-remote="true" onclick="likeProduct('${product.prodid}')">
-                <i class="upvote-arrow"></i>
-                <span class="vote-count">${product.score}</span>
-              </a>
-            </div>
-            <div class="product-url">
-              <a class="post-url" data-client="null" href="${product.prodUrl}" ref="nofollow" target="_blank">${product.prodName}</a>
-              <br>
-              <span class="post-tagline">${product.memo}</span>
-            </div>
-            <ul class="product-meta right">
-              <li class="product-avatar">
-                <div class="user-image">
-                  <a class="user-image-link" href="#">
-                    <img alt="0" class="avatar" height="60" width="60"
-                      <c:if test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:if>
-                      <c:if test="${empty product.socialPicPath}">src="${root}/assets/img/logo/toplogo.png"</c:if> />
-                  </a>
-                </div>
-                <div class="user-tooltip">
-                  <a class="user-image-link" href="#">
-                    <img alt="0" class="avatar avatar-big" height="120" width="120"
-                      <c:if test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:if>
-                      <c:if test="${empty product.socialPicPath}">src="${root}/assets/img/logo/toplogo.png"</c:if> />
-                  </a>
-                  <h3 class="user-nickname">${product.nickName}</h3>
-                  <h4 class="user-title">${product.userGroup} - ${product.position}<br></h4>
-                  <p class="user-bio">${product.userMemo}</p>
-                </div>
-                <div class="product-comment">
-                  <a class="product-comments" href="#"> ${product.commentSum} </a>
-                </div>
-              </li>
-            </ul>
+
+  <div class="content row cf">
+    <div class="forms">
+      <form accept-charset="UTF-8" action="/users"
+        class="simple_form settings-profile"
+        enctype="multipart/form-data" id="edit_user" method="post"
+        role="form">
+        <div style="display: none">
+          <input name="utf8" type="hidden" value="&#x2713;" /><input
+            name="_method" type="hidden" value="put" /><input
+            name="authenticity_token" type="hidden"
+            value="tn/vd/0/G9bFCz1r8mzZJ57Z4MmZ7VdzfbAn3Ne7d88=" />
         </div>
-        <a class="product-link" href="${root}/product/detail?prodid=${product.prodid}" target="_blank"></a>
-        </li>          
-        </c:forEach>
-        </c:if>
+        <h2>修改个人信息</h2>
+
+        <input id="ok_url" name="ok_url" type="hidden" value="/posts" />
+        <div class="form-group string required user_nickname">
+          <label class="string required" for="user_nickname">昵称</label><input
+            aria-required="true"
+            class="string required form-control input-small"
+            id="user_nickname" name="user[nickname]" required="required"
+            type="text" value="吴新成" />
+        </div>
+        <div class="form-group file optional user_avatar">
+          <label class="file optional" for="user_avatar">头像</label>
+          <div class="avatar-wrapper cf ">
+            <img alt="2e319c99 9ca7 4576 bb10 28bde38c9084"
+              src="https://rs-images.b0.upaiyun.com/uploads/user/avatar/39627/2e319c99-9ca7-4576-bb10-28bde38c9084.jpg!50x50" />
+            <input class="upload" id="user_avatar" name="user[avatar]"
+              type="file" />
+          </div>
+          <div class="checkbox">
+            <input name="user[wechat_avatar_as_default]" type="hidden"
+              value="0" /><input class="boolean optional form-control"
+              id="user_wechat_avatar_as_default"
+              name="user[wechat_avatar_as_default]" type="checkbox"
+              value="1" /> 优先使用微信头像
+          </div>
+        </div>
+        <div class="form-group text required user_tagline">
+          <label class="text required" for="user_tagline">一句话简介</label>
+          <textarea aria-required="true"
+            class="text required form-control input-big"
+            id="user_tagline" name="user[tagline]" required="required">没事玩玩的</textarea>
+        </div>
+
+        <div class="form-group string required user_organization">
+          <label class="string required" for="user_organization">组织</label><input
+            aria-required="true"
+            class="string required form-control input-small"
+            id="user_organization" name="user[organization]"
+            required="required" type="text" value="it coder" />
+        </div>
+        <div class="form-group string required user_job_title">
+          <label class="string required" for="user_job_title">职位</label><input
+            aria-required="true"
+            class="string required form-control input-small"
+            id="user_job_title" name="user[job_title]"
+            required="required" type="text" value="initmeg" />
+        </div>
+        <button name='submit' value="profile" class="btn submit">更新设置</button>
+      </form>
+      <hr>
+      <form accept-charset="UTF-8" action="/users"
+        class="simple_form settings-password" id="edit_user"
+        method="post">
+        <div style="display: none">
+          <input name="utf8" type="hidden" value="&#x2713;" /><input
+            name="_method" type="hidden" value="put" /><input
+            name="authenticity_token" type="hidden"
+            value="tn/vd/0/G9bFCz1r8mzZJ57Z4MmZ7VdzfbAn3Ne7d88=" />
+        </div>
+        <h2>修改密码</h2>
+        <input id="ok_url" name="ok_url" type="hidden" value="/posts" />
+        <div class="form-group email optional disabled user_email">
+          <label class="email optional" for="user_email">邮箱</label><input
+            class="string email optional disabled form-control input-small"
+            disabled="disabled" id="user_email" name="user[email]"
+            placeholder="邮箱" type="email" value="wuxinchenghappy@qq.com" />
+        </div>
+        <div class="form-group password optional user_password">
+          <label class="password optional" for="user_password">密码</label><input
+            class="password optional form-control input-small"
+            id="user_password" name="user[password]" type="password" />
+          <p class="help-block">不更改密码请留空</p>
+        </div>
+        <div
+          class="form-group password optional user_password_confirmation">
+          <label class="password optional"
+            for="user_password_confirmation">确认密码</label><input
+            class="password optional form-control input-small"
+            id="user_password_confirmation"
+            name="user[password_confirmation]" type="password" />
+        </div>
+        <div class="form-group password required user_current_password">
+          <label class="password required" for="user_current_password">当前密码</label><input
+            aria-required="true"
+            class="password required form-control input-small"
+            id="user_current_password" name="user[current_password]"
+            required="required" type="password" />
+          <p class="help-block">更新以上信息，请输入密码</p>
+        </div>
+
+        <button name='submit' value="password" , class="btn submit">修改密码</button>
+      </form>
+    </div>
+
+    <aside class="aside">
+      <h4>如何解绑微信帐号</h4>
+      <br>
+      <ul class="aside-tips">
+        <li>1.微信中发送[解除绑定]</li>
+        <li>2.根据流程解除绑定</li>
       </ul>
-    </section>
-    <div class="table-pagination"></div>
+    </aside>
+
   </div>
-  <script type="text/javascript">
-    function likeProduct (prodid) {
-      var url = "${root}/product/like";
-      
-      $.ajax({
-        url : url, // 跳转到 action    
-        data : {prodid : prodid},
-        type : 'post',
-        beforeSend:function(){
-        },
-        cache : false,
-        dataType : 'json',
-        success : function(data) {
-        var result = data;
-        var clazz = 'voted'; // 样式
-        var divname = '#prodlike'+result.prodid; // 产品div
-        var scorespan = '#span'+result.prodid; // 产品关注度div
-        if ('1' == result.flag) { // 点赞标志
-          $(divname).addClass(clazz);
-        } else {
-          $(divname).removeClass(clazz);
-        }
-        $(scorespan).text(result.score); // 产品关注度
-        },
-        error : function() {
-          alert("友情提示：您还未登录!");
-        }
-      });
-    }  
-  </script>  
+
   <jsp:include page="../FOOTER.jsp" />
 </body>
 </html>

@@ -31,7 +31,7 @@ public class MyInfoController extends BaseController {
 	public String query(Model model, HttpServletRequest request) {
 		logger.info("显示个人信息页");
 		
-		
+		requestMessageProcess(request);
 		
 		return "my/info";
 	}
