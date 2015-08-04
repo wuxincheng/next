@@ -37,6 +37,12 @@ public class CollectUserService {
 		return collectUser = collectUserDao.query(collectUser);
 	}
 
+	/**
+	 * 收藏
+	 * 
+	 * @param collectid
+	 * @param userid
+	 */
 	public void collect(Integer collectid, Integer userid) {
 		CollectUser deleteOrQueryCollectUser = new CollectUser();
 		deleteOrQueryCollectUser.setCollectid(collectid);
@@ -69,8 +75,10 @@ public class CollectUserService {
 	 * @return
 	 */
 	public List<CollectUser> queryCollects(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+		if (null == userid) {
+			return null;
+		}
+		return collectUserDao.queryCollects(userid);
 	}
 
 }

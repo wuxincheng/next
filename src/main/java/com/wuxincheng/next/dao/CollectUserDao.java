@@ -1,5 +1,7 @@
 package com.wuxincheng.next.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.wuxincheng.next.model.CollectUser;
@@ -17,6 +19,11 @@ public class CollectUserDao extends BaseDao {
 
 	public CollectUser query(CollectUser collectUser) {
 		return (CollectUser)this.getSqlMapClientTemplate().queryForObject("CollectUser.query", collectUser);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<CollectUser> queryCollects(String userid) {
+		return this.getSqlMapClientTemplate().queryForList("CollectUser.queryCollects", userid);
 	}
 	
 }

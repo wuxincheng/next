@@ -52,7 +52,6 @@
                   </a>
                 </div>
               </li>
-              <!-- 
               <li class="product-avatar">
                 <div class="user-image">
                   <a class="user-image-link" href="${root}/oauth/qq/login">
@@ -60,6 +59,7 @@
                   </a>
                 </div>
               </li>
+              <!-- 
               <li class="product-avatar">
                 <div class="user-image">
                   <a class="user-image-link" href="${root}/oauth/weibo/login">

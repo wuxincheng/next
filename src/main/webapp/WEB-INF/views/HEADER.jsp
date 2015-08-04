@@ -96,9 +96,10 @@
             </c:choose>
           </a>
           <ul class="dropdown login-dropdown">
+            <li><a href="${root}/my/collect/list">我的收藏</a></li>
+            
             <!-- 
             <li><a href="${root}/user/main">我的主页</a></li>
-            <li><a href="${root}/user/collect">我的收藏</a></li>
             <li><a href="${root}/user/info">个人设置</a></li>
              -->
             <li><a data-method="delete" href="${root}/logout/" rel="nofollow">退出登录</a></li>

@@ -47,12 +47,16 @@ public class CollectController extends BaseController {
 	private CollectUserService collectUserService;
 	
 	@RequestMapping(value = "/list")
-	public String list(HttpServletRequest request) {
+	public String list(Model model, HttpServletRequest request) {
 		logger.info("显示产品集列表");
 		
 		requestMessageProcess(request);
 		
 		List<Collect> collects = collectService.queryAll();
+		
+		if (null == collects || collects.size() < 1) {
+			model.addAttribute(Constants.MSG_INFO, "目前还没发布产品集");
+		}
 		
 		request.setAttribute("collects", collects);
 		

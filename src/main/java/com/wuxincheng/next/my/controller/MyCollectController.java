@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wuxincheng.next.controller.BaseController;
@@ -16,6 +18,7 @@ import com.wuxincheng.next.model.Collect;
 import com.wuxincheng.next.model.CollectUser;
 import com.wuxincheng.next.service.CollectService;
 import com.wuxincheng.next.service.CollectUserService;
+import com.wuxincheng.next.util.Constants;
 
 /**
  * 用户中心：个人收藏
@@ -36,17 +39,22 @@ public class MyCollectController extends BaseController {
 	private CollectService collectService;
 
 	@RequestMapping(value = "/list")
-	public String list(HttpServletRequest request) {
+	public String list(Model model, HttpServletRequest request) {
 		logger.info("显示个人收藏");
 
 		// 获取当前用户
 		String userid = getCurrentUseridStr(request);
+		if (StringUtils.isEmpty(userid)) {
+			model.addAttribute(Constants.MSG_WARN, "用户登录信息失效");
+			return "redirect:/login/";
+		}
 
 		// 查询用户已经收藏的产品集
 		List<CollectUser> collectUsers = collectUserService.queryCollects(userid);
 
-		// 如果没有收藏，返回空空
+		// 如果没有收藏，返回空
 		if (null == collectUsers || collectUsers.size() < 1) {
+			model.addAttribute(Constants.MSG_INFO, "您还没有收藏产品集");
 			return "collect/list";
 		}
 
@@ -56,7 +64,7 @@ public class MyCollectController extends BaseController {
 			collects.add(collectService.queryDetailByCollectid(collectUser.getCollectid() + ""));
 		}
 
-		request.setAttribute("collectUsers", collectUsers);
+		request.setAttribute("collects", collects);
 
 		return "collect/list";
 	}

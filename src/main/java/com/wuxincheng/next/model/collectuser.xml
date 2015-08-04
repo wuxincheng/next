@@ -24,4 +24,8 @@
     SELECT * FROM t_next_collectuser WHERE userid = #userid# AND collectid = #collectid#
   </select>
   
+  <select id="queryCollects" resultMap="CollectUserMapping" parameterClass="java.lang.String">
+    SELECT * FROM t_next_collectuser WHERE userid = #userid#
+  </select>
+  
 </sqlMap>

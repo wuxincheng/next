@@ -9,7 +9,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wuxincheng.next.model.User;
-import com.wuxincheng.next.util.Constants;
 
 /**
  * 登录Session拦截
@@ -43,15 +42,14 @@ public class LoginSessionInterceptor implements HandlerInterceptor {
 			
 			if (null == user) {
 				logger.info("用户登录Session失效，跳转到登录页面");
-				// response.sendRedirect("/index.jsp");  // 重定向
-
-				request.setAttribute(Constants.MSG_WARN, "您的登录已失效，请重新登录！");
 				
-				// request.getRequestDispatcher("/next/login/").forward(request, response); // 转发
+				String msg = "您的登录已失效，请重新登录！";
+				// encode一下，否则页面接收不到值
+				msg = java.net.URLEncoder.encode(msg.toString(), "utf-8"); 
 				
-				response.sendRedirect("/top/login/");  // 重定向
+				response.sendRedirect("/top/login/?info="+msg);  // 重定向
 				
-				return false;   
+				return false;
 			}
         }
 		
