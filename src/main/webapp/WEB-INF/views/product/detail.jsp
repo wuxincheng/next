@@ -6,17 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>${product.prodName} | TOP</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <meta charset="utf-8">
-
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
 
 <meta name="author" content="36Kr">
 <meta name="description" content="NEXT - 找到你喜欢的理财产品">
-<meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
-<link rel="author" href="http://next.36kr.com/humans.txt">
+<meta name="keywords" content="TOP，新产品，基金，股票，债券，创业，互联网产品，找到你喜欢的理财产品，${product.prodName}">
 
 </head>
 <body id="home" class="notes-index">

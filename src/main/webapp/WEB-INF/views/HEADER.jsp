@@ -22,9 +22,9 @@
 
 <!-- info -->
 <meta name="author" content="36Kr">
-<meta name="description" content="NEXT - 找到你喜欢的理财产品">
-<meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
-<link rel="author" href="http://next.36kr.com/humans.txt">
+<meta name="description" content="TOP - 找到你喜欢的理财产品">
+<meta name="keywords" content="TOP，新产品，基金，股票，债券，创业，互联网产品，找到你喜欢的理财产品">
+<link rel="author" href="http://www.zhuanlemei.com/top/humans.txt">
 
 <!--iOS -->
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -34,29 +34,8 @@
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 
-<!-- iOS Icons -->
-<link rel="apple-touch-icon-precomposed"
-  href="https://rs-assets.b0.upaiyun.com/assets/apple-touch-icon-57x57-precomposed-2fd5ce12b9af673bd9df9f6814cb3bf6.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-  href="https://rs-assets.b0.upaiyun.com/assets/apple-touch-icon-72x72-precomposed-0133d9588b514668a844dace5386edab.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-  href="https://rs-assets.b0.upaiyun.com/assets/apple-touch-icon-114x114-precomposed-25ce253a44714d950906df1f51b5d76f.png">
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-  href="https://rs-assets.b0.upaiyun.com/assets/apple-touch-icon-144x144-precomposed-1f35bb75f6aadd07750e73a4ba893f8b.png">
-<link rel="apple-touch-icon-precomposed" sizes="180x180"
-  href="https://rs-assets.b0.upaiyun.com/assets/apple-touch-icon-180x180-precomposed-97d0466995f859705d4166fa27f84643.png">
-
-<!-- Prefetch -->
-<link rel="dns-prefetch" href="http://fonts.googleapis.com/">
-<link rel="dns-prefetch" href="http://google-analytics.com/">
-<link rel="dns-prefetch" href="http://www.google-analytics.com/">
-<link rel="dns-prefetch" href="http://platform.twitter.com/">
-
-<meta property="og:type" content="webpage">
-
 <meta content="authenticity_token" name="csrf-param">
 <meta content="+pyNg3ggt3L/IZk4ood3x5j18ChulGazM+BKMuOT/ks=" name="csrf-token">
-<link href="http://next.36kr.com/feed" rel="alternate" title="ATOM" type="application/atom+xml">
 </head>
 <body id="home" class="notes-index">
   <!--[if lt IE 9]>

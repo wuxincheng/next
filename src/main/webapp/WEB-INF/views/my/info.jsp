@@ -25,25 +25,19 @@
 
   <div class="content row cf">
     <div class="forms">
-      <form accept-charset="UTF-8" action="/users"
+      <form accept-charset="UTF-8" action="${root}/my/info/modify"
         class="simple_form settings-profile"
         enctype="multipart/form-data" id="edit_user" method="post"
         role="form">
-        <div style="display: none">
-          <input name="utf8" type="hidden" value="&#x2713;" /><input
-            name="_method" type="hidden" value="put" /><input
-            name="authenticity_token" type="hidden"
-            value="tn/vd/0/G9bFCz1r8mzZJ57Z4MmZ7VdzfbAn3Ne7d88=" />
-        </div>
+        <input name="userid" id="userid" type="hidden" value="${user.userid}" />
         <h2>修改个人信息</h2>
-
         <input id="ok_url" name="ok_url" type="hidden" value="/posts" />
         <div class="form-group string required user_nickname">
           <label class="string required" for="user_nickname">昵称</label><input
             aria-required="true"
             class="string required form-control input-small"
-            id="user_nickname" name="user[nickname]" required="required"
-            type="text" value="吴新成" />
+            id="nickName" name="nickName" required="required"
+            type="text" value="${user.nickName}" />
         </div>
         <div class="form-group file optional user_avatar">
           <label class="file optional" for="user_avatar">头像</label>
@@ -65,27 +59,27 @@
           <label class="text required" for="user_tagline">一句话简介</label>
           <textarea aria-required="true"
             class="text required form-control input-big"
-            id="user_tagline" name="user[tagline]" required="required">没事玩玩的</textarea>
+            id="memo" name="memo" required="required">${user.memo}</textarea>
         </div>
 
         <div class="form-group string required user_organization">
           <label class="string required" for="user_organization">组织</label><input
             aria-required="true"
             class="string required form-control input-small"
-            id="user_organization" name="user[organization]"
-            required="required" type="text" value="it coder" />
+            id="userGroup" name="userGroup"
+            required="required" type="text" value="${user.userGroup}" />
         </div>
         <div class="form-group string required user_job_title">
           <label class="string required" for="user_job_title">职位</label><input
             aria-required="true"
             class="string required form-control input-small"
-            id="user_job_title" name="user[job_title]"
-            required="required" type="text" value="initmeg" />
+            id="position" name="position"
+            required="required" type="text" value="${user.position}" />
         </div>
         <button name='submit' value="profile" class="btn submit">更新设置</button>
       </form>
       <hr>
-      <form accept-charset="UTF-8" action="/users"
+      <form accept-charset="UTF-8" action="${root}/my/info/password"
         class="simple_form settings-password" id="edit_user"
         method="post">
         <div style="display: none">
@@ -100,12 +94,12 @@
           <label class="email optional" for="user_email">邮箱</label><input
             class="string email optional disabled form-control input-small"
             disabled="disabled" id="user_email" name="user[email]"
-            placeholder="邮箱" type="email" value="wuxinchenghappy@qq.com" />
+            placeholder="邮箱" type="email" value="${user.loginEmail}" />
         </div>
         <div class="form-group password optional user_password">
           <label class="password optional" for="user_password">密码</label><input
             class="password optional form-control input-small"
-            id="user_password" name="user[password]" type="password" />
+            id="password1" name="password1" type="password" />
           <p class="help-block">不更改密码请留空</p>
         </div>
         <div
@@ -113,14 +107,13 @@
           <label class="password optional"
             for="user_password_confirmation">确认密码</label><input
             class="password optional form-control input-small"
-            id="user_password_confirmation"
-            name="user[password_confirmation]" type="password" />
+            id="password2" name="password2" type="password" />
         </div>
         <div class="form-group password required user_current_password">
           <label class="password required" for="user_current_password">当前密码</label><input
             aria-required="true"
             class="password required form-control input-small"
-            id="user_current_password" name="user[current_password]"
+            id="password" name="password"
             required="required" type="password" />
           <p class="help-block">更新以上信息，请输入密码</p>
         </div>
