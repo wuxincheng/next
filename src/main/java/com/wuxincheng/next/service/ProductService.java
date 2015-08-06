@@ -54,7 +54,12 @@ public class ProductService {
 		productDao.post(product);
 		
 		// 当前用户在发布产品的时默认赞这个产品
-		// prodLikeService.like(prodid, userid);
+		List<Product> products = productDao.queryPostByUserid(userid+"");
+		if (null == products || products.size() < 1) {
+			return;
+		}
+		// 最新发布的产品
+		prodLikeService.like(products.get(0).getProdid()+"", userid+"");
 	}
 
 	/**
@@ -102,8 +107,8 @@ public class ProductService {
 	/**
 	 * 根据产品集主键查询产品列表
 	 */
-	public List<Product> queryProductsByCollectid(String collectid) {
-		return productDao.queryProductsByCollectid(collectid);
+	public List<Product> queryProductsByCollectid(Map<String, String> queryMap) {
+		return productDao.queryProductsByCollectid(queryMap);
 	}
 
 	/**

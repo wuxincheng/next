@@ -33,8 +33,8 @@ public class ProductDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Product> queryProductsByCollectid(String collectid) {
-		return this.getSqlMapClientTemplate().queryForList("Product.queryProductsByCollectid", collectid);
+	public List<Product> queryProductsByCollectid(Map<String, String> queryMap) {
+		return this.getSqlMapClientTemplate().queryForList("Product.queryProductsByCollectid", queryMap);
 	}
 
 	public void score(Map<String, Object> like) {

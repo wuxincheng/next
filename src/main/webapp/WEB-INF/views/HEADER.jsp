@@ -65,21 +65,23 @@
         <c:when test="${not empty user}">
         <li class="account login-menu">
           <a class="account-menu main-nav" href="javascript:">
+            <img class="avatar" height="30" width="30"
             <c:choose>
+            <c:when test="${not empty user.picPath}">
+            src="${root}/user/avatar/${user.picPath}"
+            </c:when>
             <c:when test="${not empty user.socialPicPath}">
-            <img class="avatar" height="30" src="${user.socialPicPath}" width="30" />
+            src="${user.socialPicPath}"
             </c:when>
             <c:otherwise>
-            <img class="avatar" height="30" src="${root}/assets/img/logo/toplogo.png" width="30" />
+            src="${root}/assets/img/logo/toplogo.png"
             </c:otherwise>
-            </c:choose>
+            </c:choose>  />
           </a>
           <ul class="dropdown login-dropdown">
             <li><a href="${root}/my/home/list">我的主页</a></li>
             <li><a href="${root}/my/collect/list">我的收藏</a></li>
-            <!-- 
             <li><a href="${root}/my/info/query">个人设置</a></li>
-             -->
             <li><a data-method="delete" href="${root}/logout/" rel="nofollow">退出登录</a></li>
           </ul>
         </li>        
@@ -121,9 +123,25 @@
   </div>
   
   <script type="text/javascript">
-    window.onload = function(){
-  	  alert('sfdsfds');
-    }
+    $(document).ready(function(){
+  	  var msg = $("#msg-alert").text();
+    	if (msg == '') {
+    		return;
+    	}
+    	
+    	// $("#msg-alert").remove();
+    	// $("#msg-alert").hide(8000, 'swing');
+    	// $("#msg-alert").fadeTo(50000,1).hide();
+    });
+    
+    function sleep(numberMillis) { 
+  	   var now = new Date();
+  	   var exitTime = now.getTime() + numberMillis;  
+  	   while (true) { 
+  	       now = new Date(); 
+  	       if (now.getTime() > exitTime) return;
+  	    }
+  	}
   </script>
 </body>
 </html>

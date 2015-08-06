@@ -78,8 +78,11 @@ public class UserService {
 		// 根据用户主键查询用户信息是否存在
 		User updateUser = userDao.queryByUserid(user.getUserid()+"");
 		if (updateUser != null) {
-			// TODO 具体更新的内容
-			// updateUser.setNickName(user.getNickName());
+			updateUser.setNickName(user.getNickName());
+			updateUser.setMemo(user.getMemo());
+			updateUser.setUserGroup(user.getUserGroup());
+			updateUser.setPosition(user.getPosition());
+			updateUser.setPicPath(user.getPicPath());
 			userDao.updateInfo(updateUser);
 		}
 	}

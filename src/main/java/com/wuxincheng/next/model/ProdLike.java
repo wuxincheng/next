@@ -25,6 +25,7 @@ public class ProdLike implements Serializable {
 	// ======= 用户信息
 	private String nickName;
 	private String socialPicPath;
+	private String picPath;
 	private String memo;
 	private String userGroup;
 	private String position;
@@ -108,6 +109,14 @@ public class ProdLike implements Serializable {
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public String getPicPath() {
+		return picPath;
+	}
+
+	public void setPicPath(String picPath) {
+		this.picPath = picPath;
 	}
 
 }

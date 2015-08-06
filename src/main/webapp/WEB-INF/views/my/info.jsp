@@ -25,10 +25,8 @@
 
   <div class="content row cf">
     <div class="forms">
-      <form accept-charset="UTF-8" action="${root}/my/info/modify"
-        class="simple_form settings-profile"
-        enctype="multipart/form-data" id="edit_user" method="post"
-        role="form">
+      <form accept-charset="UTF-8" action="${root}/my/info/modify" class="simple_form settings-profile"
+        method="post" <c:if test="${empty user.loginType}">enctype="multipart/form-data" </c:if>>
         <h2>修改个人信息</h2>
         <input id="ok_url" name="ok_url" type="hidden" value="/posts" />
         <div class="form-group string required user_nickname">
@@ -38,29 +36,24 @@
             id="nickName" name="nickName" required="required"
             type="text" value="${user.nickName}" />
         </div>
+        <c:if test="${empty user.loginType}">
         <div class="form-group file optional user_avatar">
           <label class="file optional" for="user_avatar">头像</label>
           <div class="avatar-wrapper cf ">
-            <img alt="2e319c99 9ca7 4576 bb10 28bde38c9084"
-              src="https://rs-images.b0.upaiyun.com/uploads/user/avatar/39627/2e319c99-9ca7-4576-bb10-28bde38c9084.jpg!50x50" />
-            <input class="upload" id="user_avatar" name="user[avatar]"
-              type="file" />
-          </div>
-          <div class="checkbox">
-            <input name="user[wechat_avatar_as_default]" type="hidden"
-              value="0" /><input class="boolean optional form-control"
-              id="user_wechat_avatar_as_default"
-              name="user[wechat_avatar_as_default]" type="checkbox"
-              value="1" /> 优先使用微信头像
+            <c:if test="${not empty user.picPath}">
+              <img src="${root}/user/avatar/${user.picPath}" class="avatar" />
+            </c:if>
+            <input class="upload" id="avatarFile" name="avatarFile" type="file" />
+            <input id="picPath" name="picPath" type="hidden" value="${user.picPath}" />
           </div>
         </div>
+        </c:if>
         <div class="form-group text required user_tagline">
           <label class="text required" for="user_tagline">一句话简介</label>
           <textarea aria-required="true"
             class="text required form-control input-big"
             id="memo" name="memo" required="required">${user.memo}</textarea>
         </div>
-
         <div class="form-group string required user_organization">
           <label class="string required" for="user_organization">组织</label><input
             aria-required="true"
@@ -77,6 +70,10 @@
         </div>
         <button name='submit' value="profile" class="btn submit">更新设置</button>
       </form>
+      
+      <!-- 注册用户才能修改 -->
+      <c:if test="${empty user.loginType}">
+      
       <hr>
       <form accept-charset="UTF-8" action="${root}/my/info/password"
         class="simple_form settings-password" id="edit_user"
@@ -92,11 +89,11 @@
         <div class="form-group email optional disabled user_email">
           <label class="email optional" for="user_email">邮箱</label><input
             class="string email optional disabled form-control input-small"
-            disabled="disabled" id="user_email" name="user[email]"
-            placeholder="邮箱" type="email" value="${user.loginEmail}" />
+            disabled="disabled" placeholder="邮箱" type="email" value="${user.loginEmail}" />
         </div>
         <div class="form-group password optional user_password">
-          <label class="password optional" for="user_password">密码</label><input
+          <label class="password optional" for="user_password">新密码</label><input
+            aria-required="true"
             class="password optional form-control input-small"
             id="password1" name="password1" type="password" />
           <p class="help-block">不更改密码请留空</p>
@@ -105,7 +102,7 @@
           class="form-group password optional user_password_confirmation">
           <label class="password optional"
             for="user_password_confirmation">确认密码</label><input
-            class="password optional form-control input-small"
+            class="password optional form-control input-small" aria-required="true"
             id="password2" name="password2" type="password" />
         </div>
         <div class="form-group password required user_current_password">
@@ -116,9 +113,11 @@
             required="required" type="password" />
           <p class="help-block">更新以上信息，请输入密码</p>
         </div>
-
         <button name='submit' value="password" , class="btn submit">修改密码</button>
       </form>
+      
+      </c:if>
+      
     </div>
 
     <aside class="aside">

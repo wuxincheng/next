@@ -55,21 +55,21 @@
   <update id="updateInfo" parameterClass="User">
     UPDATE t_next_user 
         SET nickname = #nickName#, 
-        password = #password#, 
-        loginemail = #loginEmail#, 
         picpath = #picPath#, 
         socialpicpath = #socialPicPath#, 
         memo = #memo#, 
         usergroup = #userGroup#, 
         position = #position#, 
         userstate = #userState#,
-        collectpermission = #collectPermission#,
         accesstoken = #accessToken#,
         tokenexpirein = #tokenExpireIn#,
         openid = #openid#,
-        logintype = #loginType#,
-        sex = #sex# 
+        logintype = #loginType#
     WHERE userid = #userid# 
+  </update>
+  
+  <update id="changePassword" parameterClass="User">
+    UPDATE t_next_user SET password = #password# WHERE userid = #userid#
   </update>
 
 </sqlMap>

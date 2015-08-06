@@ -53,21 +53,11 @@
   <insert id="post" parameterClass="Comment">
     INSERT INTO 
       t_next_comment(
-        productid, 
-        userid, 
-        content, 
-        createtime, 
-        commentstate, 
-        likesum, 
-        replysum)
+        productid, userid, content, createtime, 
+        commentstate, likesum, replysum)
     VALUES (
-        #productid#, 
-        #userid#, 
-        #content#, 
-        CURRENT_TIMESTAMP, 
-        #commentState#, 
-        #likeSum#, 
-        #replySum#)
+        #productid#, #userid#, #content#, CURRENT_TIMESTAMP, 
+        #commentState#, #likeSum#, #replySum#)
   </insert>
 
 </sqlMap>

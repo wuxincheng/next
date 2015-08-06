@@ -2,6 +2,8 @@ package com.wuxincheng.next.model;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * 用户
  * 
@@ -29,6 +31,8 @@ public class User implements Serializable {
 
 	/** 自定义头像 */
 	private String picPath;
+
+	private MultipartFile avatarFile;
 
 	private String sex;
 
@@ -204,6 +208,14 @@ public class User implements Serializable {
 
 	public void setPassword2(String password2) {
 		this.password2 = password2;
+	}
+
+	public MultipartFile getAvatarFile() {
+		return avatarFile;
+	}
+
+	public void setAvatarFile(MultipartFile avatarFile) {
+		this.avatarFile = avatarFile;
 	}
 
 }

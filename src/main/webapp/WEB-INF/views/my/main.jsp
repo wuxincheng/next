@@ -56,15 +56,21 @@
                 <div class="user-image">
                   <a class="user-image-link" href="#">
                     <img alt="0" class="avatar" height="60" width="60"
-                      <c:if test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:if>
-                      <c:if test="${empty product.socialPicPath}">src="${root}/assets/img/logo/toplogo.png"</c:if> />
+                      <c:choose>
+                      <c:when test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:when>
+                      <c:when test="${not empty product.picPath}">src="${root}/user/avatar/${product.picPath}"</c:when>
+                      <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
+                      </c:choose> />
                   </a>
                 </div>
                 <div class="user-tooltip">
                   <a class="user-image-link" href="#">
                     <img alt="0" class="avatar avatar-big" height="120" width="120"
-                      <c:if test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:if>
-                      <c:if test="${empty product.socialPicPath}">src="${root}/assets/img/logo/toplogo.png"</c:if> />
+                      <c:choose>
+                      <c:when test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:when>
+                      <c:when test="${not empty product.picPath}">src="${root}/user/avatar/${product.picPath}"</c:when>
+                      <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
+                      </c:choose> />
                   </a>
                   <h3 class="user-nickname">${product.nickName}</h3>
                   <h4 class="user-title">${product.userGroup} - ${product.position}<br></h4>

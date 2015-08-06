@@ -19,6 +19,7 @@
     <!-- 用户信息 -->
     <result property="nickName" column="nickname" />
     <result property="socialPicPath" column="socialpicpath" />
+    <result property="picPath" column="picpath" />
     <result property="memo" column="memo" />
     <result property="userGroup" column="usergroup" />
     <result property="position" column="position" />
@@ -44,7 +45,7 @@
   </select>
   
   <select id="queryLikeUserDetail" parameterClass="java.lang.String" resultMap="ProdLikeUserDetailMapping">
-    SELECT t.*, u.nickname, u.socialpicpath, u.memo, u.usergroup, u.position, u.sex 
+    SELECT t.*, u.nickname, u.socialpicpath, u.memo, u.usergroup, u.position, u.sex, u.picpath 
       FROM t_next_prodlike t LEFT JOIN t_next_user u ON t.userid = u.userid 
      WHERE prodid = #prodid#
   </select>

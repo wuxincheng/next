@@ -28,7 +28,7 @@ public class UserDao extends BaseDao {
 	}
 
 	public void changePassword(User user) {
-		// this.getSqlMapClientTemplate().update("User.changePassword", user);
+		this.getSqlMapClientTemplate().update("User.changePassword", user);
 	}
 	
 }

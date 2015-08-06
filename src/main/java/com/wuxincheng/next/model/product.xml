@@ -46,13 +46,9 @@
     <result property="score" column="score" />
   </resultMap>
 
-  <select id="queryPostByUserid" parameterClass="java.lang.String" resultMap="ProductDetailMapping">
-    SELECT t.*, 
-           u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
-           u.memo AS usermemo, u.usergroup, u.position, '' likestate 
-      FROM t_next_product t 
-      LEFT JOIN t_next_user u ON t.userid = u.userid
-     WHERE t.userid = #userid#
+  <select id="queryPostByUserid" parameterClass="java.lang.String" resultMap="ProductMapping">
+    SELECT t.* FROM t_next_product t 
+     WHERE t.userid = #userid# ORDER BY t.postdatetime DESC
   </select>
 
   <select id="queryLikeByUserid" parameterClass="java.lang.String" resultMap="ProductDetailMapping">
@@ -62,7 +58,7 @@
       FROM t_next_product t 
       LEFT JOIN t_next_user u ON t.userid = u.userid
       LEFT JOIN t_next_prodlike p ON t.prodid = p.prodid
-     WHERE p.userid = #userid#
+     WHERE p.userid = #userid# ORDER BY t.postdatetime DESC
   </select>
   
   <select id="queryDetailByProdid" parameterClass="java.util.Map" resultMap="ProductDetailMapping">
@@ -106,9 +102,16 @@
     UPDATE t_next_product SET commentsum=commentsum+1 WHERE prodid = #prodid#
   </update>
 
-  <select id="queryProductsByCollectid" resultMap="ProductMapping" parameterClass="java.lang.String">
-    SELECT t.* FROM t_next_product t 
-    WHERE t.collectid = #collectid# ORDER BY t.postDateTime DESC
+  <select id="queryProductsByCollectid" resultMap="ProductDetailMapping" parameterClass="java.util.Map">
+    SELECT t.*, 
+           u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
+           u.memo AS usermemo, u.usergroup, u.position, p.likestate 
+      FROM t_next_product t 
+      LEFT JOIN t_next_user u ON t.userid = u.userid
+      LEFT JOIN (SELECT * FROM t_next_prodlike WHERE userid = #userid#)p
+        ON t.prodid = p.prodid
+     WHERE t.collectid = #collectid# 
+     ORDER BY t.postDateTime DESC
   </select>
   
   <update id="score" parameterClass="java.util.Map">

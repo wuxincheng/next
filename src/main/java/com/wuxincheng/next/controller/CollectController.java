@@ -1,8 +1,8 @@
 package com.wuxincheng.next.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.wuxincheng.next.model.Collect;
 import com.wuxincheng.next.model.CollectUser;
@@ -22,6 +21,7 @@ import com.wuxincheng.next.service.CollectService;
 import com.wuxincheng.next.service.CollectUserService;
 import com.wuxincheng.next.service.ProductService;
 import com.wuxincheng.next.util.Constants;
+import com.wuxincheng.next.util.ImageUtil;
 import com.wuxincheng.next.util.StringUtil;
 import com.wuxincheng.next.util.Validation;
 
@@ -125,7 +125,7 @@ public class CollectController extends BaseController {
 		logger.info("封面图片 coverImgPath={}", coverImgPath);
 		
 		// 保存图片到服务器
-		saveFile(ctxPath, coverImgPath, collect.getCoverImgFile());
+		ImageUtil.saveFile(ctxPath, coverImgPath, collect.getCoverImgFile());
 		// 设置Collect对中图片存储的路径
 		collect.setCoverImgPath(coverImgPath);
 		logger.info("封面图片存储成功");
@@ -160,11 +160,7 @@ public class CollectController extends BaseController {
 			return "redirect:list";
 		}
 		
-		// 查询这个产品集下的所有产品
-		List<Product> products = productService.queryProductsByCollectid(collectid);
-		
-		request.setAttribute("products", products);
-		request.setAttribute("collect", collect);
+		String userid = null;
 		
 		// 判断用户是否已经登录
 		if (getCurrentUserid(request) != null) {
@@ -172,35 +168,19 @@ public class CollectController extends BaseController {
 			CollectUser collectUser =collectUserService.query(Integer.parseInt(collectid), 
 					getCurrentUserid(request));
 			request.setAttribute("collectUser", collectUser);
+			userid = getCurrentUseridStr(request);
 		}
 		
+		// 查询这个产品集下的所有产品
+		Map<String, String> queryMap = new HashMap<String, String>();
+		queryMap.put("collectid", collectid);
+		queryMap.put("userid", userid);
+		List<Product> products = productService.queryProductsByCollectid(queryMap);
+		
+		request.setAttribute("products", products);
+		request.setAttribute("collect", collect);
+		
 		return "collect/detail";
-	}
-	
-	/**
-	 * 保存图片
-	 * 
-	 * @param imgFileName
-	 *            上传照片文件名
-	 * @param filedata
-	 *            文件数据
-	 */
-	public void saveFile(String saveFilePath, String imgFileName, MultipartFile filedata) {
-		// 构建文件目录
-		File fileDir = new File(saveFilePath);
-		if (!fileDir.exists()) {
-			fileDir.mkdirs();
-		}
-
-		try {
-			FileOutputStream out = new FileOutputStream(saveFilePath + imgFileName);
-			// 写入文件
-			out.write(filedata.getBytes());
-			out.flush();
-			out.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	/**
