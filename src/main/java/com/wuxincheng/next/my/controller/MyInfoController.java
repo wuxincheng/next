@@ -58,25 +58,30 @@ public class MyInfoController extends BaseController {
 		
 		logger.debug("修改信息验证通过");
 
-		if (user.getAvatarFile().getSize() > 0) {
-			logger.debug("处理用户头像信息");
-			
-			String avataName = user.getAvatarFile().getOriginalFilename();
-			String lastFix = avataName.substring(avataName.lastIndexOf("."), avataName.length());
-			logger.debug("用户头像图片格式为 lastFix={}", lastFix);
-			
-			// 生成图片名称
-			String ctxPath = request.getSession().getServletContext().getRealPath("/") + "user/avatar/";
-			logger.debug("保存用户头像路径为 ctxPath={}", ctxPath);
-			String coverImgPath = System.currentTimeMillis() + lastFix;
-			logger.info("封面图片 coverImgPath={}", coverImgPath);
-			
-			// 保存图片到服务器
-			ImageUtil.saveFile(ctxPath, coverImgPath, user.getAvatarFile());
-			logger.debug("头像已保存到图片服务器");
-			// 设置user头像存储的路径
-			user.setPicPath(coverImgPath);
-			logger.debug("user头像存储的路径已设置");
+		// 判断是邮箱注册还是授权登录
+		if (StringUtils.isEmpty(sessionInfo.getLoginType())) { 
+			if (StringUtils.isNotEmpty(user.getAvatarFile().getName())) {
+
+				logger.debug("处理用户头像信息");
+				
+				String avataName = user.getAvatarFile().getOriginalFilename();
+				String lastFix = avataName.substring(avataName.lastIndexOf("."), avataName.length());
+				logger.debug("用户头像图片格式为 lastFix={}", lastFix);
+				
+				// 生成图片名称
+				String ctxPath = request.getSession().getServletContext().getRealPath("/") + "user/avatar/";
+				logger.debug("保存用户头像路径为 ctxPath={}", ctxPath);
+				String coverImgPath = System.currentTimeMillis() + lastFix;
+				logger.info("封面图片 coverImgPath={}", coverImgPath);
+				
+				// 保存图片到服务器
+				ImageUtil.saveFile(ctxPath, coverImgPath, user.getAvatarFile());
+				logger.debug("头像已保存到图片服务器");
+				// 设置user头像存储的路径
+				user.setPicPath(coverImgPath);
+				logger.debug("user头像存储的路径已设置");
+				
+			}
 		}
 		
 		// 更新
