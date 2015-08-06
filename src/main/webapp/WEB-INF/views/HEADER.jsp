@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TOP | 找到你喜欢的理财产品</title>
 <link data-turbolinks-track="true" href="${root}/assets/css/application.css" media="all" rel="stylesheet">
-<script async="" src="http://www.google-analytics.com/analytics.js"></script>
+
 <script data-turbolinks-track="true" src="${root}/assets/js/application.js"></script>
 
 <!-- meta -->

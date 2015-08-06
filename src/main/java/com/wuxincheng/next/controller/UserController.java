@@ -38,16 +38,18 @@ public class UserController extends BaseController {
 			return "404";
 		}
 
-		User user = userService.queryByUserid(userid);
+		// 查询用户
+		User userQuery = userService.queryByUserid(userid);
 		
-		if (null == user) {
+		if (null == userQuery) {
 			return "404";
 		}
 		
+		// 查询用户赞过的产品
 		List<Product> products = productService.queryUserHome(userid);
 		
 		model.addAttribute("products", products);
-		model.addAttribute("user", user); // 和session中的user冲突
+		model.addAttribute("userQuery", userQuery);
 		
 		return "my/main";
 	}

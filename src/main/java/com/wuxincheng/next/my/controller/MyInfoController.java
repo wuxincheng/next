@@ -130,8 +130,8 @@ public class MyInfoController extends BaseController {
 			return responseValidateMsg;
 		}
 		
-		if (user.getNickName().length() < 3 || user.getNickName().length() > 10) {
-			responseValidateMsg = "用户昵称无效长度 [3到10位]";
+		if (user.getNickName().length() < 2 || user.getNickName().length() > 8) {
+			responseValidateMsg = "用户昵称无效长度 [2到8位]";
 			return responseValidateMsg;
 		}
 		
@@ -169,8 +169,8 @@ public class MyInfoController extends BaseController {
 		}
 		
 		// 头像大小不能超过100KB
-		if (user.getAvatarFile().getSize() > 50*1024) {
-			responseValidateMsg = "图片太大，不通超过50K";
+		if (user.getAvatarFile().getSize() > 100*1024) {
+			responseValidateMsg = "图片太大，不通超过100K";
 			return responseValidateMsg;
 		}
 		

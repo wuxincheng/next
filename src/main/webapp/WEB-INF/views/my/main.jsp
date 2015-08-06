@@ -21,9 +21,28 @@
   <jsp:include page="../HEADER.jsp" />
   
   <div class="content row ">
+    <c:if test="${not empty userQuery}">
     <section class="profile">
-      <a class="user-image-link" href="/users/39627">
-        <img class="avatar" height="80" width="80" 
+      <a class="user-image-link" href="#">
+        <img class="avatar" height="50px" width="50px" 
+          <c:choose>
+          <c:when test="${not empty userQuery.socialPicPath}">src="${userQuery.socialPicPath}"</c:when>
+          <c:when test="${not empty userQuery.picPath}">src="${root}/user/avatar/${userQuery.picPath}"</c:when>
+          <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
+          </c:choose> />
+      </a>
+      <h2 class="user-name">${userQuery.nickName}</h2>
+      <p></p>
+      <p class="user-subtitle"> ${userQuery.userGroup} - ${userQuery.position}<br></p>
+      <p class="user-bio">${userQuery.memo}</p>
+      <div class="profile-end-symbol">~</div>
+    </section>
+    </c:if>
+
+    <c:if test="${empty userQuery}">
+    <section class="profile">
+      <a class="user-image-link" href="#">
+        <img class="avatar" height="50px" width="50px" 
           <c:choose>
           <c:when test="${not empty user.socialPicPath}">src="${user.socialPicPath}"</c:when>
           <c:when test="${not empty user.picPath}">src="${root}/user/avatar/${user.picPath}"</c:when>
@@ -36,7 +55,8 @@
       <p class="user-bio">${user.memo}</p>
       <div class="profile-end-symbol">~</div>
     </section>
-    
+    </c:if>
+
     <section class="post">
       <ul class="product-list">
         <c:if test="${not empty products}">

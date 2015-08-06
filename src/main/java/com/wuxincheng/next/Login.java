@@ -48,14 +48,14 @@ public class Login extends BaseController {
 		// 验证登录信息
 		if (Validation.isBlank(user.getLoginEmail()) || Validation.isBlank(user.getPassword())) {
 			model.addAttribute(Constants.MSG_WARN, "用户邮箱和密码都不能为空");
-			return "login";
+			return "redirect:/login/";
 		}
 		
 		User userFlag = userService.checkLogin(user.getLoginEmail());
 		
 		if (null == userFlag) {
 			model.addAttribute(Constants.MSG_WARN, "用户邮箱不存在！");
-			return "login";
+			return "redirect:/login/";
 		}
 		
 		String passwordFlag = userFlag.getPassword(); // 数据库中的密码
@@ -67,7 +67,7 @@ public class Login extends BaseController {
 			request.getSession().setAttribute(Constants.CURRENT_USER, userFlag);
 		} else {
 			model.addAttribute(Constants.MSG_WARN, "用户密码不正确");
-			return "login";
+			return "redirect:/login/";
 		}
 		
 		model.addAttribute(Constants.MSG_SUCCESS, "登录成功");
