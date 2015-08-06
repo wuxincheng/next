@@ -77,7 +77,9 @@
           <ul class="dropdown login-dropdown">
             <li><a href="${root}/my/home/list">我的主页</a></li>
             <li><a href="${root}/my/collect/list">我的收藏</a></li>
+            <!-- 
             <li><a href="${root}/my/info/query">个人设置</a></li>
+             -->
             <li><a data-method="delete" href="${root}/logout/" rel="nofollow">退出登录</a></li>
           </ul>
         </li>        
@@ -92,28 +94,36 @@
     </nav>
   </header>
   
-  <c:if test="${not empty success}">
-  <div id="msg-alert" class="alert alert-success fade in row" style="margin-top: 30px;">
-    <h4>${success}</h4>
-  </div>
-  </c:if>
+  <div>
+    <c:if test="${not empty success}">
+    <div id="msg-alert" class="alert alert-success fade in row" style="margin-top: 30px;">
+      <h4>${success}</h4>
+    </div>
+    </c:if>
+    
+    <c:if test="${not empty info}">
+    <div id="msg-alert" class="alert alert-info fade in row" style="margin-top: 30px;">
+      <h4>${info}</h4>
+    </div>
+    </c:if>
   
-  <c:if test="${not empty info}">
-  <div id="msg-alert" class="alert alert-info fade in row" style="margin-top: 30px;">
-    <h4>${info}</h4>
+    <c:if test="${not empty warning}">
+    <div id="msg-alert" class="alert alert-warning fade in row" style="margin-top: 30px;">
+      <h4>${warning}</h4>
+    </div>
+    </c:if>
+  
+    <c:if test="${not empty danger}">
+    <div id="msg-alert" class="alert alert-danger fade in row" style="margin-top: 30px;">
+      <h4>${danger}</h4>
+    </div>
+    </c:if>
   </div>
-  </c:if>
-
-  <c:if test="${not empty warning}">
-  <div id="msg-alert" class="alert alert-warning fade in row" style="margin-top: 30px;">
-    <h4>${warning}</h4>
-  </div>
-  </c:if>
-
-  <c:if test="${not empty danger}">
-  <div id="msg-alert" class="alert alert-danger fade in row" style="margin-top: 30px;">
-    <h4>${danger}</h4>
-  </div>
-  </c:if>
+  
+  <script type="text/javascript">
+    window.onload = function(){
+  	  alert('sfdsfds');
+    }
+  </script>
 </body>
 </html>

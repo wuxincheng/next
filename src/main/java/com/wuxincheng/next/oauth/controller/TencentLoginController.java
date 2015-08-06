@@ -86,7 +86,7 @@ public class TencentLoginController {
 					oauthUser = new User();
 
 					oauthUser.setNickName(userInfoMap.get("nickname").toString());
-					oauthUser.setSocialPicPath(userInfoMap.get("figureurl_qq_2").toString());
+					oauthUser.setSocialPicPath(userInfoMap.get("figureurl_qq_1").toString());
 					oauthUser.setAccessToken(accessTokenObj.getAccessToken());
 					oauthUser.setTokenExpireIn(accessTokenObj.getExpireIn() + "");
 					oauthUser.setOpenid(openIDObj.getUserOpenID());

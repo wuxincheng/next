@@ -26,5 +26,9 @@ public class UserDao extends BaseDao {
 	public User queryByUserid(String userid) {
 		return (User) this.getSqlMapClientTemplate().queryForObject("User.queryByUserid", userid);
 	}
+
+	public void changePassword(User user) {
+		// this.getSqlMapClientTemplate().update("User.changePassword", user);
+	}
 	
 }

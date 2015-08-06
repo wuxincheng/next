@@ -110,7 +110,7 @@ public class WechatLoginController {
 		oauthUser.setLoginType(Constants.OAUTH_WECHAT);
 		checkAndProcessOAuthUser(oauthUser, request);
 		
-		model.addAttribute(Constants.MSG_INFO, "微信授权登录成功");
+		model.addAttribute(Constants.MSG_SUCCESS, "微信授权登录成功");
 		
 		return "redirect:/product/list";
 	}

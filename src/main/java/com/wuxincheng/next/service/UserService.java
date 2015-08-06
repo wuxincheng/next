@@ -94,4 +94,11 @@ public class UserService {
 		return userDao.queryByUserid(userid);
 	}
 
+	/**
+	 * 修改登录密码
+	 */
+	public void changePassword(User user) {
+		userDao.changePassword(user);
+	}
+
 }

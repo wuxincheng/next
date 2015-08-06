@@ -14,6 +14,7 @@ import com.wuxincheng.next.controller.BaseController;
 import com.wuxincheng.next.model.User;
 import com.wuxincheng.next.service.UserService;
 import com.wuxincheng.next.util.Constants;
+import com.wuxincheng.next.util.MD5;
 import com.wuxincheng.next.util.Validation;
 
 /**
@@ -52,17 +53,25 @@ public class MyInfoController extends BaseController {
 	@RequestMapping(value = "/password")
 	public String password(Model model, HttpServletRequest request, User user) {
 		logger.info("修改登录密码");
-		// 设置返回路径
-		String returnPath = "redirect:info";
+		
+		// 获取登录用户的信息
+		User sessionInfo = getCurrentUser(request);
 		
 		// 验证
-		String reponseValidateMsg = validateUserChangePwdInfo(user);
+		String reponseValidateMsg = validateUserChangePwdInfo(user, sessionInfo);
 		if (StringUtils.isNotEmpty(reponseValidateMsg)) {
 			model.addAttribute(Constants.MSG_WARN, reponseValidateMsg);
-			return returnPath;
+			return "redirect:info";
 		}
 		
-		return returnPath;
+		// 更新密码
+		user.setPassword(MD5.encryptMD5Pwd(user.getPassword1()));
+		user.setUserid(sessionInfo.getUserid());
+		userService.changePassword(user);
+		
+		model.addAttribute(Constants.MSG_SUCCESS, "密码更新成功");
+		
+		return "redirect:info";
 	}
 
 	/**
@@ -71,16 +80,62 @@ public class MyInfoController extends BaseController {
 	 * @param user
 	 * @return
 	 */
-	private String validateUserChangePwdInfo(User user) {
+	private String validateUserChangePwdInfo(User user, User sessionInfo) {
 		String responseValidateMsg = null;
+		
+		// 验证是否为空
 		
 		if (StringUtils.isEmpty(user.getLoginEmail())) {
 			responseValidateMsg = "邮箱不能为空";
 			return responseValidateMsg;
 		}
 		
+		if (StringUtils.isEmpty(user.getPassword())) {
+			responseValidateMsg = "当前密码不能为空";
+			return responseValidateMsg;
+		}
+		
+		if (StringUtils.isEmpty(user.getPassword1())) {
+			responseValidateMsg = "新密码不能为空";
+			return responseValidateMsg;
+		}
+		
+		if (StringUtils.isEmpty(user.getPassword2())) {
+			responseValidateMsg = "新确认密码不能为空";
+			return responseValidateMsg;
+		}
+		
+		// 验证字段长度
+		
+		if (user.getLoginEmail().length() > 50 || user.getLoginEmail().length() < 8) {
+			responseValidateMsg = "邮箱长度无效";
+			return responseValidateMsg;
+		}
+		
+		if (user.getPassword().length() > 25 || user.getPassword().length() < 7) {
+			responseValidateMsg = "当前密码长度无效";
+			return responseValidateMsg;
+		}
+		
+		if (user.getPassword1().length() > 25 || user.getPassword1().length() < 7) {
+			responseValidateMsg = "新密码长度无效";
+			return responseValidateMsg;
+		}
+		
+		if (!user.getPassword1().equals(user.getPassword2())) {
+			responseValidateMsg = "两次新密码输入不一致";
+			return responseValidateMsg;
+		}
+		
+		// 验证格式
+		
 		if (!Validation.checkEmail(user.getLoginEmail())) {
 			responseValidateMsg = "邮箱格式不正确";
+			return responseValidateMsg;
+		}
+		
+		if (sessionInfo.getPassword().equals(user.getPassword())) {
+			responseValidateMsg = "当前密码不正确";
 			return responseValidateMsg;
 		}
 		

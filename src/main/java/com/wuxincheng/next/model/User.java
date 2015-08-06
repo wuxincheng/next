@@ -5,9 +5,9 @@ import java.io.Serializable;
 /**
  * 用户
  * 
- * @author wuxincheng(wxcking) 
- * @date 2015年7月15日 下午5:13:39 
- *
+ * @author wuxincheng(wxcking)
+ * @date 2015年7月15日 下午5:13:39
+ * 
  */
 public class User implements Serializable {
 
@@ -21,6 +21,7 @@ public class User implements Serializable {
 
 	/** 登录密码 */
 	private String password;
+	private String password1;
 	private String password2;
 
 	/** 登录邮箱 */
@@ -28,7 +29,7 @@ public class User implements Serializable {
 
 	/** 自定义头像 */
 	private String picPath;
-	
+
 	private String sex;
 
 	/** 社交平台头像 */
@@ -119,6 +120,14 @@ public class User implements Serializable {
 
 	public String getUserGroup() {
 		return userGroup;
+	}
+
+	public String getPassword1() {
+		return password1;
+	}
+
+	public void setPassword1(String password1) {
+		this.password1 = password1;
 	}
 
 	public void setUserGroup(String userGroup) {

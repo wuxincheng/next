@@ -29,7 +29,6 @@
         class="simple_form settings-profile"
         enctype="multipart/form-data" id="edit_user" method="post"
         role="form">
-        <input name="userid" id="userid" type="hidden" value="${user.userid}" />
         <h2>修改个人信息</h2>
         <input id="ok_url" name="ok_url" type="hidden" value="/posts" />
         <div class="form-group string required user_nickname">
