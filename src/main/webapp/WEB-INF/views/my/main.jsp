@@ -23,9 +23,12 @@
   <div class="content row ">
     <section class="profile">
       <a class="user-image-link" href="/users/39627">
-        <img class="avatar" height="120" width="120" 
-          <c:if test="${empty user.socialPicPath}">src="${root}/assets/img/logo/toplogo.png"</c:if>
-          <c:if test="${not empty user.socialPicPath}">src="${user.socialPicPath}"</c:if> />
+        <img class="avatar" height="80" width="80" 
+          <c:choose>
+          <c:when test="${not empty user.socialPicPath}">src="${user.socialPicPath}"</c:when>
+          <c:when test="${not empty user.picPath}">src="${root}/user/avatar/${user.picPath}"</c:when>
+          <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
+          </c:choose> />
       </a>
       <h2 class="user-name">${user.nickName}</h2>
       <p></p>
