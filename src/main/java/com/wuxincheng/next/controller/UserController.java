@@ -1,6 +1,8 @@
 package com.wuxincheng.next.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -30,23 +32,32 @@ public class UserController extends BaseController {
 	private UserService userService;
 	
 	@RequestMapping(value = "/main")
-	public String main(Model model, HttpServletRequest request, String userid) {
-		logger.info("显示用户中心 userid={}", userid);
+	public String main(Model model, HttpServletRequest request, String queryUserid) {
+		logger.info("显示用户中心 userid={}", queryUserid);
 
 		// 验证userid
-		if (StringUtils.isEmpty(userid) || !Validation.isIntPositive(userid)) {
+		if (StringUtils.isEmpty(queryUserid) || !Validation.isIntPositive(queryUserid)) {
 			return "404";
 		}
 
 		// 查询用户
-		User userQuery = userService.queryByUserid(userid);
+		User userQuery = userService.queryByUserid(queryUserid);
 		
 		if (null == userQuery) {
 			return "404";
 		}
 		
-		// 查询用户赞过的产品
-		List<Product> products = productService.queryUserHome(userid);
+		Map<String, String> queryMap = new HashMap<String, String>();
+		queryMap.put("queryUserid", queryUserid); // 需要查看用户信息的userid
+		
+		// 判断当前是否有登录用户
+		String sessionUserid = getCurrentUseridStr(request);
+		if (StringUtils.isNotEmpty(sessionUserid)) {
+			queryMap.put("sessionUserid", sessionUserid);
+		}
+		
+		// 查询登录用户赞过的产品
+		List<Product> products = productService.queryUserMain(queryMap);
 		
 		model.addAttribute("products", products);
 		model.addAttribute("userQuery", userQuery);

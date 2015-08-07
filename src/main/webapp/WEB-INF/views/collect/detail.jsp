@@ -87,7 +87,7 @@
               <ul class="product-meta right">
                 <li class="product-avatar">
                   <div class="user-image">
-                    <a class="user-image-link" href="#">
+                    <a class="user-image-link" href="${root}/user/main?queryUserid=${product.userid}" target="_blank">
                       <img alt="0" class="avatar" height="60" width="60"
                         <c:choose>
                         <c:when test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:when>
@@ -110,7 +110,7 @@
                     <p class="user-bio">${product.userMemo}</p>
                   </div>
                   <div class="product-comment">
-                    <a class="product-comments" href="#"> ${product.commentSum} </a>
+                    <a class="product-comments" href="${root}/product/detail?prodid=${product.prodid}" target="_blank"> ${product.commentSum} </a>
                   </div>
                 </li>
               </ul>

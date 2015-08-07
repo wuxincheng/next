@@ -41,7 +41,7 @@
               <ul class="product-meta right">
                 <li class="product-avatar">
                   <div class="user-image">
-                    <a class="user-image-link" href="#">
+                    <a class="user-image-link" href="${root}/user/main?queryUserid=${product.userid}" target="_blank">
                       <img alt="0" class="avatar" height="60" width="60" 
                         <c:choose>
                         <c:when test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:when>
@@ -76,7 +76,7 @@
           <c:forEach items="${prodLikes}" var="prodLike">
             <li class="product-avatar">
               <div class="user-image">
-                <a class="user-image-link" href="#">
+                <a class="user-image-link" href="${root}/user/main?queryUserid=${prodLike.userid}" target="_blank">
                   <img class="avatar" height="60" width="60" 
                     <c:choose>
                     <c:when test="${not empty prodLike.socialPicPath}">src="${prodLike.socialPicPath}"</c:when>
@@ -154,7 +154,7 @@
         <div class="media comment" id="comment_25191">
           <div class="comment-avatar">
             <div class="user-image">
-              <a class="user-image-link" href="#">
+              <a class="user-image-link" href="${root}/user/main?queryUserid=${comment.userid}" target="_blank">
                 <img class="avatar" height="60" width="60" 
                   <c:choose>
                   <c:when test="${not empty comment.socialPicPath}">src="${comment.socialPicPath}"</c:when>

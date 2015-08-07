@@ -112,7 +112,7 @@ public class ProductService {
 	}
 
 	/**
-	 * 查询用户发布和赞过的产品
+	 * 登录用户查询自己发布和赞过的产品
 	 * 
 	 * @param userid
 	 * @return
@@ -153,6 +153,13 @@ public class ProductService {
 		 */
 		
 		return likeProducts;
+	}
+
+	/**
+	 * 查询用户主页，和已登录用户赞过这个用户的产品列表
+	 */
+	public List<Product> queryUserMain(Map<String, String> queryMap) {
+		return productDao.queryUserMain(queryMap);
 	}
 
 }

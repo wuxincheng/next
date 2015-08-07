@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>注册 - TOP</title>
+<title>个人主页 - TOP</title>
 
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
@@ -23,7 +23,7 @@
   <div class="content row ">
     <c:if test="${not empty userQuery}">
     <section class="profile">
-      <a class="user-image-link" href="#">
+      <a class="user-image-link" href="${root}/user/main?queryUserid=${userQuery.userid}" target="_blank">
         <img class="avatar" height="50px" width="50px" 
           <c:choose>
           <c:when test="${not empty userQuery.socialPicPath}">src="${userQuery.socialPicPath}"</c:when>
@@ -41,7 +41,7 @@
 
     <c:if test="${empty userQuery}">
     <section class="profile">
-      <a class="user-image-link" href="#">
+      <a class="user-image-link" href="${root}/user/main?queryUserid=${user.userid}" target="_blank">
         <img class="avatar" height="50px" width="50px" 
           <c:choose>
           <c:when test="${not empty user.socialPicPath}">src="${user.socialPicPath}"</c:when>
@@ -77,7 +77,7 @@
             <ul class="product-meta right">
               <li class="product-avatar">
                 <div class="user-image">
-                  <a class="user-image-link" href="#">
+                  <a class="user-image-link" href="${root}/user/main?queryUserid=${product.userid}" target="_blank">
                     <img alt="0" class="avatar" height="60" width="60"
                       <c:choose>
                       <c:when test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:when>
@@ -100,7 +100,7 @@
                   <p class="user-bio">${product.userMemo}</p>
                 </div>
                 <div class="product-comment">
-                  <a class="product-comments" href="#"> ${product.commentSum} </a>
+                  <a class="product-comments" href="${root}/product/detail?prodid=${product.prodid}" target="_blank"> ${product.commentSum} </a>
                 </div>
               </li>
             </ul>
