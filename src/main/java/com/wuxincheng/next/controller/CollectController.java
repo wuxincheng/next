@@ -26,7 +26,7 @@ import com.wuxincheng.next.util.StringUtil;
 import com.wuxincheng.next.util.Validation;
 
 /**
- * 产品集
+ * 产品集，现更名为榜单
  * 
  * @author wuxincheng(wxcking)
  * @date 2015年7月1日 下午10:30:45 
@@ -48,14 +48,14 @@ public class CollectController extends BaseController {
 	
 	@RequestMapping(value = "/list")
 	public String list(Model model, HttpServletRequest request) {
-		logger.info("显示产品集列表");
+		logger.info("显示榜单列表");
 		
 		requestMessageProcess(request);
 		
 		List<Collect> collects = collectService.queryAll();
 		
 		if (null == collects || collects.size() < 1) {
-			model.addAttribute(Constants.MSG_INFO, "目前还没发布产品集");
+			model.addAttribute(Constants.MSG_INFO, "目前还没发布榜单");
 		}
 		
 		request.setAttribute("collects", collects);
@@ -65,10 +65,10 @@ public class CollectController extends BaseController {
 	
 	@RequestMapping(value = "/edit")
 	public String edit(Model model, HttpServletRequest request) {
-		logger.info("显示添加产品集页面");
+		logger.info("显示添加榜单页面");
 		requestMessageProcess(request);
 		
-		// 判断用户是否有创建产品集权限
+		// 判断用户是否有创建榜单权限
 		if (!isCollectPermission(request)) {
 			model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
 			return "redirect:list";
@@ -81,33 +81,33 @@ public class CollectController extends BaseController {
 	
 	@RequestMapping(value = "/create")
 	public String create(Model model, HttpServletRequest request, Collect collect) {
-		logger.info("添加新的产品集 collection={}", StringUtil.toStringMultiLine(collect));
+		logger.info("添加新的榜单 collection={}", StringUtil.toStringMultiLine(collect));
 		
-		// 判断用户是否有创建产品集权限
+		// 判断用户是否有创建榜单权限
 		if (!isCollectPermission(request)) {
 			model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
 			return "redirect:edit";
 		}
 		
-		// 验证产品集名称和说明是否为空
+		// 验证榜单名称和说明是否为空
 		if (StringUtils.isEmpty(collect.getCollectName())) {
-			model.addAttribute(Constants.MSG_WARN, "产品集名称不能为空");
+			model.addAttribute(Constants.MSG_WARN, "榜单名称不能为空");
 			return "redirect:edit";
 		}
 		if (StringUtils.isEmpty(collect.getMemo())) {
-			model.addAttribute(Constants.MSG_WARN, "产品集说明不能为空");
+			model.addAttribute(Constants.MSG_WARN, "榜单说明不能为空");
 			return "redirect:edit";
 		}
 		
 		// 验证是否上传了图片
 		if (null == collect.getCoverImgFile()) {
-			model.addAttribute(Constants.MSG_WARN, "产品集背景图片不能为空");
+			model.addAttribute(Constants.MSG_WARN, "榜单背景图片不能为空");
 			return "redirect:edit";
 		}
 		
 		// 控制图片大小不能大于3M
-		if (collect.getCoverImgFile().getSize() > 400000) {
-			model.addAttribute(Constants.MSG_WARN, "产品集背景图片不能超过3M");
+		if (collect.getCoverImgFile().getSize() > 5*1024*1024) {
+			model.addAttribute(Constants.MSG_WARN, "榜单背景图片不能超过3M");
 			return "redirect:edit";
 		}
 		
@@ -115,7 +115,7 @@ public class CollectController extends BaseController {
 		String checkFileName = collect.getCoverImgFile().getOriginalFilename();
 		String lastFix = checkFileName.substring(checkFileName.lastIndexOf("."), checkFileName.length());
 		if (!".png|.jpg".contains(lastFix)) {
-			model.addAttribute(Constants.MSG_WARN, "产品集背景图片仅支持png、jpg格式");
+			model.addAttribute(Constants.MSG_WARN, "榜单背景图片仅支持png、jpg格式");
 			return "redirect:edit";
 		}
 		
@@ -132,11 +132,11 @@ public class CollectController extends BaseController {
 		
 		try {
 			collectService.create(collect);
-			logger.info("产品集创建成功");
-			model.addAttribute(Constants.MSG_SUCCESS, "产品集创建成功");
+			logger.info("榜单创建成功");
+			model.addAttribute(Constants.MSG_SUCCESS, "榜单创建成功");
 		} catch (Exception e) {
-			logger.error("产品集创建出现异常", e);
-			model.addAttribute(Constants.MSG_ERROR, "产品集创建错误");
+			logger.error("榜单创建出现异常", e);
+			model.addAttribute(Constants.MSG_ERROR, "榜单创建错误");
 		}
 		
 		return "redirect:list";
@@ -144,7 +144,7 @@ public class CollectController extends BaseController {
 	
 	@RequestMapping(value = "/detail")
 	public String detail(HttpServletRequest request, String collectid) {
-		logger.info("显示产品集 collectionid={}", collectid);
+		logger.info("显示榜单 collectionid={}", collectid);
 		
 		// 提示信息显示
 		requestMessageProcess(request);
@@ -154,7 +154,7 @@ public class CollectController extends BaseController {
 			return "redirect:list";
 		}
 		
-		// 是否存在这个产品集
+		// 是否存在这个榜单
 		Collect collect = collectService.queryDetailByCollectid(collectid);
 		if (null == collect) {
 			return "redirect:list";
@@ -164,14 +164,14 @@ public class CollectController extends BaseController {
 		
 		// 判断用户是否已经登录
 		if (getCurrentUserid(request) != null) {
-			// 如果登录，查询该用户是否已经收藏该产品集
+			// 如果登录，查询该用户是否已经收藏该榜单
 			CollectUser collectUser =collectUserService.query(Integer.parseInt(collectid), 
 					getCurrentUserid(request));
 			request.setAttribute("collectUser", collectUser);
 			userid = getCurrentUseridStr(request);
 		}
 		
-		// 查询这个产品集下的所有产品
+		// 查询这个榜单下的所有产品
 		Map<String, String> queryMap = new HashMap<String, String>();
 		queryMap.put("collectid", collectid);
 		queryMap.put("userid", userid);
@@ -184,7 +184,7 @@ public class CollectController extends BaseController {
 	}
 	
 	/**
-	 * 产品集收藏和取消收藏操作
+	 * 榜单收藏和取消收藏操作
 	 * 
 	 * @param collectid
 	 * @param userid

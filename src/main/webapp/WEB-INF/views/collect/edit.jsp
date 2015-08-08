@@ -7,13 +7,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>TOP | 创建产品集</title>
+<title>TOP | 创建榜单</title>
 
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
 
 <meta name="author" content="36Kr">
-<meta name="description" content="NEXT - 找到你喜欢的理财产品">
+<meta name="description" content="NEXT - 分享你喜欢的理财产品">
 <meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
 <link rel="author" href="http://next.36kr.com/humans.txt">
 
@@ -38,17 +38,17 @@
           </div>
           <div class="form-group string required note_title">
             <input type="hidden" id="userid" name="userid" value="${userid}" />
-            <label class="string required" for="note_title">产品集名称</label><input aria-required="true"
+            <label class="string required" for="note_title">榜单名称</label><input aria-required="true"
               autofocus="autofocus" class="string required form-control input-small" id="collectName"
-              name="collectName" placeholder="产品集名称" required="required" type="text" />
+              name="collectName" placeholder="榜单名称" required="required" type="text" />
           </div>
           <div class="form-group string required note_title">
-            <label class="string required" for="note_title">产品集背景图片（建议：1600*600）</label>
+            <label class="string required" for="note_title">榜单背景图片（建议：1600*600）</label>
             <input aria-required="true" autofocus="autofocus" class="form-control input-small" 
               id="coverImgFile" name="coverImgFile" required="required" type="file" />
           </div>
           <div class="form-group text required note_summary">
-            <label class="text required" for="note_summary">产品集说明</label>
+            <label class="text required" for="note_summary">榜单说明</label>
             <textarea aria-required="true" class="text required form-control input-big"
               id="memo" name="memo" required="required">
 </textarea>

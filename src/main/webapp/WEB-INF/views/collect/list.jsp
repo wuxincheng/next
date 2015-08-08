@@ -6,11 +6,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TOP - 产品集</title>
+<title>TOP - 榜单</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="author" content="36Kr">
-<meta name="description" content="NEXT - 找到你喜欢的理财产品">
+<meta name="description" content="NEXT - 分享你喜欢的理财产品">
 <meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
 
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
@@ -30,7 +30,7 @@
         </div>
          -->
         <c:if test="${'1' eq user.collectPermission}">
-        <a class="btn submit-btn right" href="${root}/collect/edit">创建产品集</a>
+        <a class="btn submit-btn right" href="${root}/collect/edit">创建榜单</a>
         </c:if>
       </section>
       <section class="list">

@@ -6,10 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TOP - 产品集</title>
+<title>TOP - 榜单</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="description" content="TOP - 找到你喜欢的理财产品">
+<meta name="description" content="TOP - 分享你喜欢的理财产品">
 <meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
 
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
