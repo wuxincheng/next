@@ -96,18 +96,17 @@
          -->
       </section>
       
-      <!-- 
       <section class="featured cf">
-        <a class="featured-item" href="http://next.36kr.com/posts/collections/273"
-          style="background-image: url(https://rs-images.b0.upaiyun.com/uploads/note_collection/feature_image/273/33bd3c7c-0ef5-49df-8aee-108ad05bad6d.jpg!800x800)"
+        <a class="featured-item" href="http://www.howbuy.com/mobile/zsjj/"
+          style="background-image: url(${root}/assets/images/ad/ad1.png)"
           target="_blank">
           <div class="featured-meta">
-            <h3>私人助理应用</h3>
-            <p>歪国人是怎样玩转私人助理应用的</p>
+            <h3>掌上基金</h3>
+            <p>人人都是基金经理</p>
           </div>
         </a>
       </section>
-       -->
+      
       </c:forEach>
       </c:forEach>
       </c:when>

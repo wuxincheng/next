@@ -50,9 +50,14 @@
           <div class="form-group text required note_summary">
             <label class="text required" for="note_summary">榜单说明</label>
             <textarea aria-required="true" class="text required form-control input-big"
-              id="memo" name="memo" required="required">
-</textarea>
+              id="memo" name="memo" required="required"></textarea>
             <p class="help-block">请精简描述, 36字以内</p>
+          </div>
+          <div class="form-group text required note_summary">
+            <label class="text required" for="note_summary">榜单介绍</label>
+            <textarea aria-required="true" class="text required form-control input-big"
+              id="recommend" name="recommend" required="required"></textarea>
+            <p class="help-block">请精简介绍, 50字以内</p>
           </div>
 
           <input class="btn submit" name="commit" type="submit" value="提交" />

@@ -11,6 +11,7 @@
     <result property="productSum" column="productsum" />
     <result property="collectSum" column="collectsum" />
     <result property="memo" column="memo" />
+    <result property="recommend" column="recommend" />
     <result property="updateState" column="updatestate" />
     <result property="updateTime" column="updatetime" />
     <result property="createTime" column="createtime" />
@@ -30,6 +31,7 @@
         productsum, 
         collectsum, 
         memo, 
+        recommend, 
         updatestate, 
         updatetime, 
         createtime, 
@@ -41,6 +43,7 @@
         #productSum#, 
         #collectSum#, 
         #memo#, 
+        #recommend#, 
         #updateState#, 
         #updateTime#, 
         #createTime#, 

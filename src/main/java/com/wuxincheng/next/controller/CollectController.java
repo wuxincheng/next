@@ -22,7 +22,6 @@ import com.wuxincheng.next.service.CollectUserService;
 import com.wuxincheng.next.service.ProductService;
 import com.wuxincheng.next.util.Constants;
 import com.wuxincheng.next.util.ImageUtil;
-import com.wuxincheng.next.util.StringUtil;
 import com.wuxincheng.next.util.Validation;
 
 /**
@@ -56,6 +55,7 @@ public class CollectController extends BaseController {
 		
 		if (null == collects || collects.size() < 1) {
 			model.addAttribute(Constants.MSG_INFO, "目前还没发布榜单");
+			logger.debug("目前还没发布榜单");
 		}
 		
 		request.setAttribute("collects", collects);
@@ -69,10 +69,10 @@ public class CollectController extends BaseController {
 		requestMessageProcess(request);
 		
 		// 判断用户是否有创建榜单权限
-		if (!isCollectPermission(request)) {
-			model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
-			return "redirect:list";
-		}
+		// if (!isCollectPermission(request)) {
+			// model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
+			// return "redirect:list";
+		// }
 		
 		request.setAttribute(Constants.CURRENT_USERID, getCurrentUserid(request));
 		
@@ -81,33 +81,57 @@ public class CollectController extends BaseController {
 	
 	@RequestMapping(value = "/create")
 	public String create(Model model, HttpServletRequest request, Collect collect) {
-		logger.info("添加新的榜单 collection={}", StringUtil.toStringMultiLine(collect));
+		logger.info("添加新的榜单");
 		
 		// 判断用户是否有创建榜单权限
-		if (!isCollectPermission(request)) {
-			model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
-			return "redirect:edit";
-		}
+		// 目前不做限制
+		// if (!isCollectPermission(request)) {
+			// model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
+			// return "redirect:edit";
+		// }
 		
 		// 验证榜单名称和说明是否为空
 		if (StringUtils.isEmpty(collect.getCollectName())) {
 			model.addAttribute(Constants.MSG_WARN, "榜单名称不能为空");
+			logger.debug("榜单名称不能为空");
 			return "redirect:edit";
 		}
 		if (StringUtils.isEmpty(collect.getMemo())) {
 			model.addAttribute(Constants.MSG_WARN, "榜单说明不能为空");
+			logger.debug("榜单说明不能为空");
 			return "redirect:edit";
 		}
+		if (collect.getCollectName().length() > 15 || collect.getCollectName().length() < 4) {
+			model.addAttribute(Constants.MSG_WARN, "榜单名称长度不合法，应在4到15位之间");
+			logger.debug("榜单名称长度不合法，应在4到15位之间");
+			return "redirect:edit";
+		}
+		if (collect.getMemo().length() > 36 || collect.getMemo().length() < 5) {
+			model.addAttribute(Constants.MSG_WARN, "榜单说明长度不合法，应在5到36位之间");
+			logger.debug("榜单说明长度不合法，应在5到36位之间");
+			return "redirect:edit";
+		}
+		if (StringUtils.isNotEmpty(collect.getRecommend())) {
+			if (collect.getRecommend().length() > 100) {
+				model.addAttribute(Constants.MSG_WARN, "榜单介绍长度不合法，不能对超过100个字");
+				logger.debug("榜单介绍长度不合法，不能对超过100个字");
+				return "redirect:edit";
+			}
+		}
+		
+		logger.debug("开始验证榜单封面图片");
 		
 		// 验证是否上传了图片
 		if (null == collect.getCoverImgFile()) {
 			model.addAttribute(Constants.MSG_WARN, "榜单背景图片不能为空");
+			logger.debug("榜单背景图片不能为空");
 			return "redirect:edit";
 		}
 		
 		// 控制图片大小不能大于3M
 		if (collect.getCoverImgFile().getSize() > 5*1024*1024) {
 			model.addAttribute(Constants.MSG_WARN, "榜单背景图片不能超过3M");
+			logger.debug("榜单背景图片不能超过3M size={}", collect.getCoverImgFile().getSize());
 			return "redirect:edit";
 		}
 		
@@ -116,14 +140,17 @@ public class CollectController extends BaseController {
 		String lastFix = checkFileName.substring(checkFileName.lastIndexOf("."), checkFileName.length());
 		if (!".png|.jpg".contains(lastFix)) {
 			model.addAttribute(Constants.MSG_WARN, "榜单背景图片仅支持png、jpg格式");
+			logger.debug("榜单背景图片仅支持png、jpg格式 lastFix={}", lastFix);
 			return "redirect:edit";
 		}
 		
 		// 生成图片名称
 		String ctxPath = request.getSession().getServletContext().getRealPath("/") + "collect/coverbg/"; 
+		logger.debug("图片存放路径 ctxPath={}", ctxPath);
 		String coverImgPath = System.currentTimeMillis() + lastFix;
 		logger.info("封面图片 coverImgPath={}", coverImgPath);
 		
+		logger.debug("开始保存图片");
 		// 保存图片到服务器
 		ImageUtil.saveFile(ctxPath, coverImgPath, collect.getCoverImgFile());
 		// 设置Collect对中图片存储的路径
@@ -151,12 +178,14 @@ public class CollectController extends BaseController {
 		
 		// 判断collectid
 		if (StringUtils.isEmpty(collectid) || !Validation.isIntPositive(collectid)) {
+			logger.debug("详细显示失败：collectid为空");
 			return "redirect:list";
 		}
 		
 		// 是否存在这个榜单
 		Collect collect = collectService.queryDetailByCollectid(collectid);
 		if (null == collect) {
+			logger.debug("详细显示失败：榜单不存在 collectid={}", collectid);
 			return "redirect:list";
 		}
 		
@@ -192,8 +221,13 @@ public class CollectController extends BaseController {
 	 */
 	@RequestMapping(value = "/collect")
 	public String collect(Integer collectid, Integer userid) {
+		logger.info("榜单收藏和取消收藏操作 collectionid={} userid={}", collectid, userid);
+		
 		if (collectid != null && userid != null) {
 			collectUserService.collect(collectid, userid);
+			logger.debug("榜单收藏和取消收藏操作成功");
+		} else {
+			logger.debug("榜单收藏和取消收藏操作失败：collectid或userid为空");
 		}
 		
 		return "redirect:/collect/detail?collectid="+collectid;

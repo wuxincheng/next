@@ -33,10 +33,11 @@ public class UserController extends BaseController {
 	
 	@RequestMapping(value = "/main")
 	public String main(Model model, HttpServletRequest request, String queryUserid) {
-		logger.info("显示用户中心 userid={}", queryUserid);
+		logger.info("显示用户中心 queryUserid={}", queryUserid);
 
 		// 验证userid
 		if (StringUtils.isEmpty(queryUserid) || !Validation.isIntPositive(queryUserid)) {
+			logger.debug("查询失败：queryUserid为空");
 			return "404";
 		}
 
@@ -44,8 +45,11 @@ public class UserController extends BaseController {
 		User userQuery = userService.queryByUserid(queryUserid);
 		
 		if (null == userQuery) {
+			logger.debug("查询失败：没有查询到用户信息");
 			return "404";
 		}
+		
+		logger.debug("已查询到用户信息");
 		
 		Map<String, String> queryMap = new HashMap<String, String>();
 		queryMap.put("queryUserid", queryUserid); // 需要查看用户信息的userid
@@ -58,6 +62,8 @@ public class UserController extends BaseController {
 		
 		// 查询登录用户赞过的产品
 		List<Product> products = productService.queryUserMain(queryMap);
+		
+		logger.debug("查询登录用户赞过的产品");
 		
 		model.addAttribute("products", products);
 		model.addAttribute("userQuery", userQuery);

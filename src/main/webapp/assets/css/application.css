@@ -2418,15 +2418,16 @@ body {
 }
 
 .list-header-info h2 {
-	font-size: 1.5rem
+	font-size: 1.8rem
 }
 
 .list-header-info p {
-	font-size: 0.875rem
+	font-size: 1.075rem
 }
 
 .list-stats {
-	font-size: 0.75rem;
+    margin-top: 10px;
+	font-size: 1.01rem;
 	color: #e5e5e5;
 	margin-bottom: 30px
 }
@@ -2448,7 +2449,7 @@ body {
 
 @media screen and (min-width: 30.0625em) {
 	.list-bio {
-		margin-bottom: 120px
+		margin-bottom: 110px
 	}
 }
 
