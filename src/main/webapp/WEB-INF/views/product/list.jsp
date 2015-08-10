@@ -12,9 +12,8 @@
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
 
-<meta name="author" content="36Kr">
-<meta name="description" content="NEXT - 找到你喜欢的理财产品">
-<meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
+<meta name="description" content="TOP - 找到你喜欢的理财产品">
+<meta name="keywords" content="TOP">
 
 </head>
 <body id="home" class="notes-index">
@@ -121,7 +120,7 @@
       <!-- 
       <div class="pagination cf more-notes">
         <a class="load-more-notes" data-remote="true"
-          href="http://next.36kr.com/posts.html?start_on=2015-06-21">OK, NEXT</a>
+          href="#">OK, TOP</a>
       </div>
        -->
       <div class="pagination cf more-notes">

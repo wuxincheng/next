@@ -28,6 +28,14 @@ public class WechatConfig {
 	@Value("#{wechatSettings.wechatOAuthUrl}")
 	private String wechatOAuthUrl;
 
+	/** 微信授权JS登录页面 */
+	@Value("#{wechatSettings.wechatOAuthJSUrl}")
+	private String wechatOAuthJSUrl;
+
+	/** 微信登录二维码CSS样式文件地址 */
+	@Value("#{wechatSettings.wechatQcodeStyle}")
+	private String wechatQcodeStyle;
+
 	/** 登录返回地址 */
 	@Value("#{wechatSettings.redirectUrl}")
 	private String redirectUrl;
@@ -106,6 +114,22 @@ public class WechatConfig {
 
 	public void setUserInfoUrl(String userInfoUrl) {
 		this.userInfoUrl = userInfoUrl;
+	}
+
+	public String getWechatOAuthJSUrl() {
+		return wechatOAuthJSUrl;
+	}
+
+	public void setWechatOAuthJSUrl(String wechatOAuthJSUrl) {
+		this.wechatOAuthJSUrl = wechatOAuthJSUrl;
+	}
+
+	public String getWechatQcodeStyle() {
+		return wechatQcodeStyle;
+	}
+
+	public void setWechatQcodeStyle(String wechatQcodeStyle) {
+		this.wechatQcodeStyle = wechatQcodeStyle;
 	}
 
 }

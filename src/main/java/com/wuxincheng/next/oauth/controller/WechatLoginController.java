@@ -48,7 +48,7 @@ public class WechatLoginController {
 		
 		try {
 			String sessionid = request.getSession().getId();
-			String wechatOAuthUrl = wechatHttpsHelper.getOAuthLoginSession(sessionid);
+			String wechatOAuthUrl = wechatHttpsHelper.getOAuthLoginURI(sessionid);
 			logger.debug("微信授权页面wechatOAuthUrl={}", wechatOAuthUrl);
 			response.sendRedirect(wechatOAuthUrl); // 跳转到微信登录授权页面
 			logger.debug("已跳转到微信授权页面");

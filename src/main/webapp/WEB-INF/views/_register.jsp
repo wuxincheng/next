@@ -48,14 +48,14 @@
           <hr>
 
           <a href="${root}/login/">登录</a><br> <a
-            href="http://next.36kr.com/users/confirmation/new">没有收到验证邮件?</a><br>
+            href="#">没有收到验证邮件?</a><br>
         </form>
       </div>
 
       <aside class="aside">
         <h4>微信扫一扫：立即登录、快速注册～</h4>
         <img
-          src="http://next.36kr.com/users/sign_in_qrcode?t=1435142215.894246"
+          src="#"
           alt="微信二维码" id="sign_in_qrcode_image" width="160" height="160"
           data-ok-url="/posts">
         <ul class="aside-tips">

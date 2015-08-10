@@ -12,10 +12,8 @@
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
 
-<meta name="author" content="36Kr">
-<meta name="description" content="NEXT - 找到你喜欢的理财产品">
-<meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
-<link rel="author" href="http://next.36kr.com/humans.txt">
+<meta name="description" content="TOP - 找到你喜欢的理财产品">
+<meta name="keywords" content="TOP，新产品，创业，互联网产品，Startup">
 
 </head>
 <body id="home" class="notes-index">

@@ -2391,7 +2391,8 @@ body {
 	background-position: center center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
-	background-size: cover
+	background-size: cover;
+	opacity: 0.8;
 }
 
 .list-header-cover:before {
