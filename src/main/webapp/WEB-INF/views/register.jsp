@@ -21,8 +21,8 @@
   <jsp:include page="HEADER.jsp" />
   
   <div class="container">
-    <div class="subcontent login-row cf">
-      <div class="forms login-box">
+    <div class="content row cf"> <!-- login-row  -->
+      <div class="forms "> <!-- login-box -->
         <form accept-charset="UTF-8" action="${root}/register/doRegister" class="simple_form form" id="new_user" method="post">
           <div style="display: none">
             <input name="utf8" type="hidden" value="&#x2713;" />
@@ -49,11 +49,38 @@
               id="password2" name="password2" placeholder="重新输入密码" required="required" type="password" />
           </div>
           <input class="btn submit" name="commit" type="submit" value="完成注册" />
-          &nbsp;&nbsp;
-          <a href="${root}/login/">我已注册，立即登录</a>
-          <p>&nbsp;</p><p>&nbsp;</p>
+          
+          <div class="oauth-panel" >
+            <ul class="upvote-users cf">
+              <li class="product-avatar">
+                <div class="user-image"><strong><a href="${root}/login/">立即登录</a></strong>
+                <div style="margin-top:10px; font-style:italic;">注册好麻烦呀，在右则直接使用微信扫码登录</div></div>
+              </li>
+            </ul>
+          </div>
         </form>
       </div>
+      
+      <aside class="aside" style="width: 380px; padding-left: 40px;">
+        <iframe id="main" name="main" src="${wechatOAuthJSURI}" style="width:350px; height: 400px;
+          frameborder="0" scrolling="no" marginheight="0" allowTransparency="true" >
+        </iframe>
+        <div class="oauth-panel" style="margin: 0px; padding: 20px 0;">
+          <ul class="upvote-users cf" style="float: left;">
+            <li class="product-avatar">
+              <div class="user-image"><strong><a href="${root}/register/">　　其它方式授权登录：</a></strong></div>
+            </li>
+            <li class="product-avatar">
+              <div class="user-image">
+                <a class="user-image-link" href="${root}/oauth/qq/login">
+                  <img  src="${root}/assets/img/oauth/Connect_logo_1.png" style="height: 16px; width: 16px; margin-top: 0px; margin-bottom: 0px;" />
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      
     </div>
   </div>
 

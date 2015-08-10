@@ -42,34 +42,9 @@
           <div class="oauth-panel" >
             <ul class="upvote-users cf">
               <li class="product-avatar">
-                <div class="user-image"><strong><a href="${root}/register/">注册</a></strong>
-                <div style="margin-top:10px; font-style:italic;">注册好麻烦呀，在右则直接使用微信扫码登录</div></div>
+                <div class="user-image"><strong><a href="${root}/register/">还是去注册吧！</a></strong>
+                <div style="margin-top:10px; font-style:italic;">登录好麻烦呀，在右则直接使用微信扫码登录</div></div>
               </li>
-              <!-- 
-              <li class="product-avatar">
-                <div class="user-image">
-                  <a class="user-image-link" href="${root}/oauth/wechat/login">
-                    <img src="${root}/assets/img/oauth/icon16_wx_logo.png" />
-                  </a>
-                </div>
-              </li>
-              <li class="product-avatar">
-                <div class="user-image">
-                  <a class="user-image-link" href="${root}/oauth/qq/login">
-                    <img  src="${root}/assets/img/oauth/Connect_logo_1.png" />
-                  </a>
-                </div>
-              </li>
-               -->
-              <!-- 
-              <li class="product-avatar">
-                <div class="user-image">
-                  <a class="user-image-link" href="${root}/oauth/weibo/login">
-                    <img src="${root}/assets/img/oauth/icon16_weibo_logo.png" />
-                  </a>
-                </div>
-              </li>
-               -->
             </ul>
           </div>
           
@@ -81,7 +56,7 @@
       </div>
 
       <aside class="aside" style="width: 380px; padding-left: 40px;">
-        <iframe id="main" name="main" src="https://open.weixin.qq.com/connect/qrconnect?appid=wx8bc224d6280b4ace&scope=snsapi_login&redirect_uri=http%3A%2F%2Fwww.zhuanlemei.com%2Ftop%2Foauth%2Fwechat%2Fcallback&state=1F89790D141190956ACED9DDD44FA10D&login_type=jssdk&style=black&href=http://www.zhuanlemei.com/top/assets/css/wxqstyle.css" style="width:350px; height: 400px;
+        <iframe id="main" name="main" src="${wechatOAuthJSURI}" style="width:350px; height: 400px;
           frameborder="0" scrolling="no" marginheight="0" allowTransparency="true" >
         </iframe>
         <div class="oauth-panel" style="margin: 0px; padding: 20px 0;">
@@ -93,13 +68,6 @@
               <div class="user-image">
                 <a class="user-image-link" href="${root}/oauth/qq/login">
                   <img  src="${root}/assets/img/oauth/Connect_logo_1.png" style="height: 16px; width: 16px; margin-top: 0px; margin-bottom: 0px;" />
-                </a>
-              </div>
-            </li>
-            <li class="product-avatar">
-              <div class="user-image">
-                <a class="user-image-link" href="${root}/oauth/weibo/login">
-                  <img src="${root}/assets/img/oauth/icon16_weibo_logo.png" style="height: 16px; width: 16px; margin-top: 0px; margin-bottom: 0px;" />
                 </a>
               </div>
             </li>

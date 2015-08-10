@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wuxincheng.next.controller.BaseController;
 import com.wuxincheng.next.model.User;
+import com.wuxincheng.next.oauth.helper.WechatHttpsHelper;
 import com.wuxincheng.next.service.UserService;
 import com.wuxincheng.next.util.Constants;
 import com.wuxincheng.next.util.MD5;
@@ -34,11 +35,23 @@ public class Register extends BaseController {
 	@Resource
 	private UserService userService;
 	
+	@Resource 
+	private WechatHttpsHelper wechatHttpsHelper;
+	
 	@RequestMapping(value = "/")
 	public String login(Model model, HttpServletRequest request) {
 		logger.info("显示用户登录页面");
 		
 		requestMessageProcess(request);
+		
+		// 获取微信登录二维码地址
+		String sessionid = request.getSession().getId();
+		logger.debug("获取用户浏览器Session sessionid={}", sessionid);
+		
+		String wechatOAuthJSURI = wechatHttpsHelper.getOAuthLoginURI(sessionid);
+		logger.debug("登录二维码地址 wechatOAuthJSURI={}", wechatOAuthJSURI);
+		
+		model.addAttribute("wechatOAuthJSURI", wechatOAuthJSURI);
 		
 		return "register";
 	}
