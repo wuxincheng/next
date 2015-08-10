@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>TOP | 分享你喜欢的理财产品</title>
+<title>TOP | 找到你喜欢的理财产品</title>
 <link data-turbolinks-track="true" href="${root}/assets/css/application.css" media="all" rel="stylesheet">
 
 <script data-turbolinks-track="true" src="${root}/assets/js/application.js"></script>
@@ -22,8 +22,8 @@
 
 <!-- info -->
 <meta name="author" content="36Kr">
-<meta name="description" content="TOP - 分享你喜欢的理财产品">
-<meta name="keywords" content="TOP，新产品，基金，股票，债券，创业，互联网产品，分享你喜欢的理财产品">
+<meta name="description" content="TOP - 找到你喜欢的理财产品">
+<meta name="keywords" content="TOP，新产品，基金，股票，债券，创业，互联网产品，找到你喜欢的理财产品">
 <link rel="author" href="http://www.zhuanlemei.com/top/humans.txt">
 
 <!--iOS -->
@@ -51,7 +51,7 @@
 
   <header class="topbar cf">
     <h1 class="brand">
-      <a href="${root}/product/list" class="logo" id="logo">TOP</a> <span class="slogan">分享你喜欢的理财产品</span>
+      <a href="${root}/product/list" class="logo" id="logo">TOP</a> <span class="slogan">找到你喜欢的理财产品</span>
     </h1>
     <nav class="navigation text-center">
       <ul>

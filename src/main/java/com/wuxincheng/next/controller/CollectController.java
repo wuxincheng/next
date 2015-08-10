@@ -107,14 +107,14 @@ public class CollectController extends BaseController {
 			return "redirect:edit";
 		}
 		if (collect.getMemo().length() > 36 || collect.getMemo().length() < 5) {
-			model.addAttribute(Constants.MSG_WARN, "榜单说明长度不合法，应在5到36位之间");
-			logger.debug("榜单说明长度不合法，应在5到36位之间");
+			model.addAttribute(Constants.MSG_WARN, "一句话介绍长度不合法，应在5到36位之间");
+			logger.debug("一句话介绍长度不合法，应在5到36位之间");
 			return "redirect:edit";
 		}
 		if (StringUtils.isNotEmpty(collect.getRecommend())) {
 			if (collect.getRecommend().length() > 100) {
-				model.addAttribute(Constants.MSG_WARN, "榜单介绍长度不合法，不能对超过100个字");
-				logger.debug("榜单介绍长度不合法，不能对超过100个字");
+				model.addAttribute(Constants.MSG_WARN, "内容介绍长度过长，不能超过200个字");
+				logger.debug("内容介绍长度过长，不能超过200个字");
 				return "redirect:edit";
 			}
 		}

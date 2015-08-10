@@ -13,7 +13,7 @@
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
 
 <meta name="author" content="36Kr">
-<meta name="description" content="NEXT - 分享你喜欢的理财产品">
+<meta name="description" content="NEXT - 找到你喜欢的理财产品">
 <meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
 <link rel="author" href="http://next.36kr.com/humans.txt">
 
@@ -48,16 +48,15 @@
               id="coverImgFile" name="coverImgFile" required="required" type="file" />
           </div>
           <div class="form-group text required note_summary">
-            <label class="text required" for="note_summary">榜单说明</label>
+            <label class="text required" for="note_summary">一句话介绍</label>
             <textarea aria-required="true" class="text required form-control input-big"
               id="memo" name="memo" required="required"></textarea>
             <p class="help-block">请精简描述, 36字以内</p>
           </div>
           <div class="form-group text required note_summary">
-            <label class="text required" for="note_summary">榜单介绍</label>
+            <label class="text required" for="note_summary">内容介绍</label>
             <textarea aria-required="true" class="text required form-control input-big"
               id="recommend" name="recommend" required="required"></textarea>
-            <p class="help-block">请精简介绍, 50字以内</p>
           </div>
 
           <input class="btn submit" name="commit" type="submit" value="提交" />

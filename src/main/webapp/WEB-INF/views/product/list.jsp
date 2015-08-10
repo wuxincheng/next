@@ -13,7 +13,7 @@
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
 
 <meta name="author" content="36Kr">
-<meta name="description" content="NEXT - 分享你喜欢的理财产品">
+<meta name="description" content="NEXT - 找到你喜欢的理财产品">
 <meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
 
 </head>
@@ -26,11 +26,13 @@
       <section class="main-header cf">
         <a class="btn submit-btn right" href="${root}/product/postUI">分享新产品</a>
       </section>
-
+      
+      <c:set var="currentProduct" value="0" />
       <c:choose>
       <c:when test="${not empty pager.productMapList}">
       <c:forEach items="${pager.productMapList}" var="productMap">
       <c:forEach items="${productMap}" var="map">
+      <c:set var="currentProduct" value="${currentProduct+1}" />
       <section class="post">
         <div class="date row">
           <span class="cal"> <i class="month">${hfn:engMonth(map.key)}</i> <i class="day">${hfn:simpleDay(map.key)}</i>
@@ -96,6 +98,7 @@
          -->
       </section>
       
+      <c:if test="${currentProduct < 2}">
       <section class="featured cf">
         <a class="featured-item" href="http://www.howbuy.com/mobile/zsjj/"
           style="background-image: url(${root}/assets/images/ad/ad1.png)"
@@ -106,6 +109,7 @@
           </div>
         </a>
       </section>
+      </c:if>
       
       </c:forEach>
       </c:forEach>
