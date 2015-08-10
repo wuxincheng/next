@@ -49,7 +49,9 @@ public class WechatLoginController {
 		try {
 			String sessionid = request.getSession().getId();
 			String wechatOAuthUrl = wechatHttpsHelper.getOAuthLoginSession(sessionid);
+			logger.debug("微信授权页面wechatOAuthUrl={}", wechatOAuthUrl);
 			response.sendRedirect(wechatOAuthUrl); // 跳转到微信登录授权页面
+			logger.debug("已跳转到微信授权页面");
 		} catch (Exception e) {
 			logger.error("连接登录微信异常", e);
 		}
@@ -121,6 +123,7 @@ public class WechatLoginController {
 	private void checkAndProcessOAuthUser(User oauthUser, HttpServletRequest request) {
 		// 验证是否已经在库中有记录，如果有记录更新，没记录新增
 		User checkUser = userService.validateOAuthUser(oauthUser);
+		logger.debug("验证用户");
 		
 		// 用户信息放入在Session中
 		request.getSession().setAttribute(Constants.CURRENT_USER, checkUser);

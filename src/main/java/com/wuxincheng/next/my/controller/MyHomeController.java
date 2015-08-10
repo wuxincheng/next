@@ -46,7 +46,8 @@ public class MyHomeController extends BaseController {
 			userid = getCurrentUseridStr(request);
 		}
 		if (StringUtils.isEmpty(userid)) {
-			model.addAttribute(Constants.MSG_WARN, "用户指定不明，不法查询信息");
+			model.addAttribute(Constants.MSG_WARN, "用户指定不明，无法查询信息");
+			logger.debug("用户指定不明，无法查询信息");
 			return "redirect:/login/";
 		}
 

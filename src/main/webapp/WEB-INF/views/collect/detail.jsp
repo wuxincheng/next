@@ -6,10 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TOP - 产品集</title>
+<title>TOP - 榜单</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="description" content="TOP - 找到你喜欢的理财产品">
+<meta name="description" content="TOP - 分享你喜欢的理财产品">
 <meta name="keywords" content="NEXT，新产品，创业，互联网产品，Startup">
 
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
@@ -59,7 +59,19 @@
         </div>
       </div>
     </section>
+    
+    
+    <c:if test="${not empty collect.recommend}">
+    <div class="container row">
+      <div class="product-item">
+        <div class="posts-group cf">
+          <span class="post-tagline">${collect.recommend}</span>
+        </div>
+      </div>
+    </div>
+    </c:if>
 
+    
     <div class="content row ">
       <section class="main-header cf row">
         <div class="list-tip left">
@@ -84,36 +96,6 @@
                 <br>
                 <span class="post-tagline">${product.memo}</span>
               </div>
-              <ul class="product-meta right">
-                <li class="product-avatar">
-                  <div class="user-image">
-                    <a class="user-image-link" href="${root}/user/main?queryUserid=${product.userid}" target="_blank">
-                      <img alt="0" class="avatar" height="60" width="60"
-                        <c:choose>
-                        <c:when test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:when>
-                        <c:when test="${not empty product.picPath}">src="${root}/user/avatar/${product.picPath}"</c:when>
-                        <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
-                        </c:choose> />
-                    </a>
-                  </div>
-                  <div class="user-tooltip">
-                    <a class="user-image-link" href="#">
-                      <img alt="0" class="avatar avatar-big" height="120" width="120"
-                        <c:choose>
-                        <c:when test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:when>
-                        <c:when test="${not empty product.picPath}">src="${root}/user/avatar/${product.picPath}"</c:when>
-                        <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
-                        </c:choose> />
-                    </a>
-                    <h3 class="user-nickname">${product.nickName}</h3>
-                    <h4 class="user-title">${product.userGroup} - ${product.position}<br></h4>
-                    <p class="user-bio">${product.userMemo}</p>
-                  </div>
-                  <div class="product-comment">
-                    <a class="product-comments" href="${root}/product/detail?prodid=${product.prodid}" target="_blank"> ${product.commentSum} </a>
-                  </div>
-                </li>
-              </ul>
           </div>
           <a class="product-link" href="${root}/product/detail?prodid=${product.prodid}" target="_blank"></a>
           </li>          

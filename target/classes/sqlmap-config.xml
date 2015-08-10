@@ -5,7 +5,14 @@
 <sqlMapConfig>
   <settings useStatementNamespaces="true" />
 
+  <!-- 实体表 -->
   <sqlMap resource="com/wuxincheng/next/model/product.xml" />
   <sqlMap resource="com/wuxincheng/next/model/user.xml" />
+  <sqlMap resource="com/wuxincheng/next/model/comment.xml" />
+  <sqlMap resource="com/wuxincheng/next/model/collect.xml" />
+  
+  <!-- 关联表 -->
+  <sqlMap resource="com/wuxincheng/next/model/prodlike.xml" />
+  <sqlMap resource="com/wuxincheng/next/model/collectuser.xml" />
 
 </sqlMapConfig>

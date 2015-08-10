@@ -51,6 +51,8 @@ public class Collect implements Serializable {
 	/** 产品集状态 */
 	private String collectState;
 
+	private String recommend;
+
 	public Collect() {
 	}
 
@@ -148,6 +150,14 @@ public class Collect implements Serializable {
 
 	public void setCoverImgFile(MultipartFile coverImgFile) {
 		this.coverImgFile = coverImgFile;
+	}
+
+	public String getRecommend() {
+		return recommend;
+	}
+
+	public void setRecommend(String recommend) {
+		this.recommend = recommend;
 	}
 
 }
