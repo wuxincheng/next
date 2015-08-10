@@ -33,7 +33,7 @@ public class WeiboLoginController {
 		response.setContentType("text/html;charset=utf-8");
 		
 		try {
-			response.sendRedirect(""); // 跳转到微信登录授权页面
+			response.sendRedirect("");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
