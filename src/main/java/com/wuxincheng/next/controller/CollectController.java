@@ -90,6 +90,8 @@ public class CollectController extends BaseController {
 			// return "redirect:edit";
 		// }
 		
+		// TODO 统一处理
+		
 		// 验证榜单名称和说明是否为空
 		if (StringUtils.isEmpty(collect.getCollectName())) {
 			model.addAttribute(Constants.MSG_WARN, "榜单名称不能为空");
