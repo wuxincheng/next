@@ -38,6 +38,13 @@
         #recommend#, #updateState#, #updateTime#, 
         #createTime#, #collectState#)
   </insert>
+  
+  <update id="update" parameterClass="Collect">
+    UPDATE t_next_collect 
+       SET collectname = #collectName#, coverimgpath = #coverImgPath#, 
+           memo = #memo#, recommend = #recommend#, updatetime=#updateTime# 
+     WHERE collectid = #collectid#
+  </update>
 
   <select id="queryDetailByCollectid" parameterClass="java.lang.String" resultMap="CollectMapping">
     SELECT t.* 
@@ -56,5 +63,9 @@
   <update id="cutCollectSum" parameterClass="java.lang.String">
     UPDATE t_next_collect SET collectsum = (collectsum-1) WHERE collectid = #collectid# AND collectsum &gt; 0
   </update>
+  
+  <delete id="delete" parameterClass="java.lang.String">
+    DELETE FROM t_next_collect WHERE collectid = #collectid#
+  </delete>
 
 </sqlMap>

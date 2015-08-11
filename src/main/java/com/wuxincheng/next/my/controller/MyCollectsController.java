@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.wuxincheng.next.controller.BaseController;
 import com.wuxincheng.next.model.Collect;
 import com.wuxincheng.next.service.CollectService;
+import com.wuxincheng.next.service.ProductService;
 import com.wuxincheng.next.util.Constants;
 import com.wuxincheng.next.util.Validation;
 
@@ -32,6 +33,9 @@ public class MyCollectsController extends BaseController {
 	
 	@Autowired
 	private CollectService collectService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	@RequestMapping(value = "/list")
 	public String list(Model model, HttpServletRequest request) {
@@ -64,6 +68,7 @@ public class MyCollectsController extends BaseController {
 
 		if (StringUtils.isEmpty(collectid) || !Validation.isIntPositive(collectid)) {
 			logger.debug("修改页面显示失败：collectid为空");
+			model.addAttribute(Constants.MSG_WARN, "修改页面显示失败：collectid为空");
 			return "redirect:list";
 		}
 		
@@ -78,7 +83,40 @@ public class MyCollectsController extends BaseController {
 	public String modify(Model model, HttpServletRequest request, Collect collect) {
 		logger.info("处理榜单数据");
 
-		collectService.createOrUpdate(collect);
+		try {
+			String ctxPath = request.getSession().getServletContext().getRealPath("/") + "collect/coverbg/"; 
+			
+			String response = collectService.createOrUpdate(collect, ctxPath);
+			
+			if (!StringUtils.isEmpty(response)) {
+				logger.warn("数据处理失败：{}", response);
+				model.addAttribute(Constants.MSG_WARN, "数据处理失败："+response);
+				return "redirect:list";
+			}
+			
+			logger.info("榜单数据处理成功");
+		} catch (Exception e) {
+			logger.error("榜单数据处理出现异常", e);
+			model.addAttribute(Constants.MSG_ERROR, "榜单数据处理出现异常，请联系管理员");
+		}
+		
+		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String delete(Model model, HttpServletRequest request, String collectid) {
+		logger.info("删除榜单 collectid={}", collectid);
+		
+		String responseMessage = collectService.delete(collectid);
+		if (!StringUtils.isEmpty(responseMessage)) {
+			model.addAttribute(Constants.MSG_WARN, "删除失败："+responseMessage);
+			logger.debug("删除失败：{}", responseMessage);
+			return "redirect:list";
+		}
+		
+		logger.info("删除成功");
+		
+		model.addAttribute(Constants.MSG_INFO, "删除成功");
 		
 		return "redirect:list";
 	}

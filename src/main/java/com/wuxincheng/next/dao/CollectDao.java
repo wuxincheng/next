@@ -39,4 +39,12 @@ public class CollectDao extends BaseDao {
 		return this.getSqlMapClientTemplate().queryForList("Collect.queryByUserid", userid);
 	}
 
+	public void delete(String collectid) {
+		this.getSqlMapClientTemplate().delete("Collect.delete", collectid);
+	}
+
+	public void update(Collect collect) {
+		this.getSqlMapClientTemplate().update("Collect.update", collect);
+	}
+
 }

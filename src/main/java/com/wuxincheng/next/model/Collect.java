@@ -24,6 +24,9 @@ public class Collect implements Serializable {
 	/** 集封面路径 */
 	private String coverImgPath;
 
+	/** 隐藏封面路径 */
+	private String coverImgPathHidden;
+
 	/** 封面图片文件 */
 	private MultipartFile coverImgFile;
 
@@ -158,6 +161,14 @@ public class Collect implements Serializable {
 
 	public void setRecommend(String recommend) {
 		this.recommend = recommend;
+	}
+
+	public String getCoverImgPathHidden() {
+		return coverImgPathHidden;
+	}
+
+	public void setCoverImgPathHidden(String coverImgPathHidden) {
+		this.coverImgPathHidden = coverImgPathHidden;
 	}
 
 }
