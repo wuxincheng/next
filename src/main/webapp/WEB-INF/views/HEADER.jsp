@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>TOP | 找到你喜欢的理财产品</title>
+<title>赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP</title>
 <link data-turbolinks-track="true" href="${root}/assets/css/application.css" media="all" rel="stylesheet">
 <script data-turbolinks-track="true" src="${root}/assets/js/application.js"></script>
 
@@ -19,9 +19,8 @@
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
 
 <!-- info -->
-<meta name="description" content="TOP - 找到你喜欢的理财产品">
-<meta name="keywords" content="TOP，新产品，基金，股票，债券，创业，互联网产品，找到你喜欢的理财产品">
-<link rel="author" href="http://www.zhuanlemei.com/top/humans.txt">
+<meta name="description" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
+<meta name="keywords" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
 
 <!--iOS -->
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">

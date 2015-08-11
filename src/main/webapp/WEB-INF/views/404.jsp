@@ -7,9 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <title>404 对不起，您访问的页面不存在 - TOP</title>
-<meta name="description" content="Your description">
-<meta name="keywords" content="Your,Keywords">
-<meta name="author" content="ResponsiveWebInc">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="${root}/assets/css/application.css" />

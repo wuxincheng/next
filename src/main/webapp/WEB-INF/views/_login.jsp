@@ -46,8 +46,8 @@
           <hr>
 
           <a href="${root}/register/">注册</a><br> <a
-            href="http://next.36kr.com/users/password/new">忘记密码?</a><br>
-          <a href="http://next.36kr.com/users/confirmation/new">没有收到验证邮件?</a><br>
+            href="#">忘记密码?</a><br>
+          <a href="#">没有收到验证邮件?</a><br>
         </form>
       </div>
 
@@ -60,7 +60,7 @@
         
         <!-- 
         <img
-          src="http://next.36kr.com/users/sign_in_qrcode?t=1435142215.894246"
+          src="#"
           alt="微信二维码" id="sign_in_qrcode_image" width="160" height="160"
           data-ok-url="/posts">
         <ul class="aside-tips">
