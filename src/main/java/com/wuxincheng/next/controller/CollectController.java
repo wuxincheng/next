@@ -158,7 +158,7 @@ public class CollectController extends BaseController {
 		logger.info("封面图片存储成功");
 		
 		try {
-			collectService.create(collect);
+			collectService.createOrUpdate(collect);
 			logger.info("榜单创建成功");
 			model.addAttribute(Constants.MSG_SUCCESS, "榜单创建成功");
 		} catch (Exception e) {

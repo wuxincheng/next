@@ -21,7 +21,7 @@ import com.wuxincheng.next.service.CollectUserService;
 import com.wuxincheng.next.util.Constants;
 
 /**
- * 用户中心：个人收藏
+ * 用户中心：个人收藏（收藏的榜单）
  * 
  * @author wuxincheng(wxcking)
  * @date 2015年8月3日 下午5:34:03

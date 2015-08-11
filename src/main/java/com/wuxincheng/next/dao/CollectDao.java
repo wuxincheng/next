@@ -34,4 +34,9 @@ public class CollectDao extends BaseDao {
 		this.getSqlMapClientTemplate().update("Collect.cutCollectSum", collectid);
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Collect> queryByUserid(String userid) {
+		return this.getSqlMapClientTemplate().queryForList("Collect.queryByUserid", userid);
+	}
+
 }

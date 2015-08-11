@@ -22,32 +22,21 @@
     SELECT * FROM t_next_collect ORDER BY updatetime DESC
   </select>
   
+  <select id="queryByUserid" parameterClass="java.lang.String" resultMap="CollectMapping">
+    SELECT t.* 
+      FROM t_next_collect t 
+     WHERE t.userid = #userid#
+  </select>
+  
   <insert id="create" parameterClass="Collect">
     INSERT INTO 
-      t_next_collect(
-        collectname, 
-        coverimgpath, 
-        userid, 
-        productsum, 
-        collectsum, 
-        memo, 
-        recommend, 
-        updatestate, 
-        updatetime, 
-        createtime, 
-        collectstate)
-    VALUES (
-        #collectName#, 
-        #coverImgPath#, 
-        #userid#, 
-        #productSum#, 
-        #collectSum#, 
-        #memo#, 
-        #recommend#, 
-        #updateState#, 
-        #updateTime#, 
-        #createTime#, 
-        #collectState#)
+      t_next_collect( collectname, coverimgpath, userid, 
+        productsum, collectsum, memo, recommend, updatestate, 
+        updatetime, createtime, collectstate)
+    VALUES ( #collectName#, #coverImgPath#, #userid#, 
+        #productSum#, #collectSum#, #memo#, 
+        #recommend#, #updateState#, #updateTime#, 
+        #createTime#, #collectState#)
   </insert>
 
   <select id="queryDetailByCollectid" parameterClass="java.lang.String" resultMap="CollectMapping">
