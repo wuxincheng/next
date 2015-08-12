@@ -126,9 +126,10 @@
     		return;
     	}
     	
-    	sleep(1000);
+    	// sleep(1000);
     	
-    	$("#msg-alert").remove();
+    	// $("#msg-alert").remove();
+    	
     	// $("#msg-alert").hide(8000, 'swing');
     	// $("#msg-alert").fadeTo(50000,1).hide();
     });

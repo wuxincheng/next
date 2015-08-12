@@ -55,7 +55,7 @@ public class UserController extends BaseController {
 		queryMap.put("queryUserid", queryUserid); // 需要查看用户信息的userid
 		
 		// 判断当前是否有登录用户
-		String sessionUserid = getCurrentUseridStr(request);
+		String sessionUserid = getCurrentUserid(request);
 		if (StringUtils.isNotEmpty(sessionUserid)) {
 			queryMap.put("sessionUserid", sessionUserid);
 		}

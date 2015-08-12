@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wuxincheng.next.controller.BaseController;
@@ -43,19 +43,11 @@ public class MyCollectsController extends BaseController {
 		
 		requestMessageProcess(request);
 		
-		String userid = getCurrentUseridStr(request);
+		String userid = getCurrentUserid(request);
 		
-		if (StringUtils.isEmpty(userid)) {
-			model.addAttribute(Constants.MSG_WARN, "用户信息异常");
-			logger.debug("用户信息异常，登录失效");
-			return "redirect:list";
-		}
+		List<Collect> collects = collectService.queryByUserid(userid);
 		
-		List<Collect> collects = collectService.queryByUserid(userid); 
-		
-		if (null == collects || collects.size() < 1) {
-			model.addAttribute(Constants.MSG_INFO, "你还没有发布过榜单信息");
-		}
+		// List<Collect> collects = collectService.queryAll();
 		
 		model.addAttribute("collects", collects);
 		
@@ -85,8 +77,9 @@ public class MyCollectsController extends BaseController {
 
 		try {
 			String ctxPath = request.getSession().getServletContext().getRealPath("/") + "collect/coverbg/"; 
+			String userid = getCurrentUserid(request);
 			
-			String response = collectService.createOrUpdate(collect, ctxPath);
+			String response = collectService.createOrUpdate(collect, ctxPath, userid);
 			
 			if (!StringUtils.isEmpty(response)) {
 				logger.warn("数据处理失败：{}", response);
@@ -95,6 +88,7 @@ public class MyCollectsController extends BaseController {
 			}
 			
 			logger.info("榜单数据处理成功");
+			model.addAttribute(Constants.MSG_SUCCESS, "榜单数据处理成功");
 		} catch (Exception e) {
 			logger.error("榜单数据处理出现异常", e);
 			model.addAttribute(Constants.MSG_ERROR, "榜单数据处理出现异常，请联系管理员");
@@ -107,7 +101,14 @@ public class MyCollectsController extends BaseController {
 	public String delete(Model model, HttpServletRequest request, String collectid) {
 		logger.info("删除榜单 collectid={}", collectid);
 		
-		String responseMessage = collectService.delete(collectid);
+		String userid = getCurrentUserid(request);
+		if (StringUtils.isEmpty(userid)) {
+			model.addAttribute(Constants.MSG_WARN, "用户登录失效，请重新登录");
+			return "redirect:list";
+		}
+		
+		String responseMessage = collectService.delete(collectid, userid);
+		
 		if (!StringUtils.isEmpty(responseMessage)) {
 			model.addAttribute(Constants.MSG_WARN, "删除失败："+responseMessage);
 			logger.debug("删除失败：{}", responseMessage);

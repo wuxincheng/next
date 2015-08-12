@@ -16,7 +16,7 @@ public class Collect implements Serializable {
 	private static final long serialVersionUID = -2048622308852729384L;
 
 	/** 产品集主键 */
-	private Integer collectid;
+	private String collectid;
 
 	/** 产品集名称 */
 	private String collectName;
@@ -31,7 +31,7 @@ public class Collect implements Serializable {
 	private MultipartFile coverImgFile;
 
 	/** 用户创建ID */
-	private Integer userid;
+	private String userid;
 
 	/** 产品总数 */
 	private Integer productSum;
@@ -67,11 +67,11 @@ public class Collect implements Serializable {
 		this.coverImgPath = coverImgPath;
 	}
 
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 
@@ -123,11 +123,11 @@ public class Collect implements Serializable {
 		this.createTime = createTime;
 	}
 
-	public Integer getCollectid() {
+	public String getCollectid() {
 		return collectid;
 	}
 
-	public void setCollectid(Integer collectid) {
+	public void setCollectid(String collectid) {
 		this.collectid = collectid;
 	}
 

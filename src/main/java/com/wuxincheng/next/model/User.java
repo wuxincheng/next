@@ -16,7 +16,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** 用户主键 */
-	private Integer userid;
+	private String userid;
 
 	/** 昵称 */
 	private String nickName;
@@ -66,11 +66,11 @@ public class User implements Serializable {
 	/** 第三方平台类型 */
 	private String loginType;
 
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 

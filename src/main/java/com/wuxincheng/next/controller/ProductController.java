@@ -60,7 +60,7 @@ public class ProductController extends BaseController {
 		}
 		
 		// 判断是否有用户登录
-		String userid = getCurrentUseridStr(request);
+		String userid = getCurrentUserid(request);
 		
 		// 每次分页只显示三个日期下发布的产品
 		Pager pager = productService.queryProductsByDate(groupDates, userid);
@@ -131,7 +131,7 @@ public class ProductController extends BaseController {
 		}
 		
 		// 判断是否有用户登录
-		String userid = getCurrentUseridStr(request);
+		String userid = getCurrentUserid(request);
 
 		// 产品详细
 		Product product = productService.queryDetailByProdid(prodid, userid);
@@ -162,7 +162,7 @@ public class ProductController extends BaseController {
 		}
 
 		// 获取当前登录用户ID
-		String userid = getCurrentUseridStr(request);
+		String userid = getCurrentUserid(request);
 		if (StringUtils.isEmpty(userid)) {
 			return null;
 		}

@@ -43,23 +43,12 @@ public class BaseController {
 	/**
 	 * 获取当前Session下的用户ID
 	 */
-	protected Integer getCurrentUserid(HttpServletRequest request) {
+	protected String getCurrentUserid(HttpServletRequest request) {
 		User user = getCurrentUser(request);
 		if (null == user) {
 			return null;
 		}
 		return user.getUserid();
-	}
-	
-	/**
-	 * 获取当前Session下的用户ID
-	 */
-	protected String getCurrentUseridStr(HttpServletRequest request) {
-		User user = getCurrentUser(request);
-		if (null == user) {
-			return null;
-		}
-		return user.getUserid()+"";
 	}
 
 	/**

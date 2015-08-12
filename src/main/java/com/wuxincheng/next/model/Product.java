@@ -14,7 +14,7 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** 产品主键 */
-	private Integer prodid;
+	private String prodid;
 
 	/** 产品名称 */
 	private String prodName;
@@ -40,10 +40,10 @@ public class Product implements Serializable {
 	/** 产品操作时间 */
 	private String postDateTime;
 
-	private Integer userid;
+	private String userid;
 
 	/** 产品集主键 */
-	private Integer collectid;
+	private String collectid;
 
 	/** 产品关注度 */
 	private String score;
@@ -76,11 +76,11 @@ public class Product implements Serializable {
 		return super.equals(obj);
 	}
 	
-	public Integer getProdid() {
+	public String getProdid() {
 		return prodid;
 	}
 
-	public void setProdid(Integer prodid) {
+	public void setProdid(String prodid) {
 		this.prodid = prodid;
 	}
 
@@ -148,19 +148,19 @@ public class Product implements Serializable {
 		this.postDateTime = postDateTime;
 	}
 
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 
-	public Integer getCollectid() {
+	public String getCollectid() {
 		return collectid;
 	}
 
-	public void setCollectid(Integer collectid) {
+	public void setCollectid(String collectid) {
 		this.collectid = collectid;
 	}
 

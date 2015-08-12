@@ -21,7 +21,6 @@ import com.wuxincheng.next.service.CollectService;
 import com.wuxincheng.next.service.CollectUserService;
 import com.wuxincheng.next.service.ProductService;
 import com.wuxincheng.next.util.Constants;
-import com.wuxincheng.next.util.ImageUtil;
 import com.wuxincheng.next.util.Validation;
 
 /**
@@ -82,91 +81,29 @@ public class CollectController extends BaseController {
 	@RequestMapping(value = "/create")
 	public String create(Model model, HttpServletRequest request, Collect collect) {
 		logger.info("添加新的榜单");
+
+		String userid = getCurrentUserid(request);
 		
 		// 判断用户是否有创建榜单权限
-		// 目前不做限制
-		// if (!isCollectPermission(request)) {
-			// model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
-			// return "redirect:edit";
-		// }
-		
-		// TODO 统一处理
-		
-		// 验证榜单名称和说明是否为空
-		if (StringUtils.isEmpty(collect.getCollectName())) {
-			model.addAttribute(Constants.MSG_WARN, "榜单名称不能为空");
-			logger.debug("榜单名称不能为空");
-			return "redirect:edit";
-		}
-		if (StringUtils.isEmpty(collect.getMemo())) {
-			model.addAttribute(Constants.MSG_WARN, "榜单说明不能为空");
-			logger.debug("榜单说明不能为空");
-			return "redirect:edit";
-		}
-		if (collect.getCollectName().length() > 15 || collect.getCollectName().length() < 4) {
-			model.addAttribute(Constants.MSG_WARN, "榜单名称长度不合法，应在4到15位之间");
-			logger.debug("榜单名称长度不合法，应在4到15位之间");
-			return "redirect:edit";
-		}
-		if (collect.getMemo().length() > 36 || collect.getMemo().length() < 5) {
-			model.addAttribute(Constants.MSG_WARN, "一句话介绍长度不合法，应在5到36位之间");
-			logger.debug("一句话介绍长度不合法，应在5到36位之间");
-			return "redirect:edit";
-		}
-		if (StringUtils.isNotEmpty(collect.getRecommend())) {
-			if (collect.getRecommend().length() > 100) {
-				model.addAttribute(Constants.MSG_WARN, "内容介绍长度过长，不能超过200个字");
-				logger.debug("内容介绍长度过长，不能超过200个字");
-				return "redirect:edit";
-			}
-		}
-		
-		logger.debug("开始验证榜单封面图片");
-		
-		// 验证是否上传了图片
-		if (null == collect.getCoverImgFile()) {
-			model.addAttribute(Constants.MSG_WARN, "榜单背景图片不能为空");
-			logger.debug("榜单背景图片不能为空");
+		if (!isCollectPermission(request)) {
+			model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
 			return "redirect:edit";
 		}
 		
-		// 控制图片大小不能大于3M
-		if (collect.getCoverImgFile().getSize() > 5*1024*1024) {
-			model.addAttribute(Constants.MSG_WARN, "榜单背景图片不能超过3M");
-			logger.debug("榜单背景图片不能超过3M size={}", collect.getCoverImgFile().getSize());
-			return "redirect:edit";
-		}
-		
-		// 验证图片的格式(只支持png、jpg格式)
-		String checkFileName = collect.getCoverImgFile().getOriginalFilename();
-		String lastFix = checkFileName.substring(checkFileName.lastIndexOf("."), checkFileName.length());
-		if (!".png|.jpg".contains(lastFix)) {
-			model.addAttribute(Constants.MSG_WARN, "榜单背景图片仅支持png、jpg格式");
-			logger.debug("榜单背景图片仅支持png、jpg格式 lastFix={}", lastFix);
-			return "redirect:edit";
-		}
-		
-		// 生成图片名称
+		// 图片存放路径
 		String ctxPath = request.getSession().getServletContext().getRealPath("/") + "collect/coverbg/"; 
 		logger.debug("图片存放路径 ctxPath={}", ctxPath);
-		String coverImgPath = System.currentTimeMillis() + lastFix;
-		logger.info("封面图片 coverImgPath={}", coverImgPath);
 		
-		logger.debug("开始保存图片");
-		// 保存图片到服务器
-		ImageUtil.saveFile(ctxPath, coverImgPath, collect.getCoverImgFile());
-		// 设置Collect对中图片存储的路径
-		collect.setCoverImgPath(coverImgPath);
-		logger.info("封面图片存储成功");
-		
-		try {
-			collectService.createOrUpdate(collect, ctxPath);
-			logger.info("榜单创建成功");
-			model.addAttribute(Constants.MSG_SUCCESS, "榜单创建成功");
-		} catch (Exception e) {
-			logger.error("榜单创建出现异常", e);
-			model.addAttribute(Constants.MSG_ERROR, "榜单创建错误");
+		String responseMessage = collectService.createOrUpdate(collect, ctxPath, userid);
+		if (StringUtils.isNotEmpty(responseMessage)) {
+			model.addAttribute(Constants.MSG_WARN, "处理失败："+responseMessage);
+			logger.debug(responseMessage);
+			return "redirect:edit";
 		}
+		
+		logger.info("榜单创建成功");
+		
+		model.addAttribute(Constants.MSG_SUCCESS, "榜单创建成功");
 		
 		return "redirect:list";
 	}
@@ -196,10 +133,9 @@ public class CollectController extends BaseController {
 		// 判断用户是否已经登录
 		if (getCurrentUserid(request) != null) {
 			// 如果登录，查询该用户是否已经收藏该榜单
-			CollectUser collectUser =collectUserService.query(Integer.parseInt(collectid), 
-					getCurrentUserid(request));
+			CollectUser collectUser =collectUserService.query(collectid, getCurrentUserid(request));
 			request.setAttribute("collectUser", collectUser);
-			userid = getCurrentUseridStr(request);
+			userid = getCurrentUserid(request);
 		}
 		
 		// 查询这个榜单下的所有产品
@@ -222,7 +158,7 @@ public class CollectController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/collect")
-	public String collect(Integer collectid, Integer userid) {
+	public String collect(String collectid, String userid) {
 		logger.info("榜单收藏和取消收藏操作 collectionid={} userid={}", collectid, userid);
 		
 		if (collectid != null && userid != null) {

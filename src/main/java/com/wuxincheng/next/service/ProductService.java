@@ -34,7 +34,7 @@ public class ProductService {
 	/**
 	 * 发布产品
 	 */
-	public void post(Product product, Integer userid) throws Exception {
+	public void post(Product product, String userid) throws Exception {
 		Date date = new Date();
 		
 		product.setCommentSum(0);
@@ -47,19 +47,19 @@ public class ProductService {
 		
 		if (product.getCollectid() != null) {
 			// 更新产品集中产品的数量
-			collectDao.addProductSum(product.getCollectid()+"");
+			collectDao.addProductSum(product.getCollectid());
 		}
 		
 		// 发布这个产品
 		productDao.post(product);
 		
 		// 当前用户在发布产品的时默认赞这个产品
-		List<Product> products = productDao.queryPostByUserid(userid+"");
+		List<Product> products = productDao.queryPostByUserid(userid);
 		if (null == products || products.size() < 1) {
 			return;
 		}
 		// 最新发布的产品
-		prodLikeService.like(products.get(0).getProdid()+"", userid+"");
+		prodLikeService.like(products.get(0).getProdid(), userid);
 	}
 
 	/**

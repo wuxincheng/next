@@ -13,9 +13,9 @@ public class ProdLike implements Serializable {
 
 	private static final long serialVersionUID = 5101762374272334624L;
 
-	private Integer userid;
+	private String userid;
 
-	private Integer prodid;
+	private String prodid;
 
 	private String likeTime;
 
@@ -31,19 +31,19 @@ public class ProdLike implements Serializable {
 	private String position;
 	private String sex;
 
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 
-	public Integer getProdid() {
+	public String getProdid() {
 		return prodid;
 	}
 
-	public void setProdid(Integer prodid) {
+	public void setProdid(String prodid) {
 		this.prodid = prodid;
 	}
 

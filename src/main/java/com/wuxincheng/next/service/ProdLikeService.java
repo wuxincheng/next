@@ -45,8 +45,8 @@ public class ProdLikeService {
 		result.put("prodid", prodid);
 		
 		ProdLike queryProdLike = new ProdLike();
-		queryProdLike.setUserid(Integer.parseInt(userid));
-		queryProdLike.setProdid(Integer.parseInt(prodid));
+		queryProdLike.setUserid(userid);
+		queryProdLike.setProdid(prodid);
 		// 查询
 		ProdLike prodLike = prodLikeDao.query(queryProdLike);
 		

@@ -32,7 +32,7 @@ public class CommentService {
 	/**
 	 * 发表回复
 	 */
-	public Integer post(Comment comment, Integer userid) {
+	public Integer post(Comment comment, String userid) {
 		// 发表评论
 		comment.setUserid(userid);
 		comment.setCommentState(Constants.DEFAULT_STATE);

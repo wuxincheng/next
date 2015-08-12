@@ -1499,6 +1499,34 @@ input:focus,textarea:focus,select:focus {
 	color: #a46d04
 }
 
+.text-success {
+	color: #5BCD52;
+	font-weight: bold;
+	border: 1px solid #5BCD52;
+	border-radius: 3px;
+}
+
+.text-info {
+	color: #5AABE7;
+	font-weight: bold;
+	border: 1px solid #5AABE7;
+	border-radius: 3px;
+}
+
+.text-warn {
+	color: #FBBD46;
+	font-weight: bold;
+	border: 1px solid #FBBD46;
+	border-radius: 3px;
+}
+
+.text-danger {
+	color: #C82B41;
+	font-weight: bold;
+	border: 1px solid #C82B41;
+	border-radius: 3px;
+}
+
 .page-404 {
 	padding-top: 100px;
 	padding-bottom: 100px

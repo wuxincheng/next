@@ -13,27 +13,27 @@ public class CollectUser implements Serializable {
 
 	private static final long serialVersionUID = -361294005914978730L;
 
-	private Integer collectid;
+	private String collectid;
 
-	private Integer userid;
+	private String userid;
 
 	private String createTime;
 
 	private String collectState;
 
-	public Integer getCollectid() {
+	public String getCollectid() {
 		return collectid;
 	}
 
-	public void setCollectid(Integer collectid) {
+	public void setCollectid(String collectid) {
 		this.collectid = collectid;
 	}
 
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 

@@ -30,7 +30,7 @@ public class CollectUserService {
 		collectUserDao.delete(collectUser);
 	}
 	
-	public CollectUser query(Integer collectid, Integer userid) {
+	public CollectUser query(String collectid, String userid) {
 		CollectUser collectUser = new CollectUser();
 		collectUser.setCollectid(collectid);
 		collectUser.setUserid(userid);
@@ -43,7 +43,7 @@ public class CollectUserService {
 	 * @param collectid
 	 * @param userid
 	 */
-	public void collect(Integer collectid, Integer userid) {
+	public void collect(String collectid, String userid) {
 		CollectUser deleteOrQueryCollectUser = new CollectUser();
 		deleteOrQueryCollectUser.setCollectid(collectid);
 		deleteOrQueryCollectUser.setUserid(userid);
@@ -59,12 +59,12 @@ public class CollectUserService {
 			collectUserDao.insert(collectUser);
 			
 			// 产品集收藏+1
-			collectDao.addCollectSum(collectid+"");
+			collectDao.addCollectSum(collectid);
 		} else { // 取消收藏
 			collectUserDao.delete(deleteOrQueryCollectUser);
 			
 			// 产品集收藏-1
-			collectDao.cutCollectSum(collectid+"");
+			collectDao.cutCollectSum(collectid);
 		}
 	}
 

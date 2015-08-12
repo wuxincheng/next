@@ -13,13 +13,13 @@ public class Comment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer commentid;
+	private String commentid;
 
-	private Integer commentRefid;
+	private String commentRefid;
 
-	private Integer productid;
+	private String productid;
 
-	private Integer userid;
+	private String userid;
 
 	private String content;
 
@@ -46,35 +46,35 @@ public class Comment implements Serializable {
 	
 	private String position;
 
-	public Integer getCommentid() {
+	public String getCommentid() {
 		return commentid;
 	}
 
-	public void setCommentid(Integer commentid) {
+	public void setCommentid(String commentid) {
 		this.commentid = commentid;
 	}
 
-	public Integer getCommentRefid() {
+	public String getCommentRefid() {
 		return commentRefid;
 	}
 
-	public void setCommentRefid(Integer commentRefid) {
+	public void setCommentRefid(String commentRefid) {
 		this.commentRefid = commentRefid;
 	}
 
-	public Integer getProductid() {
+	public String getProductid() {
 		return productid;
 	}
 
-	public void setProductid(Integer productid) {
+	public void setProductid(String productid) {
 		this.productid = productid;
 	}
 
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 

@@ -43,7 +43,7 @@ public class MyHomeController extends BaseController {
 
 		// 验证userid不能为空
 		if (StringUtils.isEmpty(userid)) {
-			userid = getCurrentUseridStr(request);
+			userid = getCurrentUserid(request);
 		}
 		if (StringUtils.isEmpty(userid)) {
 			model.addAttribute(Constants.MSG_WARN, "用户指定不明，无法查询信息");

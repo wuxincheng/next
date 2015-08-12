@@ -1,5 +1,6 @@
 package com.wuxincheng.next.service;
 
+import java.io.File;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -55,10 +56,129 @@ public class CollectService {
 	/**
 	 * 创建或更新产品集（现命名为榜单）
 	 */
-	public String createOrUpdate(Collect collect, String ctxPath) throws Exception {
+	public String createOrUpdate(Collect collect, String ctxPath, String userid) {
 		logger.info("创建或更新产品集(榜单)");
-		
 		String responseMessage = null;
+		
+		// 当前时间
+		String currentDate = DateUtil.getCurrentDate(new Date(), "yyyyMMdd HH:mm:ss");
+		
+		if (collect.getCollectid() != null) { // 更新榜单信息
+			logger.info("更新榜单信息");
+			
+			if (StringUtils.isEmpty(userid)) {
+				responseMessage = "Session异常：用户id为空";
+				logger.warn(responseMessage);
+				return responseMessage;
+			}
+			
+			Collect queryCollect = collectDao.queryDetailByCollectid(collect.getCollectid());
+			logger.debug("查询出要更新的榜单信息");
+			
+			if (!userid.equals(queryCollect.getUserid())) {
+				responseMessage = "您无权限修改非您创建的榜单";
+				logger.warn(responseMessage);
+				return responseMessage;
+			}
+			
+			logger.debug("验证榜单更新信息");
+			responseMessage = checkAndProcessCollectInfo(collect, queryCollect, ctxPath);
+			if (StringUtils.isNotEmpty(responseMessage)) {
+				logger.debug("榜单信息验证失败");
+				logger.info(responseMessage);
+				return responseMessage;
+			}
+			
+			// 删除之前的封面图片
+			
+			queryCollect.setCollectName(collect.getCollectName());
+			queryCollect.setCoverImgPath(collect.getCoverImgPath());
+			queryCollect.setMemo(collect.getMemo());
+			queryCollect.setRecommend(collect.getRecommend());
+			queryCollect.setUpdateTime(currentDate);
+			
+			//collectDao.update(queryCollect);
+		} else { // 新增榜单信息
+			logger.info("新增榜单信息");
+			
+			logger.debug("验证榜单更新信息");
+			responseMessage = checkAndProcessCollectInfo(collect, null, ctxPath);
+			if (StringUtils.isNotEmpty(responseMessage)) {
+				logger.debug("榜单信息验证失败");
+				logger.info(responseMessage);
+				return responseMessage;
+			}
+			
+			collect.setCollectSum(0);
+			collect.setProductSum(0);
+			collect.setCreateTime(currentDate);
+			collect.setUpdateTime(currentDate);
+			collect.setUpdateState(Constants.DEFAULT_STATE);
+			collect.setCollectState(Constants.DEFAULT_STATE);
+			collect.setUserid(userid);
+			
+			logger.debug("新增榜单");
+			//collectDao.create(collect);
+			logger.info("新增榜单成功");
+		}
+		
+		return responseMessage;
+	}
+
+	/**
+	 * 删除榜单
+	 */
+	public String delete(String collectid, String userid) {
+		logger.info("删除榜单 collectid={}", collectid);
+		String responseMessage = null;
+		
+		if (StringUtils.isEmpty(collectid) || !Validation.isIntPositive(collectid)) {
+			responseMessage = "删除失败：collectid为空";
+			logger.debug(responseMessage);
+			return responseMessage;
+		}
+		
+		// 查询榜单信息
+		Collect queryCollect = collectDao.queryDetailByCollectid(collectid);
+		logger.debug("查询出要删除的榜单信息");
+		
+		if (!userid.equals(queryCollect.getUserid())) {
+			responseMessage = "您无权限删除非您创建的榜单";
+			logger.warn(responseMessage);
+			return responseMessage;
+		}
+		
+		// 查询这个榜单中是否有发布的产品
+		Map<String, String> queryMap = new HashMap<String, String>();
+		queryMap.put("collectid", collectid);
+		
+		logger.debug("查询该榜单是否存在产品信息");
+		List<Product> products = productDao.queryProductsByCollectid(queryMap);
+		if (products != null && products.size() > 0) {
+			responseMessage = "删除失败：该榜单产品不为空";
+			logger.debug(responseMessage);
+			return responseMessage;
+		}
+		
+		logger.debug("该榜单中的产品为空，可以删除");
+		
+		collectDao.delete(collectid);
+		logger.debug("已删除");
+		
+		return responseMessage;
+	}
+	
+	/**
+	 * 验证参数并处理图片
+	 */
+	private String checkAndProcessCollectInfo(Collect collect, Collect queryCollect, String ctxPath){
+		String responseMessage = null;
+		
+		if (StringUtils.isEmpty(ctxPath)) {
+			responseMessage = "榜单封面图片保存路径不能为空";
+			logger.warn(responseMessage);
+			return responseMessage;
+		}
 		
 		if (null == collect) {
 			responseMessage = "榜单数据不能为空";
@@ -105,9 +225,25 @@ public class CollectService {
 			return responseMessage;
 		}
 		
-		// TODO 怎么判断是否更新了图片
+		// 判断是否更新了图片：隐藏域图片的名称和显示图片的名称进行比较
+		if (StringUtils.isNotEmpty(collect.getCoverImgPathHidden())) { // 有值说明是更新图片
+			if (collect.getCoverImgPathHidden().equals(collect.getCoverImgPath())) {
+				// 不更新图片
+				logger.debug("没有更新榜单封面图片");
+				return responseMessage;
+			}
+		}
 		
-		// 隐藏域图片的名称和显示图片的名称进行比较
+		// 删除原有的封面图片
+		if (queryCollect != null) { 
+			File resourceCoverImgFile = new File(ctxPath + queryCollect.getCoverImgPath());
+			if (resourceCoverImgFile.delete()) {
+				logger.debug("原封面图片删除成功");
+			} else {
+				logger.warn("原封面图片删除失败");
+				logger.debug("原封面图片名称 coverImgPath={}", queryCollect.getCoverImgPath());
+			}
+		}
 		
 		// 验证图片的格式(只支持png、jpg格式)
 		String checkFileName = collect.getCoverImgFile().getOriginalFilename();
@@ -119,7 +255,6 @@ public class CollectService {
 		}
 		
 		// 生成图片名称
-		
 		logger.debug("图片存放路径 ctxPath={}", ctxPath);
 		String coverImgPath = System.currentTimeMillis() + lastFix;
 		logger.info("封面图片 coverImgPath={}", coverImgPath);
@@ -130,71 +265,6 @@ public class CollectService {
 		// 设置Collect对中图片存储的路径
 		collect.setCoverImgPath(coverImgPath);
 		logger.info("封面图片存储成功");
-
-		// 当前时间
-		String currentDate = DateUtil.getCurrentDate(new Date(), "yyyyMMdd HH:mm:ss");
-		
-		if (collect.getCollectid() != null) {
-			logger.info("更新榜单信息");
-			Collect queryCollect = collectDao.queryDetailByCollectid(collect.getCollectid()+"");
-			logger.debug("查询出要更新的榜单信息");
-			
-			// 删除之前的封面图片
-			
-			queryCollect.setCollectName(collect.getCollectName());
-			queryCollect.setCoverImgPath(collect.getCoverImgPath());
-			queryCollect.setMemo(collect.getMemo());
-			queryCollect.setRecommend(collect.getRecommend());
-			queryCollect.setUpdateTime(currentDate);
-			
-			collectDao.update(queryCollect);
-		} else {
-			logger.info("新增榜单信息");
-			
-			collect.setCollectSum(0);
-			collect.setProductSum(0);
-			collect.setCreateTime(currentDate);
-			collect.setUpdateTime(currentDate);
-			collect.setUpdateState(Constants.DEFAULT_STATE);
-			collect.setCollectState(Constants.DEFAULT_STATE);
-			
-			logger.debug("新增榜单");
-			collectDao.create(collect);
-			logger.info("新增榜单成功");
-		}
-		
-		return responseMessage;
-	}
-
-	/**
-	 * 删除榜单
-	 */
-	public String delete(String collectid) {
-		logger.info("删除榜单 collectid={}", collectid);
-		String responseMessage = null;
-		
-		if (StringUtils.isEmpty(collectid) || !Validation.isIntPositive(collectid)) {
-			responseMessage = "删除失败：collectid为空";
-			logger.debug(responseMessage);
-			return responseMessage;
-		}
-		
-		// 查询这个榜单中是否有发布的产品
-		Map<String, String> queryMap = new HashMap<String, String>();
-		queryMap.put("collectid", collectid);
-		
-		logger.debug("查询该榜单是否存在产品信息");
-		List<Product> products = productDao.queryProductsByCollectid(queryMap);
-		if (products != null && products.size() > 0) {
-			responseMessage = "删除失败：该榜单产品不为空";
-			logger.debug(responseMessage);
-			return responseMessage;
-		}
-		
-		logger.debug("该榜单中的产品为空，可以删除");
-		
-		collectDao.delete(collectid);
-		logger.debug("已删除");
 		
 		return responseMessage;
 	}

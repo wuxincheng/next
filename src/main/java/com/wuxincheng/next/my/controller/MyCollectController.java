@@ -42,8 +42,10 @@ public class MyCollectController extends BaseController {
 	public String list(Model model, HttpServletRequest request) {
 		logger.info("显示个人收藏");
 
+		requestMessageProcess(request);
+		
 		// 获取当前用户
-		String userid = getCurrentUseridStr(request);
+		String userid = getCurrentUserid(request);
 		if (StringUtils.isEmpty(userid)) {
 			model.addAttribute(Constants.MSG_WARN, "用户登录信息失效");
 			return "redirect:/login/";

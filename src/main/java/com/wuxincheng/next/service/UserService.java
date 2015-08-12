@@ -76,7 +76,7 @@ public class UserService {
 		logger.info("更新用户信息");
 		
 		// 根据用户主键查询用户信息是否存在
-		User updateUser = userDao.queryByUserid(user.getUserid()+"");
+		User updateUser = userDao.queryByUserid(user.getUserid());
 		if (updateUser != null) {
 			updateUser.setNickName(user.getNickName());
 			updateUser.setMemo(user.getMemo());

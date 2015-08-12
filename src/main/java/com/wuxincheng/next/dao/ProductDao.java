@@ -50,8 +50,8 @@ public class ProductDao extends BaseDao {
 	/**
 	 * 更新产品的评论数
 	 */
-	public void plusCommentSum(Integer prodid) {
-		this.getSqlMapClientTemplate().update("Product.plusCommentSum", prodid+"");
+	public void plusCommentSum(String prodid) {
+		this.getSqlMapClientTemplate().update("Product.plusCommentSum", prodid);
 	}
 
 	@SuppressWarnings("unchecked")
