@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP</title>
+
 <link data-turbolinks-track="true" href="${root}/assets/css/application.css" media="all" rel="stylesheet">
 <script data-turbolinks-track="true" src="${root}/assets/js/application.js"></script>
 
@@ -51,10 +52,6 @@
     </h1>
     <nav class="navigation text-center">
       <ul>
-        <!-- 
-        <li><a class="main-nav " href="http://www.zhuanlemei.com" target="_blank">赚了没</a></li>
-        <li><a class="main-nav " href="http://www.zhuanlemei.com/news" target="_blank">咖啡日报</a></li>
-         -->
         <li><a class="main-nav " href="${root}/collect/list">榜单</a></li>
         
         <c:choose>

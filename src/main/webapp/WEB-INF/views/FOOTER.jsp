@@ -11,14 +11,8 @@
     <div class="row text-center">
       <div class="copyright">
         <p>
-          © 2014-2015 <strong>TOP</strong>. All Rights Reserved. A <a href="http://www.zhuanlemei.com/">zhuanlemei</a>
-          product.
+          © 2014-2015 <strong>TOP</strong>. All Rights Reserved. A <a href="http://www.zhuanlemei.com/">zhuanlemei</a> product.
         </p>
-        <!-- 
-        <p class="">
-          <span>上 TOP，每天刷新更酷的生活方式。</span>
-        </p>
-         -->
       </div>
     </div>
     
@@ -30,9 +24,10 @@
   j: 下翻页,
   k: 上翻页,
   t: 返回顶部
-您还可以按下键盘空格键自动翻页">返回顶部</a>
+    您还可以按下键盘空格键自动翻页">返回顶部</a>
 
 </body>
+
 <!-- 百度统计 -->
 <script>
 var _hmt = _hmt || [];

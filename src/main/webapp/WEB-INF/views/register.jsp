@@ -24,10 +24,6 @@
     <div class="content row cf"> <!-- login-row  -->
       <div class="forms "> <!-- login-box -->
         <form accept-charset="UTF-8" action="${root}/register/doRegister" class="simple_form form" id="new_user" method="post">
-          <div style="display: none">
-            <input name="utf8" type="hidden" value="&#x2713;" />
-            <input name="authenticity_token" type="hidden" value="yXHXPCuoke25kYrOhAbhrrdplZICg6L01fjRe3X6+Q4=" />
-          </div>
           <div class="form-group email optional user_email">
             <label class="email optional" for="loginEmail">邮箱（用于登录）</label>
             <input aria-required="true" class="string email optional form-control input-small" id="loginEmail" name="loginEmail"

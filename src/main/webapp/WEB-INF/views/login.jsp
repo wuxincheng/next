@@ -5,13 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录 - TOP</title>
 
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
-<!-- meta -->
+
 <meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="renderer" content="webkit">
 </head>
@@ -22,11 +22,6 @@
       <div class="forms " style="padding-top: 10px;"> <!-- login-box -->
         <div style="padding-bottom: 30px; font-size: 20px; text-align: center;">账号登录</div>
         <form accept-charset="UTF-8" action="${root}/login/doLogin" class="simple_form new_user" id="new_user" method="post" role="form">
-          <div style="display: none">
-            <input name="utf8" type="hidden" value="✓">
-            <input name="authenticity_token" type="hidden" value="+pyNg3ggt3L/IZk4ood3x5j18ChulGazM+BKMuOT/ks=">
-          </div>
-          <span class="error "> </span>
           <div class="form-group email required user_email">
             <span>登录邮箱：</span>
             <input aria-required="true" class="string email required form-control input-small" maxlength="50"

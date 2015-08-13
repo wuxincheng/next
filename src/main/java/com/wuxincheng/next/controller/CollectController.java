@@ -68,10 +68,10 @@ public class CollectController extends BaseController {
 		requestMessageProcess(request);
 		
 		// 判断用户是否有创建榜单权限
-		// if (!isCollectPermission(request)) {
-			// model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
-			// return "redirect:list";
-		// }
+		if (!isCollectPermission(request)) {
+			model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
+			return "redirect:list";
+		}
 		
 		request.setAttribute(Constants.CURRENT_USERID, getCurrentUserid(request));
 		
